@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Tunicate Portal — Online Resources for Tunicate Research</title>
+  <meta name="description" content="A curated portal of online resources for tunicate (ascidian) research: genomics, gene expression, morphology and anatomy databases." />
+
+  <!-- Bootstrap 5 (CDN) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous" />
+  <!-- Inter + Noto Sans JP -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="assets/css/style.css" rel="stylesheet" />
+  <link rel="icon" href="assets/img/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png" />
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+</head>
+<body>
+
+  <!-- ================= NAV ================= -->
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-tp sticky-top">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="index.html">
+        <img src="assets/img/logo.png" alt="itm" class="brand-logo" /> Tunicate Portal
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
+              aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="nav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="index.html">Resources</a></li>
+          <li class="nav-item"><a class="nav-link" href="genomes.html">Genome Datasets</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://discord.gg/mgbhTgjMzk" target="_blank" rel="noopener">Discord ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ================= HERO ================= -->
+  <header class="hero">
+    <div class="container py-5">
+      <div class="py-4 py-lg-5">
+        <p class="eyebrow mb-2">Urochordata · Ascidiacea · Appendicularia · Thaliacea</p>
+        <h1 class="display-4 mb-3">Online resources for<br>tunicate research</h1>
+        <p class="lead mb-4">
+          A curated gateway to the databases, genome browsers, expression atlases and
+          anatomical tools the tunicate community relies on — all in one place.
+        </p>
+        <div class="d-flex flex-wrap gap-2 mb-4 hero-badges">
+          <span class="badge rounded-pill px-3 py-2">Genomics &amp; expression</span>
+          <span class="badge rounded-pill px-3 py-2">Morphology &amp; anatomy</span>
+          <span class="badge rounded-pill px-3 py-2">Model-organism communities</span>
+        </div>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="#genomics" class="btn btn-light btn-lg px-4">Browse resources</a>
+          <a href="genomes.html" class="btn btn-outline-light btn-lg px-4">Genome datasets →</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="container my-5">
+
+    <!-- ====== GENOMICS & GENE EXPRESSION ====== -->
+    <section id="genomics" class="mb-5">
+      <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+        <div>
+          <span class="section-label"><span class="dot"></span> Genomics &amp; Gene Expression</span>
+          <h2 class="h3 mt-2 mb-0">Genome browsers, sequences &amp; expression data</h2>
+        </div>
+      </div>
+      <div class="row g-4" id="grid-genomics">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🧬</span>
+                <span class="cat-chip cat-genomics">Genomics</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://www.aniseed.fr/" target="_blank" rel="noopener">ANISEED</a></h3>
+              <p class="card-text small text-secondary">The community's flagship model-organism database: genomes, gene models, in situ expression, cis-regulatory data, functional perturbations, a genome browser and single-cell RNA-seq across many ascidian species.</p>
+              <div class="rc-url">aniseed.fr</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">👻</span>
+                <span class="cat-chip cat-genomics">Genomics</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://ghost.zool.kyoto-u.ac.jp/download_ht.html" target="_blank" rel="noopener">GHOST</a></h3>
+              <p class="card-text small text-secondary">Kyoto University's integrated <em>Ciona intestinalis / robusta</em> resource: genomic and cDNA/EST sequences, KH gene models, expression images, BLAST and a genome browser.</p>
+              <div class="rc-url">ghost.zool.kyoto-u.ac.jp/download_ht</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🌐</span>
+                <span class="cat-chip cat-genomics">Comparative</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/index.html" target="_blank" rel="noopener">TUNOME</a></h3>
+              <p class="card-text small text-secondary">A comparative tunicate genome database (Keio) with functional annotation of gene models and ortholog/transcriptomic analyses across 35+ tunicate species. <span class="text-teal">New (2025).</span></p>
+              <div class="rc-url">ciona.bpni.bio.keio.ac.jp/Tunome</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🌳</span>
+                <span class="cat-chip cat-genomics">Genome hub</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://goat.genomehubs.org/" target="_blank" rel="noopener">GoaT — Genomes on a Tree</a></h3>
+              <p class="card-text small text-secondary">Genomes on a Tree: search and explore genome assembly metadata and sequencing status across the tree of life — including all tunicate taxa — with taxon-aware filtering.</p>
+              <div class="rc-url">goat.genomehubs.org</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card resource-card--nolink">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🧫</span>
+                <span class="cat-chip cat-genomics">Regeneration</span>
+              </div>
+              <h3 class="card-title h5">Botryllus schlosseri Database</h3>
+              <p class="card-text small text-secondary">Genome and biology database for the colonial tunicate <em>Botryllus schlosseri</em> — a model for allorecognition, whole-body regeneration and stem-cell biology.</p>
+              <div class="rc-url rc-url--none">Link coming soon</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====== MORPHOLOGY & ANATOMY ====== -->
+    <section id="morphology" class="mb-5">
+      <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+        <div>
+          <span class="section-label"><span class="dot"></span> Morphology &amp; Anatomy</span>
+          <h2 class="h3 mt-2 mb-0">Anatomical atlases, ontologies &amp; imaging</h2>
+        </div>
+      </div>
+      <div class="row g-4" id="grid-morphology">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🧊</span>
+                <span class="cat-chip cat-morphology">3D Morphology</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://www.morphonet.org/" target="_blank" rel="noopener">MorphoNet</a></h3>
+              <p class="card-text small text-secondary">Interactive web-based 3D morphodynamic browser for visualizing and sharing multi-scale morphological datasets, onto which gene expression or quantitative data can be projected — widely used for ascidian embryo atlases.</p>
+              <div class="rc-url">morphonet.org</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">📖</span>
+                <span class="cat-chip cat-morphology">Ontology</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://chordate.bpni.bio.keio.ac.jp/tunicanato/3.0/" target="_blank" rel="noopener">TunicAnatO</a></h3>
+              <p class="card-text small text-secondary">Tunicate anatomical &amp; developmental ontology for <em>Ciona</em>: 37 developmental stages and ~200 anatomical entities from cell lineage to organ level, with time-lapse stereomicroscopy.</p>
+              <div class="rc-url">chordate.bpni.bio.keio.ac.jp/tunicanato</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🔄</span>
+                <span class="cat-chip cat-morphology">Comparative 3D</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://chordate.bpni.bio.keio.ac.jp/RAMNe/latest/index_ciona.html" target="_blank" rel="noopener">RAMNe</a></h3>
+              <p class="card-text small text-secondary">Comparative 3D digital-image resource of ascidian embryos (<em>Ciona robusta</em>, <em>Ascidiella aspersa</em>, <em>Styela clava</em>) with interactive Z-section and rotation viewers for cross-species comparison.</p>
+              <div class="rc-url">chordate.bpni.bio.keio.ac.jp/RAMNe</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ====== MODEL ORGANISM / COMMUNITY ====== -->
+    <section id="community" class="mb-5">
+      <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+        <div>
+          <span class="section-label"><span class="dot"></span> Model Organism / Community</span>
+          <h2 class="h3 mt-2 mb-0">Community hubs &amp; portals</h2>
+        </div>
+      </div>
+      <div class="row g-4" id="grid-community">
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">💬</span>
+                <span class="cat-chip cat-community">Discord</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://discord.gg/mgbhTgjMzk" target="_blank" rel="noopener">Tunicate Portal Discord</a></h3>
+              <p class="card-text small text-secondary">The community Discord for this portal — join to suggest resources, report broken links, discuss datasets and help keep the site up to date.</p>
+              <div class="rc-url">discord.gg/mgbhTgjMzk</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">📰</span>
+                <span class="cat-chip cat-community">Newsletter</span>
+              </div>
+              <h3 class="card-title h5"><a href="http://depts.washington.edu/ascidian/" target="_blank" rel="noopener">Ascidian News</a></h3>
+              <p class="card-text small text-secondary">Long-running community newsletter and bibliography of ascidian biology, taxonomy and research, maintained by Gretchen Lambert (Univ. of Washington).</p>
+              <div class="rc-url">depts.washington.edu/ascidian</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon">🗄️</span>
+                <span class="cat-chip cat-community">Data portal</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/7712/" target="_blank" rel="noopener">NCBI — Tunicata</a></h3>
+              <p class="card-text small text-secondary">NCBI taxonomy and genome portal for Tunicata (taxid 7712): assemblies, annotations, SRA and sequence data. See also the <a href="genomes.html">genome datasets table →</a></p>
+              <div class="rc-url">ncbi.nlm.nih.gov</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer py-5">
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-6">
+          <h5 class="text-white">🐚 Tunicate Portal</h5>
+          <p class="mb-0" style="max-width:34rem;">
+            A community gateway to online resources and genome datasets for
+            tunicates (Urochordata). Static, portable, and easy to host anywhere.
+          </p>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6 class="text-white-50 text-uppercase small">Pages</h6>
+          <ul class="list-unstyled">
+            <li><a href="index.html">Resources</a></li>
+            <li><a href="genomes.html">Genome Datasets</a></li>
+          </ul>
+        </div>
+        <div class="col-6 col-lg-3">
+          <h6 class="text-white-50 text-uppercase small">External</h6>
+          <ul class="list-unstyled">
+            <li><a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/7712/" target="_blank" rel="noopener">NCBI Tunicata ↗</a></li>
+            <li><a href="https://www.aniseed.fr/" target="_blank" rel="noopener">ANISEED ↗</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="border-secondary my-4" />
+      <p class="small mb-0 text-white-50">
+        Links point to third-party resources maintained by their respective institutions.
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

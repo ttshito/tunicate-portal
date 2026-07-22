@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Tunicate Portal — shared theme
+   Marine / ocean palette. Built on top of Bootstrap 5 (loaded via CDN).
+   Pure CSS, no build step: works from file:// or any static host.
+   ========================================================================== */
+
+:root {
+  --tp-deep:      #06283d;   /* deep ocean */
+  --tp-abyss:     #041c2c;
+  --tp-teal:      #1b6e8c;
+  --tp-cyan:      #2aa8bd;
+  --tp-aqua:      #48cae4;
+  --tp-foam:      #caf0f8;
+  --tp-sand:      #f4f8fb;
+  --tp-coral:     #ef767a;
+  --tp-ink:       #14303f;
+
+  --bs-link-color-rgb: 27, 110, 140;
+  --bs-link-hover-color-rgb: 42, 168, 189;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans JP", sans-serif;
+  color: var(--tp-ink);
+  background: var(--tp-sand);
+}
+
+/* ---- Navbar ------------------------------------------------------------- */
+.navbar-tp {
+  background: rgba(6, 40, 61, 0.92);
+  backdrop-filter: saturate(160%) blur(8px);
+  -webkit-backdrop-filter: saturate(160%) blur(8px);
+}
+.navbar-tp .navbar-brand { font-weight: 700; letter-spacing: .3px; }
+.navbar-tp .navbar-brand .brand-logo {
+  height: 30px; width: auto; margin-right: .6rem;
+  /* logo is on transparent bg; sits on the dark navbar */
+}
+.navbar-tp .nav-link { color: rgba(255,255,255,.78) !important; font-weight: 500; }
+.navbar-tp .nav-link:hover,
+.navbar-tp .nav-link.active { color: #fff !important; }
+.navbar-tp .nav-link.active { position: relative; }
+.navbar-tp .nav-link.active::after {
+  content: ""; position: absolute; left: .5rem; right: .5rem; bottom: 2px;
+  height: 2px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--tp-cyan), var(--tp-aqua));
+}
+
+/* ---- Hero --------------------------------------------------------------- */
+.hero {
+  position: relative;
+  color: #eaf6fb;
+  background:
+    radial-gradient(1200px 500px at 80% -10%, rgba(72,202,228,.35), transparent 60%),
+    radial-gradient(900px 500px at 0% 110%, rgba(42,168,189,.28), transparent 55%),
+    linear-gradient(160deg, var(--tp-abyss), var(--tp-deep) 55%, var(--tp-teal));
+  overflow: hidden;
+}
+.hero::after {
+  /* subtle wave divider */
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 60px;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 60' preserveAspectRatio='none'%3E%3Cpath fill='%23f4f8fb' d='M0,32L60,37.3C120,43,240,53,360,50.7C480,48,600,32,720,26.7C840,21,960,27,1080,32C1200,37,1320,43,1380,45.3L1440,48L1440,60L0,60Z'/%3E%3C/svg%3E") no-repeat center / cover;
+}
+.hero .eyebrow {
+  text-transform: uppercase; letter-spacing: .22em; font-size: .78rem;
+  color: var(--tp-aqua); font-weight: 600;
+}
+.hero h1 { font-weight: 800; line-height: 1.08; letter-spacing: -.02em; }
+.hero .lead { color: #cfe8f2; max-width: 46rem; }
+.hero-badges .badge {
+  background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18);
+  color: #eaf6fb; font-weight: 500;
+}
+
+/* ---- Section headings --------------------------------------------------- */
+.section-label {
+  display: inline-flex; align-items: center; gap: .5rem;
+  font-size: .8rem; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--tp-teal);
+}
+.section-label .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--tp-cyan), var(--tp-aqua));
+}
+
+/* ---- Resource cards ----------------------------------------------------- */
+.resource-card {
+  height: 100%;
+  border: 1px solid rgba(6,40,61,.08);
+  border-radius: 16px;
+  background: #fff;
+  transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+}
+.resource-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 34px rgba(6,40,61,.14);
+  border-color: rgba(42,168,189,.45);
+}
+.resource-card .card-title { font-weight: 700; color: var(--tp-deep); }
+.resource-card .card-title a { text-decoration: none; }
+.resource-card .card-title a::after { content: " ↗"; font-size: .8em; opacity: .6; }
+.resource-card .rc-icon {
+  width: 46px; height: 46px; border-radius: 12px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  background: linear-gradient(135deg, rgba(42,168,189,.15), rgba(72,202,228,.22));
+  color: var(--tp-teal);
+}
+.resource-card .rc-url {
+  font-size: .8rem; color: var(--tp-teal); word-break: break-all;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+/* card without a link (e.g. a database with no public URL yet) */
+.resource-card--nolink { border-style: dashed; }
+.resource-card--nolink:hover { transform: none; box-shadow: none; border-color: rgba(6,40,61,.14); }
+.resource-card--nolink .card-title { color: var(--tp-deep); }
+.rc-url--none { color: #94a9b3 !important; font-style: italic; font-family: inherit; }
+
+.cat-chip {
+  font-size: .72rem; font-weight: 600; letter-spacing: .04em;
+  padding: .28rem .6rem; border-radius: 999px;
+}
+.cat-genomics   { background: #e3f4f8; color: #0d5c72; }
+.cat-morphology { background: #eae6fb; color: #4b3b8f; }
+.cat-community  { background: #fdeede; color: #9a5a15; }
+.cat-atlas      { background: #e2f6ec; color: #16794a; }
+
+/* ---- Genome table ------------------------------------------------------- */
+.table-toolbar { gap: .75rem; }
+#genomeSearch { max-width: 340px; }
+
+.genome-section-head {
+  display: flex; align-items: center; flex-wrap: wrap; gap: .6rem;
+  margin-bottom: .85rem;
+}
+.genome-section-head h2 { color: var(--tp-deep); font-weight: 700; }
+.genome-section-head .section-count {
+  margin-left: auto; font-size: .82rem; color: var(--tp-teal); font-weight: 500;
+}
+.class-dot { width: 12px; height: 12px; border-radius: 50%; display: inline-block; }
+.class-dot.class-ascidiacea     { background: #0d5c72; }
+.class-dot.class-appendicularia { background: #274b9a; }
+.class-dot.class-thaliacea      { background: #a3383c; }
+
+/* class switch buttons */
+.class-switch .btn-outline-teal {
+  color: var(--tp-teal); border: 1px solid rgba(27,110,140,.45);
+  background: #fff; font-weight: 600;
+}
+.class-switch .btn-outline-teal:hover { background: var(--tp-foam); color: var(--tp-deep); }
+.class-switch .btn-outline-teal.active {
+  background: linear-gradient(135deg, var(--tp-teal), var(--tp-cyan));
+  border-color: transparent; color: #fff;
+}
+
+.genome-table { border-collapse: separate; border-spacing: 0; }
+.genome-table thead th {
+  position: sticky; top: 0; z-index: 2;
+  background: var(--tp-deep); color: #eaf6fb;
+  font-size: .78rem; letter-spacing: .04em; text-transform: uppercase;
+  font-weight: 600; white-space: nowrap; border: none;
+}
+.genome-table tbody td { vertical-align: middle; font-size: .92rem; }
+.genome-table tbody tr:hover { background: #eef7fb; }
+.genome-table .sci-name { font-style: italic; font-weight: 600; color: var(--tp-deep); }
+.genome-table .fam-name { color: var(--tp-teal); font-weight: 600; white-space: nowrap; vertical-align: top; }
+.genome-table th.fam-col, .genome-table td.fam-name { width: 1%; padding-right: 2rem; }
+
+/* gene-model (TUNOME) column */
+.genome-table th.gm-col { width: 1%; white-space: nowrap; }
+.genome-table td.gene-model { white-space: nowrap; }
+.genome-table td.gene-model a {
+  display: inline-block; font-size: .72rem; font-weight: 600; letter-spacing: .02em;
+  padding: .18rem .55rem; border-radius: 999px; text-decoration: none;
+  background: #e3f4f8; color: #0d5c72;
+}
+.genome-table td.gene-model a:hover { filter: brightness(.96); }
+.genome-table td.gene-model a::after { content: " ↗"; opacity: .6; }
+.genome-table td.gene-model a + a { margin-left: .3rem; }
+.genome-table td.gene-model a.gm-ncbi { background: #e7ecfa; color: #274b9a; }
+.genome-table td.gm-no { color: #b3c2ca; }
+
+/* faint divider between families within an order */
+.genome-table tr.genome-row.family-start > td { border-top: 2px solid rgba(27,110,140,.22); }
+.genome-table .accession a {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .85rem; text-decoration: none; white-space: nowrap;
+}
+.genome-table .accession a::after { content: " ↗"; opacity: .5; font-size: .8em; }
+
+/* expandable species rows */
+.genome-table tr.expandable { cursor: pointer; }
+.genome-table tr.expandable:focus-visible { outline: 2px solid var(--tp-cyan); outline-offset: -2px; }
+.genome-table .caret {
+  display: inline-block; width: 1em; margin-right: .35rem; color: var(--tp-teal);
+  transition: transform .15s ease; transform: rotate(0deg);
+}
+.genome-table tr.expanded .caret { transform: rotate(90deg); }
+.genome-table .caret-spacer { display: inline-block; width: 1em; margin-right: .35rem; }
+.genome-table tr.expanded { background: #eaf5fa; }
+.asm-count {
+  display: inline-block; margin-left: .5rem; font-style: normal;
+  font-size: .68rem; font-weight: 600; letter-spacing: .02em;
+  padding: .1rem .45rem; border-radius: 999px;
+  background: rgba(42,168,189,.16); color: #0d5c72; white-space: nowrap;
+}
+.ref-tag {
+  display: inline-block; margin-left: .4rem;
+  font-size: .64rem; font-weight: 600; letter-spacing: .03em; text-transform: uppercase;
+  padding: .08rem .4rem; border-radius: 4px;
+  background: #dff3e7; color: #16794a; vertical-align: middle;
+}
+
+/* sequencing-in-progress rows (no genome yet) */
+.genome-table .sci-name em.sp-progress { color: #c0392b; }
+.progress-badge {
+  display: inline-block; margin-left: .5rem; font-style: normal;
+  font-size: .68rem; font-weight: 600; letter-spacing: .02em;
+  padding: .1rem .5rem; border-radius: 999px;
+  background: #fdecec; color: #c0392b; white-space: nowrap;
+}
+.progress-line { font-size: .9rem; margin: .2rem 0; color: var(--tp-ink); }
+.progress-line .pl-key {
+  display: inline-block; min-width: 7rem; color: var(--tp-teal); font-weight: 600;
+}
+
+/* expansion detail panel */
+.genome-table tr.detail-row > td { padding: 0; background: #f4fafc; }
+.detail-wrap { padding: .5rem 1rem 1rem 2.6rem; }
+.detail-title { font-size: .78rem; color: var(--tp-teal); font-weight: 600; margin: .5rem 0 .4rem; }
+.detail-table { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 10px rgba(6,40,61,.06); }
+.detail-table thead th {
+  background: #e7f2f6; color: var(--tp-deep); position: static;
+  font-size: .7rem; text-transform: uppercase; letter-spacing: .03em; border: none;
+}
+.detail-table tbody td { font-size: .86rem; vertical-align: middle; }
+.detail-table .sub-asm { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .82rem; color: var(--tp-deep); }
+.detail-table tbody tr:hover { background: #eef7fb; }
+
+/* clade grouping rows */
+.clade-row td {
+  background: linear-gradient(90deg, rgba(27,110,140,.14), rgba(72,202,228,.06));
+  font-weight: 700; color: var(--tp-deep);
+  letter-spacing: .02em; text-transform: uppercase; font-size: .82rem;
+}
+.clade-row td .clade-sub {
+  text-transform: none; letter-spacing: 0; font-weight: 500;
+  color: var(--tp-teal); font-size: .85rem; font-style: italic;
+}
+
+.class-pill {
+  font-size: .7rem; font-weight: 600; padding: .2rem .5rem; border-radius: 6px;
+}
+.class-ascidiacea    { background: #dff1f6; color: #0d5c72; }
+.class-appendicularia{ background: #e6eefc; color: #274b9a; }
+.class-thaliacea     { background: #fdeae9; color: #a3383c; }
+
+/* ---- Footer ------------------------------------------------------------- */
+.site-footer {
+  background: var(--tp-abyss); color: #9fc2d1;
+}
+.site-footer a { color: #bfe3ef; text-decoration: none; }
+.site-footer a:hover { color: #fff; }
+
+/* ---- Utilities ---------------------------------------------------------- */
+.text-teal { color: var(--tp-teal) !important; }
+.bg-foam { background: var(--tp-foam) !important; }
+.rounded-xl { border-radius: 16px !important; }
+.no-results td { text-align: center; color: #6c8794; padding: 2rem 0; }

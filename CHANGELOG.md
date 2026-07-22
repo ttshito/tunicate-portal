@@ -1,0 +1,63 @@
+# Changelog
+
+All notable changes to the Tunicate Portal are recorded here.
+
+**How to maintain this file:** whenever you add a feature or update the data,
+add an entry. Put new entries at the **top**, under a dated heading
+(`## YYYY-MM-DD`). Keep bullets short and factual — what changed and why.
+Group under **Added / Changed / Fixed / Data**. If several changes happen the
+same day, add bullets under that day's heading rather than a new one.
+(See `UPDATING.md` for the data-update procedure.)
+
+---
+
+## 2026-07-22 — Sequencing-in-progress species
+
+### Added
+- Support for **"sequencing in progress"** species (genome not yet public): set
+  `status: "progress"` + a `progress` block in `genomes-data.js`. Rendered with a red
+  species name + badge; expands to show status, year reported, and contact (routed via
+  the Discord community, no email). Excluded from assembly/species counts; classes show
+  a "· N in progress" tally. First entry: *Rhopalaea idoneta* (2026, Takumi Shito,
+  University of the Ryukyus, Japan).
+- Legend + "add your project via Discord" invite under the toolbar.
+- "Data last updated" stamp on the genomes page (from `updated` in `genomes-data.js`),
+  plus a site-owner quickstart at the top of `UPDATING.md`.
+
+## 2026-07-22 — Initial build
+
+### Added
+- Two-page static portal (HTML + Bootstrap 5 via CDN, no build step), served from `public/`.
+  - `index.html` — curated tunicate online resources, grouped into Genomics /
+    Morphology / Community cards (ANISEED, GHOST, TUNOME, MorphoNet, TunicAnatO,
+    RAMNe, GoaT, Botryllus schlosseri Database, Ascidian News, NCBI, Discord, …).
+  - `genomes.html` — genome datasets, one collapsible row per species; click to
+    expand assemblies.
+- Ocean-theme shared CSS (`assets/css/style.css`); local preview server (`index.ts`, Bun).
+- `itm` logo optimised (323 KB → ~23 KB, transparent) into `assets/img/`, wired into
+  navbar + favicons.
+- Community Discord link in the header and a Community card.
+- Data-driven genome table from a single source (`assets/js/genomes-data.js`) rendered
+  by `assets/js/genomes.js`; live search + class-switch buttons (Ascidiacea /
+  Appendicularia / Thaliacea, one table shown at a time).
+- **Gene model** column: per-assembly chips for **NCBI** (RefSeq) and/or **TUNOME**
+  (with per-assembly link override, e.g. Ciona HT → GHOST). Both shown when both exist.
+- `UPDATING.md` maintenance/handoff guide and this `CHANGELOG.md`.
+
+### Changed
+- Genome table reworked several times per feedback: separate table per class with
+  switch buttons; columns reduced to Family (left, shown once per family) + Species,
+  with assembly details (Assembly / Size / Year / Source / Gene model / Notes) inside
+  the expansion; uniform expand behaviour for single- and multi-assembly species;
+  faint divider between families; expansion sorted by year (newest first); class names
+  (Ascidiacea etc.) not italicised.
+
+### Data
+- Genome assemblies compiled from the NCBI Datasets API (taxon 7712), organised by
+  class → order (Phlebobranchia → Aplousobranchia → Stolidobranchia) → family.
+- Gene-model ↔ assembly mapping added from TUNOME (Downloads page + the maintainer's
+  Supplementary Table S1). Non-NCBI genomes included with ANISEED/GHOST/Ryan Lab
+  sources (Molgula ×3, Botrylloides leachii, Corella inflata, Ciona Type-A GHOST HT).
+- Current totals: **82 assemblies · 63 species · 3 classes**; 38 assemblies with a
+  TUNOME gene model, 13 with an NCBI RefSeq annotation.
+- `SupplementaryMaterial_1_260409.xlsx` kept at project root, git-ignored, not served.
