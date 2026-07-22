@@ -6,6 +6,40 @@ A small, **fully static** portal for tunicate (Urochordata) web resources.
 Built with plain HTML + Bootstrap 5 (via CDN) so it is trivial to move: copy the
 `public/` folder to any static host, or just open the files in a browser.
 
+## ✏️ Add or change something (just ask Claude)
+
+You don't edit files by hand and you don't need write access. You tell **Claude Code**
+what you want; it makes the change and opens a **Pull Request** for the maintainer to
+review and merge. You don't need to know the file format.
+
+**One-time setup:** install [Claude Code](https://claude.com/claude-code) and the
+[GitHub CLI](https://cli.github.com/) (`gh`), then run `gh auth login`.
+
+**Each time you want a change:**
+
+1. Fork + clone the repo, then open Claude:
+   ```bash
+   gh repo fork ttshito/tunicate-portal --clone --remote
+   cd tunicate-portal
+   claude
+   ```
+2. Say what you want in plain language, for example:
+   - `Add the genome GCA_012345678.1 for Genus species to the genome table.`
+   - `Add Genus species as sequencing-in-progress — 2026, Your Name, Institution, Country.`
+   - `Add <Resource name> (https://example.org) to the resources page under Genomics.`
+   - `Update the genome data from NCBI following UPDATING.md.`
+3. Then say: **`commit this and open a pull request`** — Claude runs the git steps and
+   `gh pr create` for you.
+4. The maintainer reviews and merges it; the live site redeploys automatically (~1 min).
+
+Claude already knows this project — it reads `CLAUDE.md` and `UPDATING.md` here
+automatically.
+
+> **Maintainer:** review incoming changes at
+> https://github.com/ttshito/tunicate-portal/pulls and click **Merge**
+> (or `gh pr merge <number> --squash`). Merging to `main` publishes it. Only grant
+> collaborator write access to a small core team, if ever — everyone else uses PRs.
+
 ## Pages
 
 | File                    | What it is                                                                 |

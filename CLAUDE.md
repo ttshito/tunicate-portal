@@ -15,6 +15,14 @@ an entry to [`CHANGELOG.md`](./CHANGELOG.md) (newest at the top, under a
 `## YYYY-MM-DD` heading — today's date is in the session context). Do this as the
 final step of any substantive change, before finishing.
 
+**Contributions come as Pull Requests.** Most people editing this repo are outside
+contributors working on a fork (they cloned with `gh repo fork … --clone --remote`,
+so `origin` = their fork, `upstream` = the main repo). When you finish a change for
+such a user, don't push to the main repo — commit, `git push` to their fork's `origin`,
+then open a PR with `gh pr create --repo ttshito/tunicate-portal --fill` (confirm first
+if the change is large). Only push straight to `main` when the user is the maintainer
+working in the main repo.
+
 Note: `bun` is NOT on PATH in this environment despite the guidance below — use
 `node --check` for JS syntax and `python -m http.server` (from `public/`) or
 Windows Chrome headless for previews/screenshots.

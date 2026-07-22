@@ -28,21 +28,22 @@ Every time anyone commits a change, the site re-deploys automatically.
 
 ---
 
-## B. Let other people edit
+## B. Let other people edit — Pull Requests (recommended)
 
-**For a few trusted people (simplest):** add them as collaborators —
-repo **Settings → Collaborators → Add people** (they need a GitHub account).
-They can then edit any file, including **directly in the browser**:
+You don't have to hand out write access. Contributors work on their own **fork** and
+open a **Pull Request**; you review and click **Merge**, and only then does it go live.
+This keeps management simple and safe. Since edits are made by Claude, see the
+"Add or change something (just ask Claude)" section in `README.md` for the exact
+contributor steps — in short: `gh repo fork … --clone`, open Claude, say what to add,
+then "open a pull request".
 
-> Open the file on github.com (e.g. `public/assets/js/genomes-data.js`) → click the
-> **pencil ✏️ icon** → edit → **Commit changes**. The site updates itself.
+**Your side (maintainer):** review PRs at
+`https://github.com/ttshito/tunicate-portal/pulls` → **Merge** (or
+`gh pr merge <number> --squash`). Merging to `main` publishes automatically.
 
-**For open contributions from anyone:** people click **Fork**, edit their copy, and
-open a **Pull Request**; you review and click **Merge**. Nothing goes live until you
-approve it. Good if you want a public "anyone can propose changes" model.
-
-Most genome updates only touch one file — `public/assets/js/genomes-data.js` — so
-browser editing is very approachable. See `UPDATING.md` for what to edit.
+**Optional — collaborators:** for a small core team you trust, you *can* add them as
+collaborators (**Settings → Collaborators**) so they push directly / edit in the
+browser (pencil ✏️ icon). Prefer PRs for everyone else.
 
 ---
 

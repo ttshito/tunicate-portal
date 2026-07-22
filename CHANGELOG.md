@@ -11,6 +11,16 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-07-22 — Contributor workflow (Claude + Pull Requests)
+
+### Added
+- README "Add or change something (just ask Claude)" section: contributors fork,
+  open Claude Code, describe the change in plain language, and Claude opens a Pull
+  Request. No write access handed out; maintainer reviews & merges.
+- CLAUDE.md guidance so a contributor's Claude commits to their fork and opens a PR
+  (`gh pr create`) rather than pushing to `main`.
+- HOSTING.md reworked to recommend the PR model.
+
 ## 2026-07-22 — Published to GitHub Pages
 
 ### Added
