@@ -1,5 +1,7 @@
 # Tunicate Portal
 
+**Live site:** https://ttshito.github.io/tunicate-portal/
+
 A small, **fully static** portal for tunicate (Urochordata) web resources.
 Built with plain HTML + Bootstrap 5 (via CDN) so it is trivial to move: copy the
 `public/` folder to any static host, or just open the files in a browser.

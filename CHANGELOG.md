@@ -11,6 +11,15 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-07-22 — Published to GitHub Pages
+
+### Added
+- Git repository initialised and pushed to `github.com/ttshito/tunicate-portal`.
+- Live at **https://ttshito.github.io/tunicate-portal/** via GitHub Pages
+  (auto-deploys `public/` on every push through `.github/workflows/pages.yml`).
+- `HOSTING.md` — beginner guide for hosting and inviting editors.
+- `.claude/settings.local.json` added to `.gitignore` (local settings kept private).
+
 ## 2026-07-22 — Sequencing-in-progress species
 
 ### Added
