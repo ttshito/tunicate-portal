@@ -11,6 +11,26 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-07-28 — MARIMBA + Octopus resources, new in-progress species
+
+### Added
+- Resources → Genomics: **Octopus Database** (https://octopus.obs-vlfr.fr/) — LBDV
+  Villefranche-sur-Mer genome/BLAST server (JBrowse, gene-prediction and sequence tools;
+  public *Botryllus schlosseri* BLAST + 2025 genome annotation; other databases restricted).
+
+### Changed
+- Resources → Genomics: the placeholder "Botryllus schlosseri Database" card (no link)
+  is replaced by **MARIMBA** (https://marimba.obs-vlfr.fr/) — Marine Invertebrate Models
+  Database, whose tunicate model is *B. schlosseri* (genome browser, BLAST, expression,
+  stage/anatomy ontologies, molecular tools).
+
+### Data
+- Sequencing in progress: **Polyandrocarpa zorritensis** (Styelidae, Stolidobranchia) —
+  2026, Stefano Tiozzo, CNRS – Sorbonne University, France. Verified against the NCBI
+  Datasets API that no public *Polyandrocarpa* assembly exists (taxid 7712 report).
+- `updated` stamp bumped to 2026-07-28. Note: the NCBI assembly set itself was **not**
+  re-pulled in this change — only the in-progress entry was added.
+
 ## 2026-07-22 — Contributor workflow (Claude + Pull Requests)
 
 ### Added
