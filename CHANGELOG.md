@@ -11,6 +11,14 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-08-01 — Molgula appendiculata sequencing in progress
+
+### Data
+- Sequencing in progress: **Molgula appendiculata** (Molgulidae, Stolidobranchia) —
+  2026, Sébastien Darras, CNRS – Sorbonne University, France. Verified against the NCBI
+  Datasets API that no public *Molgula* assembly exists (taxid 7712 report).
+- Bumped `updated` in `genomes-data.js` to 2026-08-01.
+
 ## 2026-07-28 — MARIMBA + Octopus resources, new in-progress species
 
 ### Added

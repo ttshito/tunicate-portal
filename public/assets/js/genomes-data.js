@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-07-28",
+  updated: "2026-08-01",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -134,6 +134,9 @@ window.TUNICATE_GENOMES = {
     { sp: "Polyandrocarpa zorritensis", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { year: 2026, contact: "Stefano Tiozzo", institution: "CNRS – Sorbonne University", country: "France" } },
+    { sp: "Molgula appendiculata", family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea",
+      status: "progress", asm: [],
+      progress: { year: 2026, contact: "Sébastien Darras", institution: "CNRS – Sorbonne University", country: "France" } },
 
     // ===================== ASCIDIACEA · APLOUSOBRANCHIA =====================
     { sp: "Aplidium turbinatum", family: "Polyclinidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
