@@ -103,11 +103,20 @@ body {
 .resource-card .card-title a { text-decoration: none; }
 .resource-card .card-title a::after { content: " ↗"; font-size: .8em; opacity: .6; }
 .resource-card .rc-icon {
-  width: 46px; height: 46px; border-radius: 12px;
+  width: 52px; height: 52px; border-radius: 12px;
   display: inline-flex; align-items: center; justify-content: center;
-  font-size: 1.3rem;
+  font-size: 1.45rem;
   background: linear-gradient(135deg, rgba(42,168,189,.15), rgba(72,202,228,.22));
   color: var(--tp-teal);
+}
+/* icon badge holding a real logo instead of an emoji: white plate so logos with a
+   white background (NCBI, GHOST) sit flush with transparent ones */
+.resource-card .rc-icon.rc-img {
+  background: #fff; border: 1px solid rgba(13, 92, 114, .12); padding: 4px;
+}
+.resource-card .rc-icon img {
+  max-width: 100%; max-height: 100%; width: auto; height: auto;
+  object-fit: contain; display: block;
 }
 .resource-card .rc-url {
   font-size: .8rem; color: var(--tp-teal); word-break: break-all;

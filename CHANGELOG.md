@@ -21,6 +21,12 @@ same day, add bullets under that day's heading rather than a new one.
   distributed under that address, so it must not change.
 
 ### Added
+- **Real logos on the Resources cards** instead of emoji: 12 icons in
+  `public/assets/img/icons/` (ANISEED, GHOST, TUNOME, MARIMBA, Octopus, MorphoNet,
+  TunicAnatO, RAMNe, Discord, GitHub, Ascidian News, NCBI). Sources were trimmed,
+  downscaled to ≤104 px and palette-reduced — **44 kB for all 12** — and are shown in a
+  52 px white rounded badge (`.rc-icon.rc-img`), lazy-loaded. GoaT has no logo yet and
+  keeps its emoji badge.
 - **GitHub links on the site**: a "GitHub ↗" item in the navbar of both pages, a
   "GitHub repository ↗" entry in the footer's External list, and a "This portal on
   GitHub" card in the Community section of the Resources page.
