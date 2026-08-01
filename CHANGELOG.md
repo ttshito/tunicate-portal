@@ -13,7 +13,17 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-08-01 — Renamed to Tunicate Genomics Portal; ANISEED chips; M. appendiculata
 
+### Fixed
+- Resources → GHOST card: it serves the **KY21 gene models on the HT assembly**, not
+  "KH gene models". The *C. intestinalis* KH assembly note now says it is the basis of
+  the KH2012 models and points out that KY21 lives on the GHOST HT assembly.
+
 ### Removed
+- Genome Datasets → "Genomes without an NCBI assembly" callout: dropped *Salpa
+  fusiformis* from the "not yet sequenced at all" line — singling out one salp species
+  is arbitrary; the genus-level *Pyrosoma* / *Doliolum* statement stands.
+- Resources → Community: the section eyebrow "Model Organism / Community" is now just
+  **Community**.
 - Resources → Genomics: the **GoaT (Genomes on a Tree)** card — a general tree-of-life
   genome hub, not a tunicate-community resource.
 

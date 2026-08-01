@@ -15,7 +15,7 @@ window.TUNICATE_GENOMES = {
   species: [
     // ===================== ASCIDIACEA · PHLEBOBRANCHIA =====================
     { sp: "Ciona intestinalis", family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
-      { n: "KH", acc: "GCA_000224145.2", size: "115 Mb", year: 2013, ref: "Community reference", refseq: "GCF_000224145.3", aniseed: true, note: "Classic Kyoto “KH” assembly, chromosome-level. Biologically Type A (= C. robusta). Basis of the KH/KY gene models. RefSeq GCF_000224145.3. ANISEED serves the KH2012 gene models (KH “Joined Scaffold”) under C. robusta." },
+      { n: "KH", acc: "GCA_000224145.2", size: "115 Mb", year: 2013, ref: "Community reference", refseq: "GCF_000224145.3", aniseed: true, note: "Classic Kyoto “KH” assembly, chromosome-level. Biologically Type A (= C. robusta). Basis of the KH2012 gene models (the KY21 models are on the GHOST HT assembly). RefSeq GCF_000224145.3. ANISEED serves the KH2012 gene models (KH “Joined Scaffold”) under C. robusta." },
       { n: "ASM1832782v2", acc: "GCA_018327825.2", size: "140 Mb", year: 2025, ref: "NCBI reference", refseq: "GCF_018327825.1", note: "Genuine Type B (Roscoff). Nanopore + Hi-C, chromosome-level. RefSeq GCF_018327825.1. Hap2 GCA_018327805.2." },
       { n: "v1.0", acc: "GCA_000183065.1", size: "117 Mb", year: 2002, note: "Original DOE JGI draft (Dehal et al. 2002) — the first invertebrate-chordate genome." },
       { n: "ASM5357238v1", acc: "GCA_053572385.1", size: "136 Mb", year: 2025, note: "Additional Kyoto scaffold assembly." },

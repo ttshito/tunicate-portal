@@ -186,7 +186,7 @@ listed with a `resource` instead of `acc`. Currently: **Molgula occidentalis / o
 occulta, Botrylloides leachii, Corella inflata**, and the **Ciona robusta / Type-A GHOST
 HT** entry (under *Ciona intestinalis*). Keep these; they are called out in the page's
 "Genomes without an NCBI assembly" box. Truly unsequenced (no genome anywhere):
-*Salpa fusiformis*, any *Pyrosoma*, any *Doliolum*.
+any *Pyrosoma*, any *Doliolum*.
 
 ---
 
