@@ -161,9 +161,9 @@ To advertise a genome that is being sequenced but not yet public, add a species 
 **excluded** from the assembly/species counts (it shows as "· N in progress" per class).
 
 ```js
-{ sp: "Rhopalaea idoneta", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea",
+{ sp: "Molgula appendiculata", family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea",
   status: "progress", asm: [],
-  progress: { year: 2026, contact: "Takumi Shito", institution: "University of the Ryukyus", country: "Japan" } }
+  progress: { year: 2026, contact: "Sébastien Darras", institution: "CNRS – Sorbonne University", country: "France" } }
 ```
 
 Contact is intentionally routed through the Discord community (no email addresses on

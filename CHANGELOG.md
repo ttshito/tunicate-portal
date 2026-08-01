@@ -19,6 +19,11 @@ same day, add bullets under that day's heading rather than a new one.
   Datasets API that no public *Molgula* assembly exists (taxid 7712 report).
 - Bumped `updated` in `genomes-data.js` to 2026-08-01.
 
+### Removed
+- Sequencing in progress: **Rhopalaea idoneta** (Diazonidae, Phlebobranchia) — it was a
+  mock/placeholder entry added on 2026-07-28 to demonstrate the feature, not a real
+  project. The `status: "progress"` example in `UPDATING.md` §5b now uses a real entry.
+
 ## 2026-07-28 — MARIMBA + Octopus resources, new in-progress species
 
 ### Added

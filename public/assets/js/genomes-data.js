@@ -61,11 +61,6 @@ window.TUNICATE_GENOMES = {
     { sp: "Diazona violacea", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDiaViol1.hap1.1", acc: "GCA_980750685.1", size: "153 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_980751085.1. (Diazonidae; sometimes placed in Aplousobranchia.)" },
     ]},
-    // ----- Sequencing in progress (no genome yet). status:"progress" → red name,
-    //       excluded from assembly/species counts, expands to show contact. asm: [].
-    { sp: "Rhopalaea idoneta", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea",
-      status: "progress", asm: [],
-      progress: { year: 2026, contact: "Takumi Shito", institution: "University of the Ryukyus", country: "Japan" } },
 
     // ===================== ASCIDIACEA · STOLIDOBRANCHIA =====================
     { sp: "Styela clava", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
@@ -130,7 +125,9 @@ window.TUNICATE_GENOMES = {
     { sp: "Distomus variolosus", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDisVari1.1", acc: "GCA_984577845.1", size: "839 Mb", year: 2026, note: "Genoscope, chromosome-level." },
     ]},
-    // ----- Sequencing in progress (no genome yet) — see §5b of UPDATING.md.
+    // ----- Sequencing in progress (no genome yet). status:"progress" → red name,
+    //       excluded from assembly/species counts, expands to show contact. asm: [].
+    //       See §5b of UPDATING.md.
     { sp: "Polyandrocarpa zorritensis", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { year: 2026, contact: "Stefano Tiozzo", institution: "CNRS – Sorbonne University", country: "France" } },
