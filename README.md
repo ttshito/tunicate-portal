@@ -1,6 +1,8 @@
-# Tunicate Portal
+# Tunicate Genome Portal
 
 **Live site:** https://ttshito.github.io/tunicate-portal/
+(the repository slug and URL keep the original `tunicate-portal` name — only the site's
+display name changed.)
 
 A small, **fully static** portal for tunicate (Urochordata) web resources.
 Built with plain HTML + Bootstrap 5 (via CDN) so it is trivial to move: copy the
