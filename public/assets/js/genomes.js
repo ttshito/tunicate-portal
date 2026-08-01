@@ -166,7 +166,7 @@
               '<div class="progress-line"><span class="pl-key">Reported</span> ' + esc(pr.year) + "</div>" +
               '<div class="progress-line"><span class="pl-key">Contact</span> ' + contact + "</div>" +
               '<div class="progress-line"><span class="pl-key">Get in touch</span> via the ' +
-                '<a href="' + DISCORD + '" target="_blank" rel="noopener">Tunicate Genome Portal Discord</a> community</div>' +
+                '<a href="' + DISCORD + '" target="_blank" rel="noopener">Tunicate Genomics Portal Discord</a> community</div>' +
             "</div>" +
           "</td></tr>"
         );

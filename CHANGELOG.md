@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Tunicate Genome Portal are recorded here.
+All notable changes to the Tunicate Genomics Portal are recorded here.
 
 **How to maintain this file:** whenever you add a feature or update the data,
 add an entry. Put new entries at the **top**, under a dated heading
@@ -11,16 +11,19 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
-## 2026-08-01 — Renamed to Tunicate Genome Portal; ANISEED chips; M. appendiculata
+## 2026-08-01 — Renamed to Tunicate Genomics Portal; ANISEED chips; M. appendiculata
 
 ### Changed
-- **Site renamed "Tunicate Portal" → "Tunicate Genome Portal"** (an older, unrelated
+- **Site renamed "Tunicate Portal" → "Tunicate Genomics Portal"** (an older, unrelated
   project already used the former name). Applies to the browser titles, navbar brand,
   footer, Discord link label, docs and the preview server banner.
   The repository slug and the live URL stay `tunicate-portal` — the site is already
   distributed under that address, so it must not change.
 
 ### Added
+- **GitHub links on the site**: a "GitHub ↗" item in the navbar of both pages, a
+  "GitHub repository ↗" entry in the footer's External list, and a "This portal on
+  GitHub" card in the Community section of the Resources page.
 - **ANISEED chip in the Gene model column**, alongside NCBI (RefSeq) and TUNOME/GHOST.
   New optional per-assembly field `aniseed: true` (+ `aniseedLabel`) in `genomes-data.js`;
   the chip links to the ANISEED download page. Flagged on the 11 species ANISEED serves

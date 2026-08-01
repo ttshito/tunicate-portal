@@ -1,5 +1,5 @@
 /**
- * Local preview server for the Tunicate Genome Portal.
+ * Local preview server for the Tunicate Genomics Portal.
  *
  * The site itself is 100% static (HTML + CSS + images, Bootstrap via CDN) and
  * can be opened directly with file:// or dropped on any static host. This
@@ -38,4 +38,4 @@ const server = Bun.serve({
   },
 });
 
-console.log(`🐚 Tunicate Genome Portal running at http://localhost:${server.port}`);
+console.log(`🐚 Tunicate Genomics Portal running at http://localhost:${server.port}`);

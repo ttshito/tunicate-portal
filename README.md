@@ -1,4 +1,4 @@
-# Tunicate Genome Portal
+# Tunicate Genomics Portal
 
 **Live site:** https://ttshito.github.io/tunicate-portal/
 (the repository slug and URL keep the original `tunicate-portal` name — only the site's

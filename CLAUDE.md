@@ -1,5 +1,5 @@
 
-# Tunicate Genome Portal — project overview
+# Tunicate Genomics Portal — project overview
 
 Static portal (HTML + Bootstrap 5 via CDN, no build step) for tunicate web
 resources and genome datasets. Site lives in `public/` (`index.html` = resources,
