@@ -13,7 +13,13 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-08-01 — Renamed to Tunicate Genomics Portal; ANISEED chips; M. appendiculata
 
+### Removed
+- Resources → Genomics: the **GoaT (Genomes on a Tree)** card — a general tree-of-life
+  genome hub, not a tunicate-community resource.
+
 ### Changed
+- Resources → Genomics card order is now ANISEED, GHOST, MARIMBA, Octopus, **TUNOME**,
+  putting the long-standing community resources first.
 - **Site renamed "Tunicate Portal" → "Tunicate Genomics Portal"** (an older, unrelated
   project already used the former name). Applies to the browser titles, navbar brand,
   footer, Discord link label, docs and the preview server banner.
@@ -25,8 +31,7 @@ same day, add bullets under that day's heading rather than a new one.
   `public/assets/img/icons/` (ANISEED, GHOST, TUNOME, MARIMBA, Octopus, MorphoNet,
   TunicAnatO, RAMNe, Discord, GitHub, Ascidian News, NCBI). Sources were trimmed,
   downscaled to ≤104 px and palette-reduced — **44 kB for all 12** — and are shown in a
-  52 px white rounded badge (`.rc-icon.rc-img`), lazy-loaded. GoaT has no logo yet and
-  keeps its emoji badge.
+  52 px white rounded badge (`.rc-icon.rc-img`), lazy-loaded.
 - **GitHub links on the site**: a "GitHub ↗" item in the navbar of both pages, a
   "GitHub repository ↗" entry in the footer's External list, and a "This portal on
   GitHub" card in the Community section of the Resources page.
