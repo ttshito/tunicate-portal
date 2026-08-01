@@ -16,12 +16,18 @@
   // supplementary table. TUNOME_PAGE is where the gene models are downloaded.
   var TUNOME_PAGE = "https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/Downloads.php";
   var NCBI_GENOME = "https://www.ncbi.nlm.nih.gov/datasets/genome/";
+  // ANISEED hosts its own gene models (assembly.aniseed) — one download page for all species.
+  var ANISEED_PAGE = "https://aniseed.fr/aniseed/download/download_data?module=aniseed&action=download:download_data";
   function firstGm(sp) {
     for (var i = 0; i < sp.asm.length; i++) { if (sp.asm[i].gm) return sp.asm[i]; }
     return null;
   }
   function firstRefseq(sp) {
     for (var i = 0; i < sp.asm.length; i++) { if (sp.asm[i].refseq) return sp.asm[i]; }
+    return null;
+  }
+  function firstAniseed(sp) {
+    for (var i = 0; i < sp.asm.length; i++) { if (sp.asm[i].aniseed) return sp.asm[i]; }
     return null;
   }
   // NCBI RefSeq annotation link (NCBI's own gene models on that assembly).
@@ -35,11 +41,18 @@
     var label = (a && a.gmLabel) ? a.gmLabel : "TUNOME";
     return '<a href="' + esc(url) + '" target="_blank" rel="noopener">' + esc(label) + "</a>";
   }
-  // One assembly's gene-model chips: NCBI (RefSeq) and/or TUNOME/GHOST — both if both.
+  // ANISEED gene-model link — override the label via aniseedLabel (e.g. "ANISEED KH2012").
+  function aniseedAnchor(a) {
+    var label = (a && a.aniseedLabel) ? a.aniseedLabel : "ANISEED";
+    return '<a class="gm-aniseed" href="' + ANISEED_PAGE + '" target="_blank" rel="noopener">' +
+      esc(label) + "</a>";
+  }
+  // One assembly's gene-model chips: NCBI (RefSeq), TUNOME/GHOST, ANISEED — all that apply.
   function gmChips(a) {
     var parts = [];
     if (a.refseq) parts.push(ncbiAnchor(a));
     if (a.gm) parts.push(gmAnchor(a));
+    if (a.aniseed) parts.push(aniseedAnchor(a));
     return parts.length
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
       : '<td class="gene-model gm-no">—</td>';
@@ -47,9 +60,10 @@
   // Species-level summary chip(s) for the collapsed row.
   function geneModelCell(sp) {
     var parts = [];
-    var r = firstRefseq(sp), g = firstGm(sp);
+    var r = firstRefseq(sp), g = firstGm(sp), an = firstAniseed(sp);
     if (r) parts.push(ncbiAnchor(r));
     if (g) parts.push(gmAnchor(g));
+    if (an) parts.push(aniseedAnchor(an));
     return parts.length
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
       : '<td class="gene-model gm-no">—</td>';
@@ -152,7 +166,7 @@
               '<div class="progress-line"><span class="pl-key">Reported</span> ' + esc(pr.year) + "</div>" +
               '<div class="progress-line"><span class="pl-key">Contact</span> ' + contact + "</div>" +
               '<div class="progress-line"><span class="pl-key">Get in touch</span> via the ' +
-                '<a href="' + DISCORD + '" target="_blank" rel="noopener">Tunicate Portal Discord</a> community</div>' +
+                '<a href="' + DISCORD + '" target="_blank" rel="noopener">Tunicate Genomics Portal Discord</a> community</div>' +
             "</div>" +
           "</td></tr>"
         );
@@ -162,6 +176,7 @@
       var n = sp.asm.length;
       var hay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
         (firstGm(sp) ? "tunome gene model " : "") + (firstRefseq(sp) ? "ncbi refseq annotation gene model " : "") +
+        (firstAniseed(sp) ? "aniseed gene model " : "") +
         sp.asm.map(function (a) {
           return a.n + " " + (a.acc || "") + " " + (a.resource ? a.resource.label : "") + " " + (a.note || "");
         }).join(" ")

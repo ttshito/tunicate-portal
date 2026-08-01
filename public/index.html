@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Tunicate Portal — Online Resources for Tunicate Research</title>
+  <title>Tunicate Genomics Portal — Online Resources for Tunicate Research</title>
   <meta name="description" content="A curated portal of online resources for tunicate (ascidian) research: genomics, gene expression, morphology and anatomy databases." />
 
   <!-- Bootstrap 5 (CDN) -->
@@ -24,7 +24,7 @@
   <nav class="navbar navbar-expand-lg navbar-dark navbar-tp sticky-top">
     <div class="container">
       <a class="navbar-brand d-flex align-items-center" href="index.html">
-        <img src="assets/img/logo.png" alt="itm" class="brand-logo" /> Tunicate Portal
+        <img src="assets/img/logo.png" alt="itm" class="brand-logo" /> Tunicate Genomics Portal
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav"
               aria-controls="nav" aria-expanded="false" aria-label="Toggle navigation">
@@ -35,6 +35,7 @@
           <li class="nav-item"><a class="nav-link active" href="index.html">Resources</a></li>
           <li class="nav-item"><a class="nav-link" href="genomes.html">Genome Datasets</a></li>
           <li class="nav-item"><a class="nav-link" href="https://discord.gg/mgbhTgjMzk" target="_blank" rel="noopener">Discord ↗</a></li>
+          <li class="nav-item"><a class="nav-link" href="https://github.com/ttshito/tunicate-portal" target="_blank" rel="noopener">GitHub ↗</a></li>
         </ul>
       </div>
     </div>
@@ -79,7 +80,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🧬</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/aniseed_icon.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-genomics">Genomics</span>
               </div>
               <h3 class="card-title h5"><a href="https://www.aniseed.fr/" target="_blank" rel="noopener">ANISEED</a></h3>
@@ -93,11 +94,11 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">👻</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/ghost.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-genomics">Genomics</span>
               </div>
               <h3 class="card-title h5"><a href="https://ghost.zool.kyoto-u.ac.jp/download_ht.html" target="_blank" rel="noopener">GHOST</a></h3>
-              <p class="card-text small text-secondary">Kyoto University's integrated <em>Ciona intestinalis / robusta</em> resource: genomic and cDNA/EST sequences, KH gene models, expression images, BLAST and a genome browser.</p>
+              <p class="card-text small text-secondary">Kyoto University's integrated <em>Ciona intestinalis / robusta</em> resource: genomic and cDNA/EST sequences, the <strong>KY21 gene models on the HT assembly</strong>, expression images, BLAST and a genome browser.</p>
               <div class="rc-url">ghost.zool.kyoto-u.ac.jp/download_ht</div>
             </div>
           </div>
@@ -107,35 +108,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🌐</span>
-                <span class="cat-chip cat-genomics">Comparative</span>
-              </div>
-              <h3 class="card-title h5"><a href="https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/index.html" target="_blank" rel="noopener">TUNOME</a></h3>
-              <p class="card-text small text-secondary">A comparative tunicate genome database (Keio) with functional annotation of gene models and ortholog/transcriptomic analyses across 35+ tunicate species. <span class="text-teal">New (2025).</span></p>
-              <div class="rc-url">ciona.bpni.bio.keio.ac.jp/Tunome</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card resource-card">
-            <div class="card-body">
-              <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🌳</span>
-                <span class="cat-chip cat-genomics">Genome hub</span>
-              </div>
-              <h3 class="card-title h5"><a href="https://goat.genomehubs.org/" target="_blank" rel="noopener">GoaT — Genomes on a Tree</a></h3>
-              <p class="card-text small text-secondary">Genomes on a Tree: search and explore genome assembly metadata and sequencing status across the tree of life — including all tunicate taxa — with taxon-aware filtering.</p>
-              <div class="rc-url">goat.genomehubs.org</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-md-6 col-lg-4">
-          <div class="card resource-card">
-            <div class="card-body">
-              <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🧫</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/marimba.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-genomics">Marine models</span>
               </div>
               <h3 class="card-title h5"><a href="https://marimba.obs-vlfr.fr/" target="_blank" rel="noopener">MARIMBA</a></h3>
@@ -149,12 +122,26 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🐙</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/octopus.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-genomics">BLAST server</span>
               </div>
               <h3 class="card-title h5"><a href="https://octopus.obs-vlfr.fr/" target="_blank" rel="noopener">Octopus Database</a></h3>
               <p class="card-text small text-secondary">Genome database and bioinformatics server of the LBDV (Villefranche-sur-Mer): BLAST databases, JBrowse genome browser and sequence/gene-prediction tools for marine invertebrates — ascidians, thaliaceans, amphioxus, cnidarians, echinoderms and molluscs — including the public <em>Botryllus schlosseri</em> BLAST and its 2025 genome annotation download. Some databases are access-restricted.</p>
               <div class="rc-url">octopus.obs-vlfr.fr</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon rc-img"><img src="assets/img/icons/tunome.png" alt="" aria-hidden="true" loading="lazy" /></span>
+                <span class="cat-chip cat-genomics">Comparative</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/index.html" target="_blank" rel="noopener">TUNOME</a></h3>
+              <p class="card-text small text-secondary">A comparative tunicate genome database (Keio) with functional annotation of gene models and ortholog/transcriptomic analyses across 35+ tunicate species. <span class="text-teal">New (2025).</span></p>
+              <div class="rc-url">ciona.bpni.bio.keio.ac.jp/Tunome</div>
             </div>
           </div>
         </div>
@@ -176,7 +163,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🧊</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/morphonet.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-morphology">3D Morphology</span>
               </div>
               <h3 class="card-title h5"><a href="https://www.morphonet.org/" target="_blank" rel="noopener">MorphoNet</a></h3>
@@ -190,7 +177,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">📖</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/tunicanato.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-morphology">Ontology</span>
               </div>
               <h3 class="card-title h5"><a href="https://chordate.bpni.bio.keio.ac.jp/tunicanato/3.0/" target="_blank" rel="noopener">TunicAnatO</a></h3>
@@ -204,7 +191,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🔄</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/ramne.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-morphology">Comparative 3D</span>
               </div>
               <h3 class="card-title h5"><a href="https://chordate.bpni.bio.keio.ac.jp/RAMNe/latest/index_ciona.html" target="_blank" rel="noopener">RAMNe</a></h3>
@@ -217,11 +204,11 @@
       </div>
     </section>
 
-    <!-- ====== MODEL ORGANISM / COMMUNITY ====== -->
+    <!-- ====== COMMUNITY ====== -->
     <section id="community" class="mb-5">
       <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
         <div>
-          <span class="section-label"><span class="dot"></span> Model Organism / Community</span>
+          <span class="section-label"><span class="dot"></span> Community</span>
           <h2 class="h3 mt-2 mb-0">Community hubs &amp; portals</h2>
         </div>
       </div>
@@ -231,10 +218,10 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">💬</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/discord.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-community">Discord</span>
               </div>
-              <h3 class="card-title h5"><a href="https://discord.gg/mgbhTgjMzk" target="_blank" rel="noopener">Tunicate Portal Discord</a></h3>
+              <h3 class="card-title h5"><a href="https://discord.gg/mgbhTgjMzk" target="_blank" rel="noopener">Tunicate Genomics Portal Discord</a></h3>
               <p class="card-text small text-secondary">The community Discord for this portal — join to suggest resources, report broken links, discuss datasets and help keep the site up to date.</p>
               <div class="rc-url">discord.gg/mgbhTgjMzk</div>
             </div>
@@ -245,7 +232,21 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">📰</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/github.png" alt="" aria-hidden="true" loading="lazy" /></span>
+                <span class="cat-chip cat-community">Source code</span>
+              </div>
+              <h3 class="card-title h5"><a href="https://github.com/ttshito/tunicate-portal" target="_blank" rel="noopener">This portal on GitHub</a></h3>
+              <p class="card-text small text-secondary">The whole site is open source. Browse or fork the repository, open an issue for a missing resource or genome, or send a pull request — see the README for the contribution workflow.</p>
+              <div class="rc-url">github.com/ttshito/tunicate-portal</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-lg-4">
+          <div class="card resource-card">
+            <div class="card-body">
+              <div class="d-flex align-items-start justify-content-between mb-3">
+                <span class="rc-icon rc-img"><img src="assets/img/icons/ascidianNews.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-community">Newsletter</span>
               </div>
               <h3 class="card-title h5"><a href="http://depts.washington.edu/ascidian/" target="_blank" rel="noopener">Ascidian News</a></h3>
@@ -259,7 +260,7 @@
           <div class="card resource-card">
             <div class="card-body">
               <div class="d-flex align-items-start justify-content-between mb-3">
-                <span class="rc-icon">🗄️</span>
+                <span class="rc-icon rc-img"><img src="assets/img/icons/ncbi.png" alt="" aria-hidden="true" loading="lazy" /></span>
                 <span class="cat-chip cat-community">Data portal</span>
               </div>
               <h3 class="card-title h5"><a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/7712/" target="_blank" rel="noopener">NCBI — Tunicata</a></h3>
@@ -279,7 +280,7 @@
     <div class="container">
       <div class="row gy-4">
         <div class="col-lg-6">
-          <h5 class="text-white">🐚 Tunicate Portal</h5>
+          <h5 class="text-white">🐚 Tunicate Genomics Portal</h5>
           <p class="mb-0" style="max-width:34rem;">
             A community gateway to online resources and genome datasets for
             tunicates (Urochordata). Static, portable, and easy to host anywhere.
@@ -297,6 +298,7 @@
           <ul class="list-unstyled">
             <li><a href="https://www.ncbi.nlm.nih.gov/datasets/taxonomy/7712/" target="_blank" rel="noopener">NCBI Tunicata ↗</a></li>
             <li><a href="https://www.aniseed.fr/" target="_blank" rel="noopener">ANISEED ↗</a></li>
+            <li><a href="https://github.com/ttshito/tunicate-portal" target="_blank" rel="noopener">GitHub repository ↗</a></li>
           </ul>
         </div>
       </div>

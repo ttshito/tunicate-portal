@@ -1,5 +1,5 @@
 
-# Tunicate Portal — project overview
+# Tunicate Genomics Portal — project overview
 
 Static portal (HTML + Bootstrap 5 via CDN, no build step) for tunicate web
 resources and genome datasets. Site lives in `public/` (`index.html` = resources,
@@ -9,6 +9,12 @@ resources and genome datasets. Site lives in `public/` (`index.html` = resources
 **If asked to update genomes / gene models from NCBI (or refresh the datasets),
 READ [`UPDATING.md`](./UPDATING.md) first** — it is the maintenance handoff
 (data model, NCBI Datasets API, TUNOME gene-model rules, verification steps).
+
+**Resource-card icons** live in `public/assets/img/icons/` (one PNG per card on
+`index.html`, referenced from the card's `<span class="rc-icon rc-img">`). Keep them
+light — the pipeline for a new logo is
+`convert SRC -fuzz 3% -trim +repage -strip -resize 104x104\> -colors 128 out.png`
+(~2–5 kB each, displayed in a 52 px badge). Cards without a logo keep an emoji badge.
 
 **Always log your work:** after adding a feature or performing an update, append
 an entry to [`CHANGELOG.md`](./CHANGELOG.md) (newest at the top, under a

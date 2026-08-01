@@ -1,6 +1,6 @@
 # Changelog
 
-All notable changes to the Tunicate Portal are recorded here.
+All notable changes to the Tunicate Genomics Portal are recorded here.
 
 **How to maintain this file:** whenever you add a feature or update the data,
 add an entry. Put new entries at the **top**, under a dated heading
@@ -10,6 +10,62 @@ same day, add bullets under that day's heading rather than a new one.
 (See `UPDATING.md` for the data-update procedure.)
 
 ---
+
+## 2026-08-01 — Renamed to Tunicate Genomics Portal; ANISEED chips; M. appendiculata
+
+### Fixed
+- Resources → GHOST card: it serves the **KY21 gene models on the HT assembly**, not
+  "KH gene models". The *C. intestinalis* KH assembly note now says it is the basis of
+  the KH2012 models and points out that KY21 lives on the GHOST HT assembly.
+
+### Removed
+- Genome Datasets → "Genomes without an NCBI assembly" callout: dropped *Salpa
+  fusiformis* from the "not yet sequenced at all" line — singling out one salp species
+  is arbitrary; the genus-level *Pyrosoma* / *Doliolum* statement stands.
+- Resources → Community: the section eyebrow "Model Organism / Community" is now just
+  **Community**.
+- Resources → Genomics: the **GoaT (Genomes on a Tree)** card — a general tree-of-life
+  genome hub, not a tunicate-community resource.
+
+### Changed
+- Resources → Genomics card order is now ANISEED, GHOST, MARIMBA, Octopus, **TUNOME**,
+  putting the long-standing community resources first.
+- **Site renamed "Tunicate Portal" → "Tunicate Genomics Portal"** (an older, unrelated
+  project already used the former name). Applies to the browser titles, navbar brand,
+  footer, Discord link label, docs and the preview server banner.
+  The repository slug and the live URL stay `tunicate-portal` — the site is already
+  distributed under that address, so it must not change.
+
+### Added
+- **Real logos on the Resources cards** instead of emoji: 12 icons in
+  `public/assets/img/icons/` (ANISEED, GHOST, TUNOME, MARIMBA, Octopus, MorphoNet,
+  TunicAnatO, RAMNe, Discord, GitHub, Ascidian News, NCBI). Sources were trimmed,
+  downscaled to ≤104 px and palette-reduced — **44 kB for all 12** — and are shown in a
+  52 px white rounded badge (`.rc-icon.rc-img`), lazy-loaded.
+- **GitHub links on the site**: a "GitHub ↗" item in the navbar of both pages, a
+  "GitHub repository ↗" entry in the footer's External list, and a "This portal on
+  GitHub" card in the Community section of the Resources page.
+- **ANISEED chip in the Gene model column**, alongside NCBI (RefSeq) and TUNOME/GHOST.
+  New optional per-assembly field `aniseed: true` (+ `aniseedLabel`) in `genomes-data.js`;
+  the chip links to the ANISEED download page. Flagged on the 11 species ANISEED serves
+  gene models for, each on the assembly the model is actually built on: *Ciona robusta*
+  (KH2012 → KH `GCA_000224145.2`, under *C. intestinalis*), *C. savignyi* (ENS81),
+  *H. roretzi* / *H. aurantium* / *P. mammillata* / *P. fumigata* (MTP2014 assemblies),
+  *B. schlosseri* (Stanford 2013 `botznik-chr`), *B. leachii* (SBv3), *M. oculata*
+  (`Mocu_genome_v12`), *M. occidentalis* (aug 2015), *O. dioica* (Genoscope OdB3
+  `GCA_000209535.1` — *not* the OKI2018 reference). Mapping table + how it was verified:
+  `UPDATING.md` §4b.
+
+### Data
+- Sequencing in progress: **Molgula appendiculata** (Molgulidae, Stolidobranchia) —
+  2026, Sébastien Darras, CNRS – Sorbonne University, France. Verified against the NCBI
+  Datasets API that no public *Molgula* assembly exists (taxid 7712 report).
+- Bumped `updated` in `genomes-data.js` to 2026-08-01.
+
+### Removed
+- Sequencing in progress: **Rhopalaea idoneta** (Diazonidae, Phlebobranchia) — it was a
+  mock/placeholder entry added on 2026-07-28 to demonstrate the feature, not a real
+  project. The `status: "progress"` example in `UPDATING.md` §5b now uses a real entry.
 
 ## 2026-07-28 — MARIMBA + Octopus resources, new in-progress species
 

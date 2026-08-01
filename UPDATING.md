@@ -48,6 +48,8 @@ The site is 100% static (open `public/index.html`, or serve `public/`). No build
       gm: true,               // OPTIONAL — true = a TUNOME gene model exists on THIS assembly
       gmUrl: "https://…",     // OPTIONAL — override the gene-model link (default = TUNOME Downloads)
       gmLabel: "GHOST",       // OPTIONAL — override the gene-model chip label (default = "TUNOME")
+      aniseed: true,          // OPTIONAL — true = an ANISEED gene model exists on THIS assembly
+      aniseedLabel: "ANISEED",// OPTIONAL — override the ANISEED chip label
       resource: { url: "https://…", label: "ANISEED" }, // OPTIONAL — use INSTEAD of acc when there is no NCBI accession
       note: "free text …" }
   ]
@@ -60,7 +62,9 @@ Field rules:
 - **`refseq`** → shows an **NCBI** chip in the Gene model column (links to the RefSeq
   genome page). This is how we say "NCBI has gene models for this assembly."
 - **`gm: true`** → shows a **TUNOME** chip (or `gmLabel` if overridden, e.g. GHOST).
-  Both chips appear if an assembly has both `refseq` and `gm`.
+- **`aniseed: true`** → shows an **ANISEED** chip linking to the ANISEED download page
+  (see §4b for the current species↔assembly mapping).
+  All applicable chips appear together (`refseq` + `gm` + `aniseed`).
 - Counts in the hero (`82 assemblies`, `63 species`, `3 classes`) and the per-class
   counts are computed from the data — do not hard-code them.
 
@@ -142,6 +146,39 @@ To apply:
 
 ---
 
+## 4b. ANISEED gene models (`aniseed: true`)
+
+ANISEED serves its own gene models for 13 species from one page:
+https://aniseed.fr/aniseed/download/download_data?module=aniseed&action=download:download_data
+(the per-species panels are built client-side, so WebFetch sees them but the version
+labels are easiest to read from the download **file names** in the raw HTML).
+
+Which assembly each ANISEED gene model sits on — verified 2026-08-01 by reading the
+download file names and, where the page gives no version, by inspecting the fasta inside
+the zip (HTTP range request + raw-deflate inflate → internal filename and scaffold names):
+
+| Species (ANISEED) | ANISEED version | Assembly in this site's data |
+| --- | --- | --- |
+| C. robusta | KH2012 ("Joined Scaffold") | *C. intestinalis* **KH** `GCA_000224145.2` |
+| C. savignyi | ENS81 | **ENS81** (Ensembl v81 on Broad CSAV2.0) |
+| H. roretzi | MTP2014 (2018) | **Harore_MTP2014** `GCA_013436055.1` |
+| P. mammillata | MTP2014 (2018) | **Phmamm_MTP2014** `GCA_003260075.1` |
+| B. schlosseri | `botznik-chr.fa` (no version label) | **356a-chromosome-assembly** `GCA_000444245.1` (Stanford 2013) |
+| B. leachii | SBv3 genome / v5 transcripts / v4 proteins | **Bleachii draft (SBv3)** (no GCA) |
+| M. oculata | `Mocu_genome_v12` | **MolOcul2014** (no GCA) |
+| M. occulta | august 2015 | **not flagged** — genome only, no ANISEED gene model |
+| M. occidentalis | august 2015 | **MolOcci2014** (no GCA) |
+| H. aurantium | MTP2014 (2018) | **Haaura_MTP2014** `GCA_013436065.1` |
+| P. fumigata | MTP2014 (2018) | **Phfumi_MTP2014** `GCA_008931825.1` |
+| O. dioica | OdB3 scaffolds (S1…), 2019 proteins | **ASM20953v1** `GCA_000209535.1` (Genoscope 2010) — *not* OKI2018 |
+| B. villosa | anatomy/expression only | not flagged (no genomic data) |
+
+Note *M. occulta* and *B. villosa*: ANISEED has a genome fasta for *M. occulta* but no
+transcript/protein (gene-model) files, and *B. villosa* has no genomic data at all — so
+neither gets an `aniseed` chip.
+
+---
+
 ## 5. Species with a genome but NO NCBI assembly
 
 Some important genomes are only on ANISEED / GHOST / other repos (no GCA). They are
@@ -149,7 +186,7 @@ listed with a `resource` instead of `acc`. Currently: **Molgula occidentalis / o
 occulta, Botrylloides leachii, Corella inflata**, and the **Ciona robusta / Type-A GHOST
 HT** entry (under *Ciona intestinalis*). Keep these; they are called out in the page's
 "Genomes without an NCBI assembly" box. Truly unsequenced (no genome anywhere):
-*Salpa fusiformis*, any *Pyrosoma*, any *Doliolum*.
+any *Pyrosoma*, any *Doliolum*.
 
 ---
 
@@ -161,9 +198,9 @@ To advertise a genome that is being sequenced but not yet public, add a species 
 **excluded** from the assembly/species counts (it shows as "· N in progress" per class).
 
 ```js
-{ sp: "Rhopalaea idoneta", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea",
+{ sp: "Molgula appendiculata", family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea",
   status: "progress", asm: [],
-  progress: { year: 2026, contact: "Takumi Shito", institution: "University of the Ryukyus", country: "Japan" } }
+  progress: { year: 2026, contact: "Sébastien Darras", institution: "CNRS – Sorbonne University", country: "France" } }
 ```
 
 Contact is intentionally routed through the Discord community (no email addresses on
