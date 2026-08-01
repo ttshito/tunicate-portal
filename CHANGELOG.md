@@ -11,7 +11,19 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
-## 2026-08-01 — Molgula appendiculata sequencing in progress
+## 2026-08-01 — Molgula appendiculata sequencing in progress; ANISEED gene-model chips
+
+### Added
+- **ANISEED chip in the Gene model column**, alongside NCBI (RefSeq) and TUNOME/GHOST.
+  New optional per-assembly field `aniseed: true` (+ `aniseedLabel`) in `genomes-data.js`;
+  the chip links to the ANISEED download page. Flagged on the 11 species ANISEED serves
+  gene models for, each on the assembly the model is actually built on: *Ciona robusta*
+  (KH2012 → KH `GCA_000224145.2`, under *C. intestinalis*), *C. savignyi* (ENS81),
+  *H. roretzi* / *H. aurantium* / *P. mammillata* / *P. fumigata* (MTP2014 assemblies),
+  *B. schlosseri* (Stanford 2013 `botznik-chr`), *B. leachii* (SBv3), *M. oculata*
+  (`Mocu_genome_v12`), *M. occidentalis* (aug 2015), *O. dioica* (Genoscope OdB3
+  `GCA_000209535.1` — *not* the OKI2018 reference). Mapping table + how it was verified:
+  `UPDATING.md` §4b.
 
 ### Data
 - Sequencing in progress: **Molgula appendiculata** (Molgulidae, Stolidobranchia) —
