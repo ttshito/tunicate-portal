@@ -41,6 +41,8 @@ The site is 100% static (open `public/index.html`, or serve `public/`). No build
   asm: [                      // assemblies, newest-relevant first (display re-sorts by year desc)
     { n: "AssemblyName",      // assembly name / label shown in the expansion
       acc: "GCA_0000000.1",   // GenBank accession → builds the NCBI "Source" link
+      level: "Chromosome",    // assembly level: "Chromosome" | "Scaffold" | "Contig"
+      chrPct: 95.8,           // chromosome-level only — % of sequence placed on chromosomes
       size: "120 Mb",         // free text ("64 Mb", "1.05 Gb")
       year: 2025,             // number, or null if unknown (sorts to the bottom)
       ref: "Reference",       // OPTIONAL small green tag (e.g. "Reference", "NCBI reference")
@@ -61,6 +63,19 @@ Field rules:
   column shows the NCBI accession link, or the `resource` label/link (ANISEED, GHOST, Ryan Lab…).
 - **`refseq`** → shows an **NCBI** chip in the Gene model column (links to the RefSeq
   genome page). This is how we say "NCBI has gene models for this assembly."
+- **`level`** → the **Level** column chip in the expansion, and the green
+  `chromosome-level` badge on the species row (shown when **any** of the species'
+  assemblies is `"Chromosome"`), the hero's *N chromosome-level* count, and the
+  **Chromosome-level only** filter. Copy it verbatim from the NCBI Datasets field
+  `assembly_info.assembly_level` (see §3). For the 7 assemblies with no NCBI accession
+  it is set by hand from the source publication — current values: ENS81 (Broad CSAV2.0),
+  Core_infl, Bleachii SBv3, MolOcul/MolOccu/MolOcci 2014 = Scaffold.
+- **`chrPct`** (chromosome-level assemblies only) → the percentage shown on the chip
+  (`Chromosome 68%`). NCBI calls an assembly "Chromosome" as soon as **any** sequence
+  is placed on a chromosome, which is why *Ciona* KH — 67.9 % anchored, 1,257 unplaced
+  scaffolds — carries the same level as a 99 % ToL assembly. The renderer caps the
+  displayed value at 99 % (no assembly in the data is truly complete), so store the
+  real number with one decimal. How to compute it (§3).
 - **`gm: true`** → shows a **TUNOME** chip (or `gmLabel` if overridden, e.g. GHOST).
 - **`aniseed: true`** → shows an **ANISEED** chip linking to the ANISEED download page
   (see §4b for the current species↔assembly mapping).
@@ -92,6 +107,34 @@ metadata (size, year, RefSeq annotation).
      - `accession` (GCA_… or GCF_…)
      - `organism.organism_name`
      - `assembly_info.assembly_name`, `assembly_info.release_date`
+     - `assembly_info.assembly_level` → the `level` field ("Chromosome" / "Scaffold" /
+       "Contig"). Refresh it for **every** accession on each update — assemblies get
+       upgraded in place. One-liner over the downloaded report:
+       ```bash
+       node -e 'const d=require("/tmp/tunicata.json");for(const r of d.reports)
+         console.log(r.accession, r.assembly_info.assembly_level)'
+       ```
+     - `assembly_info.assembly_status` — skip/flag anything not `current`. (Known:
+       the RefSeq records `GCF_000224145.3` (Ciona KH) and `GCF_013122585.1`
+       (Styela clava) are **suppressed** but still linked, since they are the gene-model
+       records the community uses.)
+
+   **`chrPct` (chromosome-level assemblies only)** needs a second call per accession —
+   the dataset report has no "% anchored" field, so derive it from the sequence report:
+
+   ```bash
+   ACC=GCA_000224145.2
+   curl -s "https://api.ncbi.nlm.nih.gov/datasets/v2/genome/accession/$ACC/sequence_reports?page_size=5000" -o /tmp/seq.json
+   node -e 'const rs=require("/tmp/seq.json").reports; let a=0,t=0;
+     for (const s of rs) { t += s.length;
+       if (s.role === "assembled-molecule" && s.assigned_molecule_location_type === "Chromosome") a += s.length; }
+     console.log((100*a/t).toFixed(1) + "%")'   # → 67.9%
+   ```
+
+   `role: "assembled-molecule"` = placed on a chromosome; `unplaced-scaffold` /
+   `unlocalized-scaffold` = not. Do **not** use `assigned_molecule_location_type` alone —
+   it reads "Chromosome" for unplaced scaffolds too, which silently gives 100 % for
+   every assembly.
      - `assembly_stats.total_sequence_length` (bytes → Mb/Gb)
      - `paired_accession` (links a GCA to its GCF and vice-versa)
      - annotation present? → the entry has an `annotation_info` object, and/or a
@@ -183,8 +226,10 @@ neither gets an `aniseed` chip.
 
 Some important genomes are only on ANISEED / GHOST / other repos (no GCA). They are
 listed with a `resource` instead of `acc`. Currently: **Molgula occidentalis / oculata /
-occulta, Botrylloides leachii, Corella inflata**, and the **Ciona robusta / Type-A GHOST
-HT** entry (under *Ciona intestinalis*). Keep these; they are called out in the page's
+occulta, Botrylloides leachii, Corella inflata**, plus the ANISEED **ENS81** entry under
+*C. savignyi*. (The **GHOST HT** entry moved to `acc: "GCA_009617815.2"` on 2026-08-11 —
+the assembly is on GenBank, only its KY21 gene models are GHOST-only.)
+Keep these; they are called out in the page's
 "Genomes without an NCBI assembly" box. Truly unsequenced (no genome anywhere):
 any *Pyrosoma*, any *Doliolum*.
 
@@ -228,7 +273,13 @@ cd public && python -m http.server 8000   # → http://localhost:8000/genomes.ht
 
 Sanity checks: hero counts changed as expected; new species appear under the right
 family/order; `gm`/`refseq` chips show on the intended assemblies; expansion sorts by
-year (newest first).
+year (newest first); every assembly has a `level` (a missing one renders as "—"):
+
+```bash
+node -e 'global.window={};require("./public/assets/js/genomes-data.js");
+  const c={};for(const s of window.TUNICATE_GENOMES.species)for(const a of s.asm||[])
+    c[a.level||"MISSING"]=(c[a.level||"MISSING"]||0)+1; console.log(c)'
+```
 
 **Final step — stamp & log it.** (1) Bump the `updated: "YYYY-MM-DD"` field at the top
 of `genomes-data.js` (it shows as "Data last updated" on the page). (2) Append a dated
@@ -240,8 +291,20 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
 ## 7. Known mapping decisions (so they aren't "corrected" by mistake)
 
 - **Ciona robusta = Ciona intestinalis Type A.** NCBI files Type A under *C. intestinalis*
-  (KH `GCA_000224145.2`). The GHOST HT/KY21 gene model is added as an assembly under
-  *Ciona intestinalis* with `gmLabel: "GHOST"`. There is no separate GCA "Ciona robusta".
+  (KH `GCA_000224145.2`, and the HT assembly as `GCA_009617815.2` — same Kyoto inbred
+  Type-A line, 95.6 % anchored). The HT entry keeps `gmLabel: "GHOST"` + the GHOST URL
+  because the KY21 gene models live only at GHOST. No GCA is filed under the *name*
+  "Ciona robusta".
+- **Suppressed RefSeq records are kept on purpose.** `GCF_000224145.3` (Ciona KH,
+  Annotation Release 104) and `GCF_013122585.1` (Styela clava ASM1312258v2) are
+  `assembly_status: "suppressed"` — NCBI retires the old RefSeq annotation when the
+  species reference moves to a newer assembly ("superseded by newer assembly for
+  species"). The GCA side stays current and the files are still served from the FTP
+  archive, so the chips stay, with the retirement spelled out in the note.
+- **Botryllus schlosseri `356a-chromosome-assembly`** is named "chromosome-assembly" but
+  NCBI classifies `GCA_000444245.1` as **Scaffold** — `level: "Scaffold"` is correct, don't
+  "fix" it from the assembly name. (ANISEED separately serves a chromosome-scale
+  `botznik-chr` fasta derived from it.)
 - Family/order placement follows WoRMS-style classification. `Diazona violacea` is placed
   in Phlebobranchia (Diazonidae) though some schemes put it in Aplousobranchia.
 - Do not publish `SupplementaryMaterial_1_260409.xlsx` (it's git-ignored and kept out of

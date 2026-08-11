@@ -96,6 +96,27 @@
   function refTag(a) {
     return a.ref ? ' <span class="ref-tag">' + esc(a.ref) + "</span>" : "";
   }
+  // Assembly level = NCBI Datasets `assembly_info.assembly_level`
+  // ("Chromosome" | "Scaffold" | "Contig"); set by hand for the non-NCBI assemblies.
+  // NCBI calls an assembly "Chromosome" as soon as ANY sequence sits on a chromosome,
+  // so chromosome-level assemblies also show `chrPct` — how much of the sequence is
+  // actually placed on chromosomes (Ciona KH: 68%, the rest unplaced scaffolds).
+  function levelCell(a) {
+    if (!a.level) return '<td class="gm-no">—</td>';
+    var pct = "", title = "";
+    if (a.level === "Chromosome" && a.chrPct != null) {
+      // capped at 99: every assembly in the data still has some unplaced sequence,
+      // so rounding must never claim a complete 100 %
+      pct = " " + Math.min(99, Math.round(a.chrPct)) + "%";
+      title = a.chrPct + "% of the assembly is placed on chromosomes; " +
+        "the remainder is unplaced scaffolds";
+    }
+    return '<td class="asm-level"><span class="lvl lvl-' + esc(a.level.toLowerCase()) + '"' +
+      (title ? ' title="' + esc(title) + '"' : "") + ">" + esc(a.level) + pct + "</span></td>";
+  }
+  function hasChromosome(sp) {
+    return (sp.asm || []).some(function (a) { return a.level === "Chromosome"; });
+  }
   function isProgress(s) { return s.status === "progress"; }
   var DISCORD = "https://discord.gg/mgbhTgjMzk";
 
@@ -178,18 +199,21 @@
         (firstGm(sp) ? "tunome gene model " : "") + (firstRefseq(sp) ? "ncbi refseq annotation gene model " : "") +
         (firstAniseed(sp) ? "aniseed gene model " : "") +
         sp.asm.map(function (a) {
-          return a.n + " " + (a.acc || "") + " " + (a.resource ? a.resource.label : "") + " " + (a.note || "");
+          return a.n + " " + (a.acc || "") + " " + (a.resource ? a.resource.label : "") + " " +
+            (a.level ? a.level + "-level " : "") + (a.note || "");
         }).join(" ")
       ).toLowerCase();
 
       rows.push(
         '<tr class="genome-row expandable' + famStart + '"' +
           ' data-idx="' + idx + '"' +
+          ' data-chrom="' + (hasChromosome(sp) ? "1" : "0") + '"' +
           ' data-search="' + esc(hay) + '"' +
           ' role="button" tabindex="0" aria-expanded="false">' +
           famCell +
           '<td class="sci-name"><span class="caret" aria-hidden="true">▸</span><em>' + esc(sp.sp) + "</em>" +
-            ' <span class="asm-count">' + n + (n === 1 ? " assembly" : " assemblies") + "</span></td>" +
+            ' <span class="asm-count">' + n + (n === 1 ? " assembly" : " assemblies") + "</span>" +
+            (hasChromosome(sp) ? ' <span class="chrom-badge">chromosome-level</span>' : "") + "</td>" +
           geneModelCell(sp) +
         "</tr>"
       );
@@ -202,7 +226,8 @@
       var inner = asmSorted.map(function (a) {
         return "<tr>" +
           '<td class="sub-asm">' + esc(a.n) + refTag(a) + "</td>" +
-          "<td>" + esc(a.size) + "</td>" +
+          '<td class="asm-size">' + esc(a.size) + "</td>" +
+          levelCell(a) +
           "<td>" + (a.year == null ? "—" : esc(a.year)) + "</td>" +
           sourceCell(a) +
           gmChips(a) +
@@ -214,7 +239,7 @@
         '<tr class="detail-row" data-idx="' + idx + '" hidden><td colspan="3">' +
           '<div class="detail-wrap">' +
             '<table class="table table-sm detail-table mb-0"><thead><tr>' +
-              "<th>Assembly</th><th>Size</th><th>Year</th><th>Source</th><th>Gene model</th><th>Notes</th>" +
+              "<th>Assembly</th><th>Size</th><th>Level</th><th>Year</th><th>Source</th><th>Gene model</th><th>Notes</th>" +
             "</tr></thead><tbody>" + inner + "</tbody></table>" +
           "</div>" +
         "</td></tr>"
@@ -240,6 +265,12 @@
   var t = document.getElementById("stat-total"); if (t) t.textContent = totalAsm;
   var sp2 = document.getElementById("stat-species"); if (sp2) sp2.textContent = realSpecies.length;
   var c = document.getElementById("stat-classes"); if (c) c.textContent = Object.keys(setC).length;
+  var chromAsm = realSpecies.reduce(function (acc, s) {
+    return acc + s.asm.filter(function (a) { return a.level === "Chromosome"; }).length;
+  }, 0);
+  var ch = document.getElementById("stat-chrom"); if (ch) ch.textContent = chromAsm;
+  var chSp = document.getElementById("stat-chrom-species");
+  if (chSp) chSp.textContent = realSpecies.filter(hasChromosome).length;
   var upd = document.getElementById("data-updated"); if (upd && DATA.updated) upd.textContent = DATA.updated;
 
   // ---- expand / collapse ----
@@ -274,8 +305,10 @@
   // ---- class switch + search ----
   var search = document.getElementById("genomeSearch");
   var switcher = document.getElementById("classSwitch");
+  var chromToggle = document.getElementById("chromOnly");
   var activeClass = "Ascidiacea";
   var query = "";
+  var chromOnly = false;
 
   function apply() {
     sections.forEach(function (sec) {
@@ -284,7 +317,9 @@
 
     speciesRows.forEach(function (row) {
       var inActive = row.closest("section.genome-section").dataset.section === activeClass;
-      var show = inActive && (!query || row.dataset.search.indexOf(query) !== -1);
+      var show = inActive &&
+        (!query || row.dataset.search.indexOf(query) !== -1) &&
+        (!chromOnly || row.dataset.chrom === "1");
       row.style.display = show ? "" : "none";
       if (!show || query === "") setExpanded(row, false);
       else if (query) setExpanded(row, true); // auto-expand matches
@@ -322,6 +357,12 @@
       activeClass = btn.dataset.class;
       switcher.querySelectorAll("button").forEach(function (b) { b.classList.remove("active"); });
       btn.classList.add("active");
+      apply();
+    });
+  }
+  if (chromToggle) {
+    chromToggle.addEventListener("change", function () {
+      chromOnly = this.checked;
       apply();
     });
   }
