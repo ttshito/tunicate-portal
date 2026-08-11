@@ -225,6 +225,28 @@ body {
   background: #dff3e7; color: #16794a; vertical-align: middle;
 }
 
+/* assembly level (NCBI assembly_level) — chip in the expanded table + legend */
+.lvl {
+  display: inline-block; font-style: normal;
+  font-size: .68rem; font-weight: 600; letter-spacing: .02em;
+  padding: .1rem .5rem; border-radius: 999px; white-space: nowrap;
+  background: #eef2f4; color: #5b6b74;
+}
+.lvl + .lvl { margin-left: .3rem; }
+.lvl-chromosome { background: #dff3e7; color: #16794a; }
+.lvl-scaffold { background: #fdf1dd; color: #96601a; }
+.lvl-contig { background: #eef2f4; color: #5b6b74; }
+.genome-table td.asm-level, .genome-table td.asm-size { white-space: nowrap; }
+/* species-level "has a chromosome-level assembly" badge on the collapsed row */
+.chrom-badge {
+  display: inline-block; margin-left: .4rem; font-style: normal;
+  font-size: .68rem; font-weight: 600; letter-spacing: .02em;
+  padding: .1rem .5rem; border-radius: 999px;
+  background: #dff3e7; color: #16794a; white-space: nowrap;
+}
+.chrom-filter .form-check-label { font-size: .9rem; color: var(--tp-ink); cursor: pointer; }
+.chrom-filter .form-check-input { cursor: pointer; }
+
 /* sequencing-in-progress rows (no genome yet) */
 .genome-table .sci-name em.sp-progress { color: #c0392b; }
 .progress-badge {

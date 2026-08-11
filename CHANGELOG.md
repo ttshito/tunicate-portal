@@ -11,6 +11,64 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-08-11 — Assembly level (chromosome / scaffold / contig) on the genomes page
+
+### Added
+- **`level` field on every assembly** in `genomes-data.js` (`"Chromosome"` |
+  `"Scaffold"` | `"Contig"`). Taken from the NCBI Datasets field
+  `assembly_info.assembly_level` for all 75 accessioned assemblies (fetched
+  2026-08-11, taxon 7712); the 7 non-NCBI assemblies are set from their source
+  publications — HT (Ghost/KY21) = Chromosome (Satou et al. 2019: 95 % of the genome
+  in 14 chromosomes), ENS81 / Core_infl / Bleachii SBv3 / the three Molgula 2014
+  drafts = Scaffold. Totals: **47 chromosome · 28 scaffold · 7 contig**, 43 species
+  with at least one chromosome-level assembly.
+- Genome Datasets → expanded table: a **Level** column with a colour-coded chip.
+- **`chrPct` on every chromosome-level assembly** — the share of the assembly actually
+  placed on chromosomes, computed from the NCBI sequence report
+  (`role == "assembled-molecule"`). Shown on the chip as `Chromosome 68%`, because
+  NCBI's "Chromosome" only means *some* sequence is on a chromosome: *Ciona* **KH**
+  is 67.9 % anchored (78 Mb on 14 chromosomes, 37 Mb in 1,257 unplaced scaffolds,
+  scaffold N50 3.1 Mb) while 32 of the 46 accessioned chromosome-level assemblies are
+  ≥ 95 %. The KH note now states this instead of calling it plainly "chromosome-level".
+  Species badge rule is unchanged (any chromosome-level assembly).
+- Genome Datasets → species rows: a green **chromosome-level** badge when any of the
+  species' assemblies is chromosome-level; the level is also part of the search text
+  (searching "chromosome" works).
+- Genome Datasets → toolbar: **Chromosome-level only** checkbox, and a
+  *N chromosome-level* hero badge.
+
+### Data
+- **+5 assemblies from the NCBI diff** (82 → 87; every GCA under taxon 7712 is now either
+  an entry or named in a note): *Ciona intestinalis* **ASM5357250v1** `GCA_053572505.1`
+  (partial — NCBI flags "genome length too small"), *Botryllus schlosseri*
+  **kaBotSchl7_p1.1** `GCA_059910395.1`, *Botrylloides violaceus* **kaBotViol2_p1.1**
+  `GCA_047301215.1`, *Clavelina lepadiformis* **kaClaLepa18-hap1.1** `GCA_982319195.1`
+  (NBIS Sweden, 9 chromosomes, 91.8 %), *Oikopleura dioica* **ASM20955v1**
+  `GCA_000209555.1`. Their alternate haplotypes (`GCA_059910365.1`, `GCA_047301245.1`,
+  `GCA_982319175.1`) are named in the notes, as elsewhere in the file.
+- **The GHOST HT assembly now has an accession.** `GCA_009617815.2` (ASM961781v2, Kyoto,
+  PacBio/MECAT, inbred Type-A line, 14 chromosomes, 95.6 % anchored) is the Satou et al.
+  2019 HT assembly, so the HT entry uses `acc` instead of `resource` — its Source column
+  links to NCBI, while the gene-model chip still points at GHOST (KY21 is GHOST-only).
+  The "Genomes without an NCBI assembly" callout was updated accordingly.
+- Both **suppressed RefSeq records** are now spelled out in their notes:
+  `GCF_000224145.3` (Ciona KH, Annotation Release 104) and `GCF_013122585.1`
+  (*Styela clava* ASM1312258v2) were retired because the species reference moved to a
+  newer assembly ("superseded by newer assembly for species"); the GCA records stay
+  current and the files are still served, so the NCBI chips stay.
+- `updated` stamped **2026-08-11**.
+
+### Fixed
+- *Botryllus schlosseri* `356a-chromosome-assembly`: note now says NCBI classifies
+  `GCA_000444245.1` as scaffold-level despite the assembly's name.
+
+### Changed
+- `UPDATING.md`: documents the `level` field, how to pull `assembly_level` from the
+  Datasets report, the manual values for the non-NCBI assemblies, and a verify
+  snippet that flags any assembly missing a level.
+
+---
+
 ## 2026-08-01 — Renamed to Tunicate Genomics Portal; ANISEED chips; M. appendiculata
 
 ### Fixed
