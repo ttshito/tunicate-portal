@@ -11,6 +11,40 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-08-21
+
+### Data
+- Added the 23 unpublished genomes of the Soka University (M. Nydam) WGS panel,
+  all shown in red as "assembled · not public". 18 are new species rows
+  (3 *Ascidia*, 6 Pyuridae, 4 Botryllinae, 5 Didemnidae); the remaining 5
+  (*Diplosoma listerianum*, *Microcosmus squamiger*, *Botrylloides diegensis*,
+  *B. violaceus*, *Symplegma brakenhielmi*) already have a public assembly, so the
+  unreleased dataset was added as an `unpublished: true` assembly inside them
+  instead of a duplicate red row.
+- Bumped `updated` to 2026-08-21. Public counts are unchanged (63 species /
+  87 assemblies) — nothing unreleased is counted.
+
+### Added
+- Hero badge "N not public yet" (red) — counts the red species rows plus the
+  `unpublished` assemblies. The other four badges stay public-only, so
+  "87 assemblies" never counts a genome nobody can download.
+- `unpublished: true` on an assembly: renders a red row in the species expansion
+  with Source = *not released*, and is excluded from every count (hero stats,
+  per-class totals, the "N assemblies" chip, the chromosome-level badge).
+
+### Changed
+- Red (no-public-genome) rows now carry detail instead of just a contact. New
+  optional `progress` keys: `state` ("sequencing" | "assembled"), `size`, `level`,
+  `site` (sampling site), `gm`, `since`, `url`, `note`. All optional — existing
+  contact-only entries render as before.
+- The badge follows `state`: "sequencing in progress" vs "assembled · not public".
+  The collapsed row stays name + badge only; all the detail is in the expansion.
+- "Reported" (info made available) and "Project started" are separate lines, and the
+  contact's lab/faculty page is linked from "Get in touch" alongside Discord.
+- Per-class header count reads "· N not public yet" (was "· N in progress").
+- Reworded the red-row legend on `genomes.html`; documented all of the above in
+  §5b of `UPDATING.md`.
+
 ## 2026-08-11 — Assembly level (chromosome / scaffold / contig) on the genomes page
 
 ### Added
