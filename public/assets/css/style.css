@@ -259,12 +259,15 @@ body {
   padding: .1rem .5rem; border-radius: 999px;
   background: #fdecec; color: #c0392b; white-space: nowrap;
 }
-.progress-line { font-size: .9rem; margin: .2rem 0; color: var(--tp-ink); }
+/* key/value list; flex so a wrapping value stays aligned under itself, not
+   under the key (the Notes line is long enough to wrap on most screens) */
+.progress-line { display: flex; gap: .5rem; font-size: .9rem; margin: .2rem 0; color: var(--tp-ink); }
 .progress-line .pl-key {
-  display: inline-block; min-width: 9rem; color: var(--tp-teal); font-weight: 600;
+  flex: 0 0 9rem; color: var(--tp-teal); font-weight: 600;
 }
 @media (max-width: 575.98px) {
-  .progress-line .pl-key { display: block; min-width: 0; }
+  .progress-line { display: block; }
+  .progress-line .pl-key { display: block; }
 }
 
 /* an assembly that exists in a lab but has not been released */

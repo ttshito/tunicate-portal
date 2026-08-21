@@ -260,6 +260,8 @@ so a bare contact-only entry still looks exactly as it did before:
     site: "Wilmington, CA, USA",            // sampling site
     contact: "Marie Nydam", institution: "Soka University", country: "USA",
     url: "https://www.soka.edu/about/faculty-staff/marie-nydam",  // "Get in touch" link
+    pub: { label: "Adi et al. 2026, Zool. Sci. 43(3):227-235",   // one, or an array of
+           url: "https://doi.org/10.2108/zs250091" },            // {label,url} -> "Reference"
     note: "free text, last line" } }
 ```
 
@@ -307,9 +309,13 @@ up to 10 minutes (in practice: far longer) of stale JS.
 ```bash
 # bump them all at once
 NEW=$(date +%F)
-sed -i -E "s/\?v=[0-9]{4}-[0-9]{2}-[0-9]{2}/?v=$NEW/g" public/genomes.html public/index.html
+sed -i -E "s/\?v=[0-9]{4}-[0-9]{2}-[0-9]{2}(\.[0-9]+)?/?v=$NEW/g" public/genomes.html public/index.html
 grep -n "?v=" public/genomes.html public/index.html   # 4 hits: 1 css + 2 js + 1 css
 ```
+
+**Deploying twice in one day?** The date alone would not change, so anyone who loaded
+the first deploy stays stuck on it. Append a counter — `?v=2026-08-21.2`, `.3`, … — the
+`sed` above matches those too and resets them on the next day.
 
 Images (`assets/img/**`) are not versioned — they change rarely, and a replaced logo is
 normally a new filename anyway. If you overwrite an image in place and it does not

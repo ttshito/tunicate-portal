@@ -13,13 +13,26 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-08-21
 
+### Data (later the same day)
+- *Ascidia sydneiensis samea* (Ascidiidae) added as a red "assembled · not public"
+  row. Draft genome built for Adi et al. 2026, Zool. Sci. 43(3):227-235
+  (doi:10.2108/zs250091, Hiroshima Univ. with OIST); DDBJ BioProject PRJDB35622
+  (three wild-type individuals) went public 2026-08-19 but no INSDC assembly
+  accession exists yet, so there is nothing to link as a Source. Recheck NCBI.
+
+### Added (later the same day)
+- Optional `progress.pub` — one `{label, url}` or an array of them — rendered as a
+  "Reference" line on red rows, so a species with no assembly can still cite its
+  paper and BioProject.
+
 ### Fixed
 - Dated cache-buster (`?v=2026-08-21`) on the CSS and JS in `genomes.html` /
   `index.html`. GitHub Pages serves `assets/**` with `cache-control: max-age=600`
   and no content hashing, so returning visitors kept running the previous
   `genomes-data.js` and saw none of the update. Bumping the `?v=` gives every
   visitor the new file on their next load. New §6 of `UPDATING.md` makes bumping
-  it a step of every data update.
+  it a step of every data update. Bumped to `?v=2026-08-21.2` for the second
+  deploy of the day; §6 now covers the same-day counter suffix.
 
 ### Data
 - Added the 23 unpublished genomes of the Soka University (M. Nydam) WGS panel,
