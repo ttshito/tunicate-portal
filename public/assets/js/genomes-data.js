@@ -52,6 +52,18 @@ window.TUNICATE_GENOMES = {
     ]},
     // ----- Assembled but not public yet (status:"progress", state:"assembled").
     //       Soka University (M. Nydam) WGS panel, reported 2026. See §5b of UPDATING.md.
+    { sp: "Ascidia sydneiensis samea", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea",
+      status: "progress", asm: [],
+      progress: { state: "assembled", year: 2026,
+        level: "Draft assembly \u2014 level not reported",
+        gm: "Not deposited (the study searched its own draft genome database)",
+        contact: "Tatsuya Ueki", institution: "Hiroshima University", country: "Japan",
+        url: "https://seeds.office.hiroshima-u.ac.jp/profile/en.b550fd2969ab6aab520e17560c007669.html",
+        pub: [
+          { label: "Adi et al. 2026, Zool. Sci. 43(3):227\u2013235", url: "https://doi.org/10.2108/zs250091" },
+          { label: "BioProject PRJDB35622", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJDB35622" },
+        ],
+        note: "Draft genome of the vanadium-rich ascidian, built for the vanabin gene-evolution study (Hiroshima University with OIST). The DDBJ BioProject \u2014 whole-genome assembly of three wild-type individuals \u2014 was released on 2026-08-19; no INSDC assembly accession has appeared yet, so there is nothing to download. Recheck NCBI for a GCA." } },
     { sp: "Ascidia ceratodes", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { state: "assembled", year: 2026, since: 2022,

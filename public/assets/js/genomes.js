@@ -176,6 +176,7 @@
         var phay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
           progressBadge(pr) + " no public genome yet " +
           (pr.size || "") + " " + (pr.site || "") + " " + (pr.note || "") + " " +
+          [].concat(pr.pub || []).map(function (r) { return r.label; }).join(" ") + " " +
           (pr.contact || "") + " " + (pr.institution || "") + " " + (pr.country || "")
         ).toLowerCase();
         rows.push(
@@ -208,6 +209,13 @@
         pline("Reported", pr.year ? esc(pr.year) : "");
         pline("Project started", pr.since ? esc(pr.since) : "");
         pline("Gene model", pr.gm ? esc(pr.gm) : "");
+        // pr.pub: one {label,url} or an array of them (paper, BioProject, …)
+        var pubs = pr.pub ? [].concat(pr.pub) : [];
+        pline("Reference", pubs.map(function (r) {
+          return r.url
+            ? '<a href="' + esc(r.url) + '" target="_blank" rel="noopener">' + esc(r.label) + " \u2197</a>"
+            : esc(r.label);
+        }).join(" \u00b7 "));
         var contact = esc(pr.contact || "") +
           (pr.institution ? " \u2014 " + esc(pr.institution) : "") +
           (pr.country ? ", " + esc(pr.country) : "");
