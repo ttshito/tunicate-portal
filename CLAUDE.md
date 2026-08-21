@@ -10,6 +10,12 @@ resources and genome datasets. Site lives in `public/` (`index.html` = resources
 READ [`UPDATING.md`](./UPDATING.md) first** — it is the maintenance handoff
 (data model, NCBI Datasets API, TUNOME gene-model rules, verification steps).
 
+**After touching `style.css`, `genomes.js` or `genomes-data.js`, bump the `?v=<date>`
+cache-buster on the `<link>`/`<script>` tags in BOTH `public/genomes.html` and
+`public/index.html`** — GitHub Pages does not content-hash assets, so without it
+visitors keep the old JS and the update appears not to have happened
+(§6 of [`UPDATING.md`](./UPDATING.md)).
+
 **Resource-card icons** live in `public/assets/img/icons/` (one PNG per card on
 `index.html`, referenced from the card's `<span class="rc-icon rc-img">`). Keep them
 light — the pipeline for a new logo is
