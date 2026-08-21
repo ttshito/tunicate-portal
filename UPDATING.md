@@ -286,7 +286,36 @@ chromosome-level badge):
 
 Leave `year: null` so it sorts last, and omit `level` (it renders as "—").
 
-## 6. Verify after editing
+## 6. Bump the asset cache-buster (`?v=`)
+
+GitHub Pages serves `assets/**` with `cache-control: max-age=600` and no content
+hashing, so a returning visitor can keep running the **old** `genomes-data.js` long
+after a deploy — the update looks like it never happened. `genomes.html` and
+`index.html` therefore load the CSS/JS with a dated query string:
+
+```html
+<link  href="assets/css/style.css?v=2026-08-21" rel="stylesheet" />
+<script src="assets/js/genomes-data.js?v=2026-08-21"></script>
+<script src="assets/js/genomes.js?v=2026-08-21"></script>
+```
+
+**Whenever you touch `style.css`, `genomes.js` or `genomes-data.js`, set every `?v=`
+in both HTML files to today's date** — the same date you put in `updated:`. A new URL
+is a new cache entry, so every visitor gets the new file on their next load instead of
+up to 10 minutes (in practice: far longer) of stale JS.
+
+```bash
+# bump them all at once
+NEW=$(date +%F)
+sed -i -E "s/\?v=[0-9]{4}-[0-9]{2}-[0-9]{2}/?v=$NEW/g" public/genomes.html public/index.html
+grep -n "?v=" public/genomes.html public/index.html   # 4 hits: 1 css + 2 js + 1 css
+```
+
+Images (`assets/img/**`) are not versioned — they change rarely, and a replaced logo is
+normally a new filename anyway. If you overwrite an image in place and it does not
+refresh, give it a `?v=` too.
+
+## 7. Verify after editing
 
 No bun in this environment's PATH; use these:
 
@@ -322,7 +351,7 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
 
 ---
 
-## 7. Known mapping decisions (so they aren't "corrected" by mistake)
+## 8. Known mapping decisions (so they aren't "corrected" by mistake)
 
 - **Ciona robusta = Ciona intestinalis Type A.** NCBI files Type A under *C. intestinalis*
   (KH `GCA_000224145.2`, and the HT assembly as `GCA_009617815.2` — same Kyoto inbred

@@ -13,6 +13,14 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-08-21
 
+### Fixed
+- Dated cache-buster (`?v=2026-08-21`) on the CSS and JS in `genomes.html` /
+  `index.html`. GitHub Pages serves `assets/**` with `cache-control: max-age=600`
+  and no content hashing, so returning visitors kept running the previous
+  `genomes-data.js` and saw none of the update. Bumping the `?v=` gives every
+  visitor the new file on their next load. New §6 of `UPDATING.md` makes bumping
+  it a step of every data update.
+
 ### Data
 - Added the 23 unpublished genomes of the Soka University (M. Nydam) WGS panel,
   all shown in red as "assembled · not public". 18 are new species rows
