@@ -235,22 +235,56 @@ any *Pyrosoma*, any *Doliolum*.
 
 ---
 
-## 5b. Sequencing-in-progress species (no genome yet)
+## 5b. Species with no public genome (red rows)
 
-To advertise a genome that is being sequenced but not yet public, add a species with
-`status: "progress"`, an empty `asm: []`, and a `progress` block. It renders with a
-**red name** + "sequencing in progress" badge, expands to show the contact, and is
-**excluded** from the assembly/species counts (it shows as "· N in progress" per class).
+Two situations get a **red species name**, both via `status: "progress"` + `asm: []`
++ a `progress` block. They are **excluded** from the four public hero counts and from
+the assembly/species counts (each class header shows "· N not public yet"; the hero's
+red "N not public yet" badge counts them together with the `unpublished` assemblies). The `progress.state` field picks the badge:
+
+| `state`               | badge                     | meaning                                  |
+| --------------------- | ------------------------- | ---------------------------------------- |
+| `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet         |
+| `"assembled"`         | assembled · not public    | assembled in a lab, not released         |
+
+Every `progress` key is optional except `contact` — only the keys present are rendered,
+so a bare contact-only entry still looks exactly as it did before:
 
 ```js
-{ sp: "Molgula appendiculata", family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea",
+{ sp: "Ascidia ceratodes", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea",
   status: "progress", asm: [],
-  progress: { year: 2026, contact: "Sébastien Darras", institution: "CNRS – Sorbonne University", country: "France" } }
+  progress: { state: "assembled", year: 2026, since: 2022,
+    size: "543 Mb",                         // expansion only: "~543 Mb (estimate)"
+    level: "No chromosome-scale assembly",
+    gm: "None deposited",
+    site: "Wilmington, CA, USA",            // sampling site
+    contact: "Marie Nydam", institution: "Soka University", country: "USA",
+    url: "https://www.soka.edu/about/faculty-staff/marie-nydam",  // "Get in touch" link
+    note: "free text, last line" } }
 ```
 
-Contact is intentionally routed through the Discord community (no email addresses on
-the public site). When the genome is released, replace the `progress` entry with a
-normal `asm` array (drop `status`/`progress`).
+`year` ("Reported") = when the information was made available to the portal; `since`
+("Project started") = when the sequencing project itself began. They are separate lines,
+so 2026 never reads as the project's start date.
+
+`url` is a public lab/faculty page and is rendered on the "Get in touch" line next to the
+Discord link; the Discord route stays so nobody has to publish an email address here. When the genome is released, replace
+the `progress` entry with a normal `asm` array (drop `status`/`progress`).
+
+### Unreleased assembly for a species that already has a public one
+
+Do **not** add a second, red species row — the species is not red, it has a public
+genome. Add the unreleased dataset as an assembly with `unpublished: true` instead. It
+renders as a red row inside that species' expansion, its Source cell reads *not released*,
+and it is skipped by every count (hero stats, per-class totals, "N assemblies" chip,
+chromosome-level badge):
+
+```js
+{ n: "Soka WGS", unpublished: true, size: "~1,199 Mb", year: null,
+  note: "Assembled at Soka University (M. Nydam) but not publicly released — reported 2026 …" },
+```
+
+Leave `year: null` so it sorts last, and omit `level` (it renders as "—").
 
 ## 6. Verify after editing
 

@@ -70,6 +70,7 @@
   }
   // Assembly source link: an NCBI accession, or a non-NCBI resource (ANISEED, GHOST…).
   function sourceCell(a) {
+    if (a.unpublished) return '<td class="accession unpub-src">not released</td>';
     if (a.acc) return '<td class="accession">' + accLink(a.acc) + "</td>";
     if (a.resource) return '<td class="accession"><a href="' + esc(a.resource.url) +
       '" target="_blank" rel="noopener">' + esc(a.resource.label) + "</a></td>";
@@ -114,10 +115,21 @@
     return '<td class="asm-level"><span class="lvl lvl-' + esc(a.level.toLowerCase()) + '"' +
       (title ? ' title="' + esc(title) + '"' : "") + ">" + esc(a.level) + pct + "</span></td>";
   }
+  // `unpublished: true` marks an assembly that exists in a lab but has not been
+  // released (no accession, no download). It is shown — in red — inside the
+  // species' expansion, but never counted as a public assembly.
+  function pubAsm(sp) {
+    return (sp.asm || []).filter(function (a) { return !a.unpublished; });
+  }
   function hasChromosome(sp) {
-    return (sp.asm || []).some(function (a) { return a.level === "Chromosome"; });
+    return pubAsm(sp).some(function (a) { return a.level === "Chromosome"; });
   }
   function isProgress(s) { return s.status === "progress"; }
+  // A red species is either "sequencing" (no assembly yet) or "assembled"
+  // (assembled in the lab, not released). Default = sequencing.
+  function progressBadge(pr) {
+    return pr.state === "assembled" ? "assembled \u00b7 not public" : "sequencing in progress";
+  }
   var DISCORD = "https://discord.gg/mgbhTgjMzk";
 
   function renderClass(cls) {
@@ -158,43 +170,64 @@
         : '<td class="fam-name"></td>';
       lastFamily = sp.family;
 
-      // ---- sequencing-in-progress row (no genome yet) ----
+      // ---- red row: no public genome (being sequenced, or assembled but unreleased) ----
       if (isProgress(sp)) {
         var pr = sp.progress || {};
-        var phay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls +
-          " sequencing in progress no genome yet " +
+        var phay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
+          progressBadge(pr) + " no public genome yet " +
+          (pr.size || "") + " " + (pr.site || "") + " " + (pr.note || "") + " " +
           (pr.contact || "") + " " + (pr.institution || "") + " " + (pr.country || "")
         ).toLowerCase();
         rows.push(
           '<tr class="genome-row expandable progress-row' + famStart + '"' +
             ' data-idx="' + idx + '"' +
+            ' data-chrom="0"' +
             ' data-search="' + esc(phay) + '"' +
             ' role="button" tabindex="0" aria-expanded="false">' +
             famCell +
-            '<td class="sci-name"><span class="caret" aria-hidden="true">▸</span>' +
+            '<td class="sci-name"><span class="caret" aria-hidden="true">\u25b8</span>' +
               '<em class="sp-progress">' + esc(sp.sp) + "</em>" +
-              ' <span class="progress-badge">sequencing in progress</span></td>' +
-            '<td class="gene-model gm-no">—</td>' +
+              ' <span class="progress-badge">' + esc(progressBadge(pr)) + "</span></td>" +
+            '<td class="gene-model gm-no">\u2014</td>' +
           "</tr>"
         );
+
+        // Key/value detail. Only the keys we actually know are emitted, so the
+        // older entries (contact only) still render exactly as before.
+        var lines = [];
+        function pline(k, v) {
+          if (v) lines.push('<div class="progress-line"><span class="pl-key">' + k +
+            "</span> " + v + "</div>");
+        }
+        pline("Status", pr.state === "assembled"
+          ? "Assembled \u2014 not publicly released"
+          : "Sequencing in progress \u2014 no public genome yet");
+        pline("Approx. size", pr.size ? "~" + esc(pr.size) + " (estimate)" : "");
+        pline("Assembly", pr.level ? esc(pr.level) : "");
+        pline("Sampling site", pr.site ? esc(pr.site) : "");
+        pline("Reported", pr.year ? esc(pr.year) : "");
+        pline("Project started", pr.since ? esc(pr.since) : "");
+        pline("Gene model", pr.gm ? esc(pr.gm) : "");
         var contact = esc(pr.contact || "") +
-          (pr.institution ? " — " + esc(pr.institution) : "") +
+          (pr.institution ? " \u2014 " + esc(pr.institution) : "") +
           (pr.country ? ", " + esc(pr.country) : "");
+        pline("Contact", pr.contact ? contact : "");
+        pline("Get in touch",
+          (pr.url ? '<a href="' + esc(pr.url) + '" target="_blank" rel="noopener">' +
+            esc(pr.contact || "contact") + "\u2019s page \u2197</a>, or " : "via the ") +
+          '<a href="' + DISCORD + '" target="_blank" rel="noopener">' +
+          (pr.url ? "the portal Discord" : "Tunicate Genomics Portal Discord") + "</a> community");
+        pline("Notes", pr.note ? esc(pr.note) : "");
+
         rows.push(
           '<tr class="detail-row" data-idx="' + idx + '" hidden><td colspan="3">' +
-            '<div class="detail-wrap">' +
-              '<div class="progress-line"><span class="pl-key">Status</span> Sequencing in progress — no public genome yet</div>' +
-              '<div class="progress-line"><span class="pl-key">Reported</span> ' + esc(pr.year) + "</div>" +
-              '<div class="progress-line"><span class="pl-key">Contact</span> ' + contact + "</div>" +
-              '<div class="progress-line"><span class="pl-key">Get in touch</span> via the ' +
-                '<a href="' + DISCORD + '" target="_blank" rel="noopener">Tunicate Genomics Portal Discord</a> community</div>' +
-            "</div>" +
+            '<div class="detail-wrap">' + lines.join("") + "</div>" +
           "</td></tr>"
         );
         return; // skip the normal assembly rendering
       }
 
-      var n = sp.asm.length;
+      var n = pubAsm(sp).length;
       var hay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
         (firstGm(sp) ? "tunome gene model " : "") + (firstRefseq(sp) ? "ncbi refseq annotation gene model " : "") +
         (firstAniseed(sp) ? "aniseed gene model " : "") +
@@ -224,7 +257,7 @@
         return by - ay; // newest first; undated assemblies last
       });
       var inner = asmSorted.map(function (a) {
-        return "<tr>" +
+        return '<tr' + (a.unpublished ? ' class="unpub-row"' : "") + ">" +
           '<td class="sub-asm">' + esc(a.n) + refTag(a) + "</td>" +
           '<td class="asm-size">' + esc(a.size) + "</td>" +
           levelCell(a) +
@@ -250,27 +283,34 @@
 
     var real = list.filter(function (s) { return !isProgress(s); });
     var prog = list.filter(isProgress);
-    var nAsm = real.reduce(function (acc, s) { return acc + s.asm.length; }, 0);
+    var nAsm = real.reduce(function (acc, s) { return acc + pubAsm(s).length; }, 0);
     var label = document.getElementById("count-" + cls);
     if (label) label.textContent = real.length + " species · " + nAsm + " assemblies" +
-      (prog.length ? " · " + prog.length + " in progress" : "");
+      (prog.length ? " · " + prog.length + " not public yet" : "");
   }
 
   CLASSES.forEach(renderClass);
 
   // ---- hero stats ----
   var realSpecies = species.filter(function (s) { return !isProgress(s); });
-  var totalAsm = realSpecies.reduce(function (acc, s) { return acc + s.asm.length; }, 0);
+  var totalAsm = realSpecies.reduce(function (acc, s) { return acc + pubAsm(s).length; }, 0);
   var setC = {}; realSpecies.forEach(function (s) { setC[s.cls] = 1; });
   var t = document.getElementById("stat-total"); if (t) t.textContent = totalAsm;
   var sp2 = document.getElementById("stat-species"); if (sp2) sp2.textContent = realSpecies.length;
   var c = document.getElementById("stat-classes"); if (c) c.textContent = Object.keys(setC).length;
   var chromAsm = realSpecies.reduce(function (acc, s) {
-    return acc + s.asm.filter(function (a) { return a.level === "Chromosome"; }).length;
+    return acc + pubAsm(s).filter(function (a) { return a.level === "Chromosome"; }).length;
   }, 0);
   var ch = document.getElementById("stat-chrom"); if (ch) ch.textContent = chromAsm;
   var chSp = document.getElementById("stat-chrom-species");
   if (chSp) chSp.textContent = realSpecies.filter(hasChromosome).length;
+  // Genomes that exist but are not released: red species rows (no public genome
+  // at all) + unpublished assemblies sitting inside an otherwise-public species.
+  var unpubCount = species.filter(isProgress).length +
+    species.reduce(function (acc, s) {
+      return acc + (s.asm || []).filter(function (a) { return a.unpublished; }).length;
+    }, 0);
+  var up = document.getElementById("stat-unpub"); if (up) up.textContent = unpubCount;
   var upd = document.getElementById("data-updated"); if (upd && DATA.updated) upd.textContent = DATA.updated;
 
   // ---- expand / collapse ----

@@ -74,6 +74,10 @@ body {
   background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.18);
   color: #eaf6fb; font-weight: 500;
 }
+/* genomes that exist but are not released — counted apart from the public totals */
+.hero-badges .badge-unpub {
+  background: rgba(224,90,70,.18); border-color: rgba(240,130,110,.45); color: #ffd9d2;
+}
 
 /* ---- Section headings --------------------------------------------------- */
 .section-label {
@@ -247,7 +251,7 @@ body {
 .chrom-filter .form-check-label { font-size: .9rem; color: var(--tp-ink); cursor: pointer; }
 .chrom-filter .form-check-input { cursor: pointer; }
 
-/* sequencing-in-progress rows (no genome yet) */
+/* red rows: no public genome (being sequenced, or assembled but unreleased) */
 .genome-table .sci-name em.sp-progress { color: #c0392b; }
 .progress-badge {
   display: inline-block; margin-left: .5rem; font-style: normal;
@@ -257,8 +261,17 @@ body {
 }
 .progress-line { font-size: .9rem; margin: .2rem 0; color: var(--tp-ink); }
 .progress-line .pl-key {
-  display: inline-block; min-width: 7rem; color: var(--tp-teal); font-weight: 600;
+  display: inline-block; min-width: 9rem; color: var(--tp-teal); font-weight: 600;
 }
+@media (max-width: 575.98px) {
+  .progress-line .pl-key { display: block; min-width: 0; }
+}
+
+/* an assembly that exists in a lab but has not been released */
+.detail-table tr.unpub-row td { background: #fff7f6; color: #8a3a2c; }
+.detail-table tr.unpub-row:hover td { background: #fdecec; }
+.detail-table tr.unpub-row .sub-asm { color: #c0392b; }
+.detail-table .unpub-src { color: #c0392b; font-style: italic; }
 
 /* expansion detail panel */
 .genome-table tr.detail-row > td { padding: 0; background: #f4fafc; }
