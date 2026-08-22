@@ -242,16 +242,23 @@ Two situations get a **red species name**, both via `status: "progress"` + `asm:
 the assembly/species counts (each class header shows "· N not public yet"; the hero's
 red "N not public yet" badge counts them together with the `unpublished` assemblies). The `progress.state` field picks the badge:
 
-| `state`               | badge                     | meaning                                  |
-| --------------------- | ------------------------- | ---------------------------------------- |
-| `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet         |
-| `"assembled"`         | assembled · not public    | assembled in a lab, not released         |
+| `state`               | badge                  | meaning                          |
+| --------------------- | ---------------------- | -------------------------------- |
+| `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet |
+| `"assembled"`         | assembled              | assembled in a lab, not released |
 
-Add **`share: "author"`** when the owner has told us they will share the genome on
-request — the badge then reads *assembled · available from the author* and the Status
-line says so. Do not assume it: a bare "not public" reads to other researchers as "the
-owner is keeping it", which is exactly what a willing owner does *not* want. Set it only
-on the owner's word (Marie Nydam asked for it for the whole Soka panel, Aug 2026).
+The badge states the assembly state and **nothing else** — keep it that way. Anything
+that depends on having heard from the owner goes in the expansion instead, because only
+some owners have replied to us: a badge would rank the ones who answered above the ones
+we simply never asked.
+
+**`share: "author"`** is that kind of field. Set it when the owner has told us they will
+share the genome on request; the Status line then reads *"Assembled — not in a public
+archive, but available from the author"* and an unpublished assembly's Source cell reads
+*from the author*. Never assume it — a bare "not public" reads to other researchers as
+"the owner is keeping it", which is exactly what a willing owner does not want, but
+saying someone will share when they have not said so is worse. Set it only on the
+owner's word (Marie Nydam asked for it across the Soka panel, Aug 2026).
 
 Every `progress` key is optional except `contact` — only the keys present are rendered,
 so a bare contact-only entry still looks exactly as it did before:

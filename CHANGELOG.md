@@ -15,12 +15,17 @@ same day, add bullets under that day's heading rather than a new one.
 
 ### Changed
 - Red rows can now say the owner will share the genome: `progress.share: "author"`
-  (and `share` on an `unpublished` assembly) renders
-  *assembled · available from the author* instead of *assembled · not public*, with
-  a matching Status line and a Source cell reading *from the author*. Marie Nydam
-  asked for this — "not public" reads as *the owner does not want to share*, and
-  she does. Set on all 23 entries of the Soka panel.
-- The red-row legend on `genomes.html` now says red is not off-limits.
+  (and `share` on an `unpublished` assembly) gives a Status line reading
+  *"Assembled — not in a public archive, but available from the author"* and a
+  Source cell reading *from the author*. Marie Nydam asked for this — "not public"
+  reads as *the owner does not want to share*, and she does. Set on all 23 entries
+  of the Soka panel.
+- The badge now states the assembly state and nothing else: *assembled* (was
+  *assembled · not public*). Availability lives in the expansion, not the badge —
+  only some owners have told us, and a badge would rank the ones who answered above
+  the ones we never asked.
+- The red-row legend on `genomes.html` now says red is not off-limits and to expand
+  before assuming a genome is out of reach.
 
 ### Data
 - 7 of the Soka genomes are published: *Botrylloides praelongus*, *B. diegensis*,

@@ -130,13 +130,12 @@
   function isProgress(s) { return s.status === "progress"; }
   // A red species is either "sequencing" (no assembly yet) or "assembled"
   // (assembled in the lab, not released). Default = sequencing.
-  // `share: "author"` means the owner has told us they will share it on request.
-  // Say so: a bare "not public" reads as "the owner is keeping it to themselves".
+  // The badge states the assembly state and nothing else. Whether the owner will
+  // share it is `share`, and it belongs in the expansion, not the badge: only some
+  // owners have told us, so a badge would rank the ones who answered above the ones
+  // we simply never asked.
   function progressBadge(pr) {
-    if (pr.state !== "assembled") return "sequencing in progress";
-    return pr.share === "author"
-      ? "assembled \u00b7 available from the author"
-      : "assembled \u00b7 not public";
+    return pr.state === "assembled" ? "assembled" : "sequencing in progress";
   }
   var DISCORD = "https://discord.gg/mgbhTgjMzk";
 
