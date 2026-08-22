@@ -242,10 +242,23 @@ Two situations get a **red species name**, both via `status: "progress"` + `asm:
 the assembly/species counts (each class header shows "· N not public yet"; the hero's
 red "N not public yet" badge counts them together with the `unpublished` assemblies). The `progress.state` field picks the badge:
 
-| `state`               | badge                     | meaning                                  |
-| --------------------- | ------------------------- | ---------------------------------------- |
-| `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet         |
-| `"assembled"`         | assembled · not public    | assembled in a lab, not released         |
+| `state`               | badge                  | meaning                          |
+| --------------------- | ---------------------- | -------------------------------- |
+| `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet |
+| `"assembled"`         | assembled              | assembled in a lab, not released |
+
+The badge states the assembly state and **nothing else** — keep it that way. Anything
+that depends on having heard from the owner goes in the expansion instead, because only
+some owners have replied to us: a badge would rank the ones who answered above the ones
+we simply never asked.
+
+**`share: "author"`** is that kind of field. Set it when the owner has told us they will
+share the genome on request; the Status line then reads *"Assembled — not in a public
+archive, but available from the author"* and an unpublished assembly's Source cell reads
+*from the author*. Never assume it — a bare "not public" reads to other researchers as
+"the owner is keeping it", which is exactly what a willing owner does not want, but
+saying someone will share when they have not said so is worse. Set it only on the
+owner's word (Marie Nydam asked for it across the Soka panel, Aug 2026).
 
 Every `progress` key is optional except `contact` — only the keys present are rendered,
 so a bare contact-only entry still looks exactly as it did before:
@@ -282,11 +295,20 @@ and it is skipped by every count (hero stats, per-class totals, "N assemblies" c
 chromosome-level badge):
 
 ```js
-{ n: "Soka WGS", unpublished: true, size: "~1,199 Mb", year: null,
-  note: "Assembled at Soka University (M. Nydam) but not publicly released — reported 2026 …" },
+{ n: "Soka WGS", unpublished: true, share: "author", size: "~1,199 Mb", year: null,
+  note: "Assembled at Soka University (M. Nydam) but not in a public archive …" },
 ```
 
 Leave `year: null` so it sorts last, and omit `level` (it renders as "—").
+`share: "author"` turns the Source cell into *from the author* instead of *not released*.
+If something public exists for it after all — raw reads, a lab download page — give it a
+`resource: { url, label }` and the Source cell links there instead, still in red:
+
+```js
+{ n: "Soka WGS", unpublished: true, share: "author", year: 2021,
+  resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
+  note: "… the raw reads are public; the assembly itself is not archived." },
+```
 
 ## 6. Bump the asset cache-buster (`?v=`)
 
