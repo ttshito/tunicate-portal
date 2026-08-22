@@ -11,6 +11,32 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-08-22
+
+### Changed
+- Red rows can now say the owner will share the genome: `progress.share: "author"`
+  (and `share` on an `unpublished` assembly) renders
+  *assembled · available from the author* instead of *assembled · not public*, with
+  a matching Status line and a Source cell reading *from the author*. Marie Nydam
+  asked for this — "not public" reads as *the owner does not want to share*, and
+  she does. Set on all 23 entries of the Soka panel.
+- The red-row legend on `genomes.html` now says red is not off-limits.
+
+### Data
+- 7 of the Soka genomes are published: *Botrylloides praelongus*, *B. diegensis*,
+  *B. violaceus*, *B. frankovichi*, *Botryllus horridus*, *B. gaiae* and
+  *Symplegma brakenhielmi* were sequenced for Nydam et al. 2021,
+  Sci. Rep. 11:8351 (doi:10.1038/s41598-021-87255-2). Their raw reads went public
+  on 2026-08-04 as SRA BioProject PRJNA1507425 ("raw reads for seven sequenced
+  whole genomes"), so the four red species rows cite both, and the three that sit
+  inside an already-public species link the reads from their Source cell. Still no
+  assembly on NCBI for any of them.
+- `updated` → 2026-08-22; cache-buster → `?v=2026-08-22`.
+
+### Added
+- An `unpublished` assembly may carry `resource: { url, label }` — the Source cell
+  links there (in red) instead of reading *not released*.
+
 ## 2026-08-21
 
 ### Data (later the same day)

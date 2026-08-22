@@ -247,6 +247,12 @@ red "N not public yet" badge counts them together with the `unpublished` assembl
 | `"sequencing"` (default) | sequencing in progress | being sequenced, no assembly yet         |
 | `"assembled"`         | assembled · not public    | assembled in a lab, not released         |
 
+Add **`share: "author"`** when the owner has told us they will share the genome on
+request — the badge then reads *assembled · available from the author* and the Status
+line says so. Do not assume it: a bare "not public" reads to other researchers as "the
+owner is keeping it", which is exactly what a willing owner does *not* want. Set it only
+on the owner's word (Marie Nydam asked for it for the whole Soka panel, Aug 2026).
+
 Every `progress` key is optional except `contact` — only the keys present are rendered,
 so a bare contact-only entry still looks exactly as it did before:
 
@@ -282,11 +288,20 @@ and it is skipped by every count (hero stats, per-class totals, "N assemblies" c
 chromosome-level badge):
 
 ```js
-{ n: "Soka WGS", unpublished: true, size: "~1,199 Mb", year: null,
-  note: "Assembled at Soka University (M. Nydam) but not publicly released — reported 2026 …" },
+{ n: "Soka WGS", unpublished: true, share: "author", size: "~1,199 Mb", year: null,
+  note: "Assembled at Soka University (M. Nydam) but not in a public archive …" },
 ```
 
 Leave `year: null` so it sorts last, and omit `level` (it renders as "—").
+`share: "author"` turns the Source cell into *from the author* instead of *not released*.
+If something public exists for it after all — raw reads, a lab download page — give it a
+`resource: { url, label }` and the Source cell links there instead, still in red:
+
+```js
+{ n: "Soka WGS", unpublished: true, share: "author", year: 2021,
+  resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
+  note: "… the raw reads are public; the assembly itself is not archived." },
+```
 
 ## 6. Bump the asset cache-buster (`?v=`)
 

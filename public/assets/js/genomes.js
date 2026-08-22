@@ -70,10 +70,13 @@
   }
   // Assembly source link: an NCBI accession, or a non-NCBI resource (ANISEED, GHOST…).
   function sourceCell(a) {
-    if (a.unpublished) return '<td class="accession unpub-src">not released</td>';
     if (a.acc) return '<td class="accession">' + accLink(a.acc) + "</td>";
-    if (a.resource) return '<td class="accession"><a href="' + esc(a.resource.url) +
-      '" target="_blank" rel="noopener">' + esc(a.resource.label) + "</a></td>";
+    // an unreleased assembly can still have somewhere to point at (raw reads, a lab page)
+    if (a.resource) return '<td class="accession' + (a.unpublished ? " unpub-src" : "") +
+      '"><a href="' + esc(a.resource.url) + '" target="_blank" rel="noopener">' +
+      esc(a.resource.label) + "</a></td>";
+    if (a.unpublished) return '<td class="accession unpub-src">' +
+      (a.share === "author" ? "from the author" : "not released") + "</td>";
     return '<td class="gm-no">—</td>';
   }
 
@@ -127,8 +130,13 @@
   function isProgress(s) { return s.status === "progress"; }
   // A red species is either "sequencing" (no assembly yet) or "assembled"
   // (assembled in the lab, not released). Default = sequencing.
+  // `share: "author"` means the owner has told us they will share it on request.
+  // Say so: a bare "not public" reads as "the owner is keeping it to themselves".
   function progressBadge(pr) {
-    return pr.state === "assembled" ? "assembled \u00b7 not public" : "sequencing in progress";
+    if (pr.state !== "assembled") return "sequencing in progress";
+    return pr.share === "author"
+      ? "assembled \u00b7 available from the author"
+      : "assembled \u00b7 not public";
   }
   var DISCORD = "https://discord.gg/mgbhTgjMzk";
 
@@ -175,6 +183,7 @@
         var pr = sp.progress || {};
         var phay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
           progressBadge(pr) + " no public genome yet " +
+          (pr.share === "author" ? "available from the author on request " : "") +
           (pr.size || "") + " " + (pr.site || "") + " " + (pr.note || "") + " " +
           [].concat(pr.pub || []).map(function (r) { return r.label; }).join(" ") + " " +
           (pr.contact || "") + " " + (pr.institution || "") + " " + (pr.country || "")
@@ -201,7 +210,9 @@
             "</span> " + v + "</div>");
         }
         pline("Status", pr.state === "assembled"
-          ? "Assembled \u2014 not publicly released"
+          ? (pr.share === "author"
+              ? "Assembled \u2014 not in a public archive, but available from the author"
+              : "Assembled \u2014 not publicly released")
           : "Sequencing in progress \u2014 no public genome yet");
         pline("Approx. size", pr.size ? "~" + esc(pr.size) + " (estimate)" : "");
         pline("Assembly", pr.level ? esc(pr.level) : "");
