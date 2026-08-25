@@ -11,6 +11,23 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-08-25
+
+### Data
+- *Botryllus schlosseri* Bs_hap1 (GCA_051294905.1) now carries an **OCTOPUS** gene-model
+  chip. OCTOPUS (LBDV, Villefranche) serves FASTA + GFF3 for hap1, hap2 and the primary
+  assembly, plus the NOVOPlasty mitochondrial genome. Note expanded with the figures from
+  De Thier et al. 2025, GigaScience 14:giaf097 — clade A1 (clone E*), 16 chromosomes,
+  22,275 protein-coding genes / 30,813 isoforms, BUSCO 91.6%.
+- `updated` → 2026-08-25; cache-buster → `?v=2026-08-25`.
+
+### Fixed
+- The collapsed species row showed only the **first** gene-model source it found, so
+  adding OCTOPUS to the newest assembly would have hidden the TUNOME chip carried by the
+  2013 assembly. It now shows one chip per distinct `gmLabel` (*B. schlosseri*: NCBI ·
+  OCTOPUS · TUNOME · ANISEED). The search index had the same bug — it hard-coded the word
+  "tunome" for any `gm` assembly, so "ghost" and "octopus" did not match.
+
 ## 2026-08-22
 
 ### Changed

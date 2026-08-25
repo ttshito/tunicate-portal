@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-08-22",
+  updated: "2026-08-25",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -177,7 +177,7 @@ window.TUNICATE_GENOMES = {
         contact: "Marie Nydam", institution: "Soka University", country: "USA",
         url: "https://www.soka.edu/about/faculty-staff/marie-nydam" } },
     { sp: "Botryllus schlosseri", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
-      { n: "Bs_hap1", acc: "GCA_051294905.1", level: "Chromosome", chrPct: 96.8, size: "496 Mb", year: 2025, ref: "Reference", refseq: "GCF_051294905.1", note: "CNRS/Sorbonne, chromosome-level. Golden star tunicate — regeneration/allorecognition model. RefSeq GCF_051294905.1. Hap2 GCA_051294915.1." },
+      { n: "Bs_hap1", acc: "GCA_051294905.1", level: "Chromosome", chrPct: 96.8, size: "496 Mb", year: 2025, ref: "Reference", gm: true, gmUrl: "https://octopus.obs-vlfr.fr/public/Botryllus_genome/index.html", gmLabel: "OCTOPUS", refseq: "GCF_051294905.1", note: "CNRS/Sorbonne, chromosome-level — clade A1 (clone E*), 16 chromosomes, 22,275 protein-coding genes / 30,813 isoforms, BUSCO 91.6% (De Thier et al. 2025, GigaScience 14:giaf097). Golden star tunicate — regeneration/allorecognition model. RefSeq GCF_051294905.1. Hap2 GCA_051294915.1. Gene models come from OCTOPUS (CNRS Villefranche), which serves FASTA + GFF3 for hap1, hap2 and the primary assembly, plus the NOVOPlasty mitochondrial genome." },
       { n: "kaBotSchl7_p1.1", acc: "GCA_059910395.1", level: "Contig", size: "557 Mb", year: 2026, note: "Canada's national genome sequencing platform (HiFi/hifiasm), contig-level. Alt pseudohaplotype GCA_059910365.1 (420 Mb)." },
       { n: "356a-chromosome-assembly", acc: "GCA_000444245.1", level: "Scaffold", size: "580 Mb", year: 2013, gm: true, aniseed: true, note: "Original Stanford assembly (the classic colonial-model reference). Despite the name, NCBI classifies it as scaffold-level. Carries the ANISEED/TUNOME gene model — ANISEED serves the chromosome-scale “botznik-chr” fasta of this 2013 release." },
     ]},

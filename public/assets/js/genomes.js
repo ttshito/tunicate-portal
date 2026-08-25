@@ -18,10 +18,6 @@
   var NCBI_GENOME = "https://www.ncbi.nlm.nih.gov/datasets/genome/";
   // ANISEED hosts its own gene models (assembly.aniseed) — one download page for all species.
   var ANISEED_PAGE = "https://aniseed.fr/aniseed/download/download_data?module=aniseed&action=download:download_data";
-  function firstGm(sp) {
-    for (var i = 0; i < sp.asm.length; i++) { if (sp.asm[i].gm) return sp.asm[i]; }
-    return null;
-  }
   function firstRefseq(sp) {
     for (var i = 0; i < sp.asm.length; i++) { if (sp.asm[i].refseq) return sp.asm[i]; }
     return null;
@@ -57,12 +53,21 @@
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
       : '<td class="gene-model gm-no">—</td>';
   }
-  // Species-level summary chip(s) for the collapsed row.
+  // Species-level summary chip(s) for the collapsed row. A species can carry gene
+  // models in more than one place — TUNOME on an old assembly, OCTOPUS or GHOST on
+  // the new one — so show every distinct source, not just the first one found.
   function geneModelCell(sp) {
     var parts = [];
-    var r = firstRefseq(sp), g = firstGm(sp), an = firstAniseed(sp);
+    var r = firstRefseq(sp), an = firstAniseed(sp);
     if (r) parts.push(ncbiAnchor(r));
-    if (g) parts.push(gmAnchor(g));
+    var seenGm = {};
+    sp.asm.forEach(function (a) {
+      if (!a.gm) return;
+      var label = a.gmLabel || "TUNOME";
+      if (seenGm[label]) return;
+      seenGm[label] = 1;
+      parts.push(gmAnchor(a));
+    });
     if (an) parts.push(aniseedAnchor(an));
     return parts.length
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
@@ -247,7 +252,9 @@
 
       var n = pubAsm(sp).length;
       var hay = (sp.sp + " " + sp.family + " " + sp.order + " " + sp.cls + " " +
-        (firstGm(sp) ? "tunome gene model " : "") + (firstRefseq(sp) ? "ncbi refseq annotation gene model " : "") +
+        sp.asm.filter(function (a) { return a.gm; })
+          .map(function (a) { return (a.gmLabel || "TUNOME") + " gene model "; }).join("") +
+        (firstRefseq(sp) ? "ncbi refseq annotation gene model " : "") +
         (firstAniseed(sp) ? "aniseed gene model " : "") +
         sp.asm.map(function (a) {
           return a.n + " " + (a.acc || "") + " " + (a.resource ? a.resource.label : "") + " " +
