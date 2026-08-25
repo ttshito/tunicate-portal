@@ -183,9 +183,16 @@ To apply:
   TUNOME used (often an older / ANISEED / GHOST assembly, NOT the newest one — e.g.
   Styela clava's gene model is on the old OUC `GCA_013122585.2`, not the ToL reference).
 - If the gene model is hosted somewhere other than TUNOME, set `gmUrl` + `gmLabel`
-  (e.g. Ciona HT uses `gmLabel: "GHOST"` + the GHOST download URL).
+  (e.g. Ciona HT uses `gmLabel: "GHOST"` + the GHOST download URL; Botryllus schlosseri
+  Bs_hap1 uses `gmLabel: "OCTOPUS"` + the LBDV Villefranche download page).
 - NCBI RefSeq gene models are handled separately via `refseq` (§2). An assembly can show
   both **NCBI** and **TUNOME** chips.
+
+**A species can have gene models in several places at once**, on different assemblies —
+*Botryllus schlosseri* has OCTOPUS on the 2025 chromosome-level assembly, TUNOME and
+ANISEED on the 2013 Stanford one, plus NCBI RefSeq. The collapsed species row shows one
+chip per **distinct `gmLabel`**, so adding `gm` to a newer assembly never hides the older
+source. Keep the labels spelled consistently — they are what the de-duplication keys on.
 
 ---
 
