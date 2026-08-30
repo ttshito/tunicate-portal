@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-08-25",
+  updated: "2026-08-30",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -184,16 +184,16 @@ window.TUNICATE_GENOMES = {
     { sp: "Botrylloides diegensis", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "kaBotDieg4.1", acc: "GCA_982130965.1", level: "Chromosome", chrPct: 81, size: "203 Mb", year: 2026, note: "Genoscope, chromosome-level (chain tunicate)." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
-        resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
-        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Port Nelson, New Zealand. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425, but the assembly itself is not archived \u2014 available from the author." },
+        resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088050", label: "SRA reads" },
+        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Port Nelson, New Zealand on 2012-04-01. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425 \u2014 run SRR40088050, 13.3 Gb of Illumina HiSeq 2500 WGS from zooid tissue \u2014 but the assembly itself is not archived: available from the author." },
     ]},
     { sp: "Botrylloides violaceus", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "—", acc: "GCA_981691465.1", level: "Chromosome", chrPct: 91.5, size: "129 Mb", year: 2026, ref: "Reference", note: "Univ. of Bari, chromosome-level." },
       { n: "kaBotViol2_p1.1", acc: "GCA_047301215.1", level: "Contig", size: "246 Mb", year: 2025, note: "Canada's national genome sequencing platform (HiFi/hifiasm), contig-level. Alt pseudohaplotype GCA_047301245.1 (231 Mb)." },
       { n: "ASM3041233v1", acc: "GCA_030412335.1", level: "Scaffold", size: "121 Mb", year: 2023, gm: true, note: "Cal Poly assembly — carries the TUNOME gene model." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
-        resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
-        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Asamushi, Japan. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425, but the assembly itself is not archived \u2014 available from the author." },
+        resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088052", label: "SRA reads" },
+        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Asamushi, Japan on 2009-06-07. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425 \u2014 run SRR40088052, 18.7 Gb of Illumina HiSeq 2500 WGS from zooid tissue \u2014 but the assembly itself is not archived: available from the author." },
     ]},
     { sp: "Botrylloides israeliense", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "kaBotIsra2.hap2", acc: "GCA_979627895.1", level: "Chromosome", chrPct: 98.9, size: "370 Mb", year: 2026, note: "Leibniz-IZW, chromosome-level." },
@@ -212,8 +212,8 @@ window.TUNICATE_GENOMES = {
     { sp: "Symplegma brakenhielmi", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "—", acc: "GCA_981692185.1", level: "Chromosome", chrPct: 95.6, size: "562 Mb", year: 2026, note: "Univ. of Bari, chromosome-level." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
-        resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
-        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Bocas del Toro, Panama. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425, but the assembly itself is not archived \u2014 available from the author." },
+        resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088048", label: "SRA reads" },
+        note: "Sequenced at Soka University (M. Nydam) for the botryllid phylogenomics of Nydam et al. 2021 (Sci. Rep. 11:8351); sampled at Bocas del Toro, Panama on 2017-07-01. The raw reads went public on 2026-08-04 under BioProject PRJNA1507425 \u2014 run SRR40088048, 9.3 Gb of Illumina HiSeq 2500 WGS from zooid tissue \u2014 but the assembly itself is not archived: available from the author. The SRA sample is registered under the open name \u201cSymplegma sp.\u201d, so a search on the species name does not find it." },
     ]},
     { sp: "Distomus variolosus", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDisVari1.1", acc: "GCA_984577845.1", level: "Chromosome", chrPct: 97.3, size: "839 Mb", year: 2026, note: "Genoscope, chromosome-level." },
@@ -229,9 +229,9 @@ window.TUNICATE_GENOMES = {
         url: "https://www.soka.edu/about/faculty-staff/marie-nydam",
         pub: [
           { label: "Nydam et al. 2021, Sci. Rep. 11:8351", url: "https://doi.org/10.1038/s41598-021-87255-2" },
-          { label: "SRA reads PRJNA1507425", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425" },
+          { label: "SRA reads SRR40088051", url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088051" },
         ],
-        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"); the assembly itself is not archived, and the author will share it on request." } },
+        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021 \u2014 the BioProject carries that paper's title. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"): run SRR40088051, 17.7 Gb of Illumina HiSeq 2500 WGS from zooid tissue collected 2009-06-30. The assembly itself is not archived, and the author will share it on request." } },
     { sp: "Botrylloides frankovichi", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { state: "assembled", share: "author", year: 2026, since: 2021,
@@ -241,9 +241,9 @@ window.TUNICATE_GENOMES = {
         url: "https://www.soka.edu/about/faculty-staff/marie-nydam",
         pub: [
           { label: "Nydam et al. 2021, Sci. Rep. 11:8351", url: "https://doi.org/10.1038/s41598-021-87255-2" },
-          { label: "SRA reads PRJNA1507425", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425" },
+          { label: "SRA reads SRR40088053", url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088053" },
         ],
-        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"); the assembly itself is not archived, and the author will share it on request." } },
+        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021 \u2014 the BioProject carries that paper's title. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"): run SRR40088053, 15.6 Gb of Illumina HiSeq 2500 WGS from zooid tissue collected 1999-10-01. The assembly itself is not archived, and the author will share it on request. The SRA sample is registered under the interim name \u201cBotrylloides sp. f MLN-2022\u201d." } },
     { sp: "Botryllus horridus", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { state: "assembled", share: "author", year: 2026, since: 2021,
@@ -253,9 +253,9 @@ window.TUNICATE_GENOMES = {
         url: "https://www.soka.edu/about/faculty-staff/marie-nydam",
         pub: [
           { label: "Nydam et al. 2021, Sci. Rep. 11:8351", url: "https://doi.org/10.1038/s41598-021-87255-2" },
-          { label: "SRA reads PRJNA1507425", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425" },
+          { label: "SRA reads SRR40088049", url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088049" },
         ],
-        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"); the assembly itself is not archived, and the author will share it on request." } },
+        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021 \u2014 the BioProject carries that paper's title. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"): run SRR40088049, 17.7 Gb of Illumina HiSeq 2500 WGS from zooid tissue collected 2009-07-16. The assembly itself is not archived, and the author will share it on request." } },
     { sp: "Botryllus gaiae", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { state: "assembled", share: "author", year: 2026, since: 2021,
@@ -265,9 +265,9 @@ window.TUNICATE_GENOMES = {
         url: "https://www.soka.edu/about/faculty-staff/marie-nydam",
         pub: [
           { label: "Nydam et al. 2021, Sci. Rep. 11:8351", url: "https://doi.org/10.1038/s41598-021-87255-2" },
-          { label: "SRA reads PRJNA1507425", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425" },
+          { label: "SRA reads SRR40088047", url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088047" },
         ],
-        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"); the assembly itself is not archived, and the author will share it on request." } },
+        note: "Sequenced for the botryllid phylogenomics of Nydam et al. 2021 \u2014 the BioProject carries that paper's title. The raw reads became public on 2026-08-04 (SRA BioProject PRJNA1507425, \"raw reads for seven sequenced whole genomes\"): run SRR40088047, 29.1 Gb of Illumina HiSeq 2500 WGS from zooid tissue collected 2015-05-30. The assembly itself is not archived, and the author will share it on request." } },
 
     // ----- Sequencing in progress (no genome yet). status:"progress" → red name,
     //       excluded from assembly/species counts, expands to show contact. asm: [].

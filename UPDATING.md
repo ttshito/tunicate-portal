@@ -313,9 +313,25 @@ If something public exists for it after all — raw reads, a lab download page �
 
 ```js
 { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
-  resource: { url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1507425", label: "SRA reads" },
-  note: "… the raw reads are public; the assembly itself is not archived." },
+  resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088050", label: "SRA reads" },
+  note: "… the raw reads are public (run SRR40088050 of BioProject PRJNA1507425); the assembly itself is not archived." },
 ```
+
+**Link the run, not the BioProject.** A row is one species, so point `resource.url`
+(and the `pub` entry on a red row) at that species' **run** page
+`https://www.ncbi.nlm.nih.gov/sra/SRR…`; name the BioProject in the `note` instead, so
+the visitor lands on their reads rather than on a project page listing seven species.
+To get the runs of a project:
+
+```bash
+curl -s "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=sra&term=PRJNA1507425&retmax=100&retmode=json"
+# then efetch db=sra with those ids (rettype=full&retmode=xml) — the XML carries the
+# run accession, total_bases, INSTRUMENT_MODEL and the sample's geo_loc_name/collection_date.
+```
+
+Watch the sample's scientific name: SRA samples are sometimes registered under an open
+or interim name (*Symplegma* sp., *Botrylloides* sp. f MLN-2022) rather than the species
+the portal lists — say so in the note, or the reader will conclude the reads are missing.
 
 ## 6. Bump the asset cache-buster (`?v=`)
 
