@@ -153,6 +153,39 @@ metadata (size, year, RefSeq annotation).
 4. **Do not remove** the non-NCBI species/assemblies (they have `resource`, no `acc`) —
    see §4 and §5.
 
+5. **Audit the result** — run the check below after every refresh. It answers the two
+   questions a species-name diff cannot: *is any NCBI assembly missing from the file*, and
+   *does every row still match NCBI on level and size*.
+
+```bash
+curl -s 'https://api.ncbi.nlm.nih.gov/datasets/v2/genome/taxon/7712/dataset_report?page_size=1000' > /tmp/tuni.json
+python3 - <<'EOF'
+import json, io, re
+by = {r['accession']: r for r in json.load(open('/tmp/tuni.json'))['reports']}
+src = io.open('public/assets/js/genomes-data.js', encoding='utf-8').read()
+for acc, r in by.items():                      # (a) in NCBI, absent from the file
+    if not acc.startswith('GCF_') and acc not in src:
+        print('MISSING', acc, r['organism']['organism_name'], r['assembly_info']['assembly_name'])
+for line in src.splitlines():                  # (b) row vs NCBI, level and size
+    m = re.search(r'acc: "(GC[AF]_\d+\.\d+)"', line)
+    if not m: continue
+    r = by.get(m.group(1))
+    if not r: print('NOT CURRENT', m.group(1)); continue
+    lm, sm = re.search(r'level: "([^"]+)"', line), re.search(r'size: "([\d,]+) Mb"', line)
+    nl = r['assembly_info']['assembly_level']
+    ns = round(int(r['assembly_stats']['total_sequence_length']) / 1e6)
+    if lm and lm.group(1) != nl: print('LEVEL', m.group(1), lm.group(1), '->', nl)
+    if sm and abs(int(sm.group(1).replace(',', '')) - ns) > 3: print('SIZE', m.group(1), sm.group(1), '->', ns)
+EOF
+```
+
+
+**Why (a) matters:** NCBI upgrades assemblies **in place**, and the accession version
+moves with it. On 2026-08-11 *Perophora annectens* `GCA_048173355.1` and
+*Botrylloides violaceus* `GCA_047301215.1` both became `.2` and went **contig →
+scaffold**, with new sizes and new alt-haplotype accessions. Nothing about the species
+list changed, so only the accession check finds them.
+
 ---
 
 ## 4. Updating gene models (TUNOME + others)
@@ -161,14 +194,39 @@ Gene models are **per-assembly**, and TUNOME is the main curated source.
 
 **How to get the TUNOME coverage** (which species/assemblies have a TUNOME gene model):
 - The TUNOME download page — https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/Downloads.php —
-  lists every species TUNOME provides. The page builds its table **client-side from
-  JavaScript** (`.../Tunome/Latest/js/download.js`, a hard-coded `tunicates` array of
-  species + short ids, plus a MySQL call). Automated fetch tools (WebFetch) will NOT
-  see the table because it isn't in the static HTML — fetch `js/download.js` directly,
-  or ask the maintainer for the current list.
+  lists every species TUNOME provides. The table is built **client-side**, so WebFetch
+  sees nothing; but the species list itself is embedded in that page's HTML as a
+  `SP_LIST` JSON array (spid / class / ordo / family / genus / species), so a plain
+  `curl` gets it:
+
+  ```bash
+  curl -s https://ciona.bpni.bio.keio.ac.jp/Tunome/Latest/Downloads.php \
+  | python3 -c "import re,sys,json; print(*[f\"{s['genus']} {s['species']}\" for s in \
+      json.loads(re.search(r'SP_LIST\s*=\s*(\[.*?\]);', sys.stdin.read(), re.S).group(1))], sep='\n')"
+  ```
+
+  **Do not go looking in `js/download.js`** — it used to hold a hard-coded `tunicates`
+  array, but the page was rewritten to build both the taxonomy and the species names from
+  `SP_LIST` (the DB's own list), and the array is gone. Checked 2026-08-30: 38 species.
 - The maintainer's spreadsheet `SupplementaryMaterial_1_260409.xlsx`, sheet **Table S1**,
   has one row per assembly with columns incl. **Gene Model (◯/X)**, **Assembly**, and
   **Resource** (the download link = which assembly the gene model is built on).
+
+**Cross-check after any gene-model edit:** the chips the page renders should account for
+every species in `SP_LIST` — one chip per species, whatever the label. Count them with:
+
+```bash
+node -e 'global.window={}; require("./public/assets/js/genomes-data.js");
+  const sp=Object.values(window.TUNICATE_GENOMES).find(Array.isArray); const c={};
+  for(const s of sp) for(const a of (s.asm||[])) if(a.gm) c[a.gmLabel||"TUNOME"]=(c[a.gmLabel||"TUNOME"]||0)+1;
+  console.log(c);'   # 2026-08-30: { TUNOME: 37, GHOST: 1, OCTOPUS: 1 } — 37+1 = SP_LIST's 38
+```
+
+TUNOME reuses the GHOST gene model for *Ciona robusta*, so that species is in `SP_LIST`
+but renders a **GHOST** chip. OCTOPUS (*Botryllus schlosseri*) is an extra source on top
+of TUNOME, so it is not part of the 38. A total below 38 means a species' `gm: true` is
+missing or sits on a species the file does not list; above 38 means one is duplicated
+across two assemblies of the same species.
 
 **IMPORTANT nuance (from the maintainer):** in Table S1 the **◯/X reflects the state
 BEFORE TUNOME was created**. TUNOME then *made* gene models for ~35 species and *reused*

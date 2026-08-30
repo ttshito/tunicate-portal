@@ -60,6 +60,19 @@ same day, add bullets under that day's heading rather than a new one.
 - `UPDATING.md` §5b: link the species' SRA run rather than the BioProject, with the
   eutils recipe for pulling runs + sample metadata out of a project, and a warning
   about samples registered under open/interim names.
+- `UPDATING.md` §4: **the TUNOME species list is no longer in `js/download.js`.** That
+  file used to carry a hard-coded `tunicates` array; the page was rewritten to build the
+  table from `SP_LIST`, a JSON array embedded in `Downloads.php` itself — which a plain
+  `curl` can read. The old instruction sent you to a dead end (grepping download.js for a
+  species name finds nothing). Replaced with the working one-liner; 38 species as of today.
+- `UPDATING.md` §4 also gains a **chip-count cross-check**: the rendered gene-model chips
+  should account for every `SP_LIST` species (today 37 TUNOME + 1 GHOST for *Ciona
+  robusta*, whose model TUNOME reuses; OCTOPUS is an extra source, not one of the 38).
+  Too few = a missing `gm: true`, too many = one duplicated across two assemblies.
+- `UPDATING.md` §3 gains step 5, an **audit script**: which NCBI accessions are absent
+  from the data file, and which rows disagree with NCBI on `level`/`size`. This is what
+  caught the two in-place `.1 → .2` upgrades above — a species-name diff cannot see them.
+  All three snippets were run verbatim out of the file to confirm they work.
 
 ## 2026-08-25
 
