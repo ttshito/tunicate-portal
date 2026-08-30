@@ -31,7 +31,7 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Phallusia mammillata", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaPhaMamm4.hap1.1", acc: "GCA_965637545.1", level: "Chromosome", chrPct: 97.3, size: "240 Mb", year: 2025, ref: "Reference", refseq: "GCF_965637545.1", note: "Sanger ToL, chromosome-level. RefSeq GCF_965637545.1." },
-      { n: "kaPhaMamm4.hap2.1", acc: "GCA_965637525.1", level: "Scaffold", size: "240 Mb", year: 2025, note: "Alternate haplotype." },
+      { n: "kaPhaMamm4.hap2.1", acc: "GCA_965637525.1", level: "Scaffold", size: "251 Mb", year: 2025, note: "Alternate haplotype." },
       { n: "Phmamm_MTP2014", acc: "GCA_003260075.1", level: "Scaffold", size: "234 Mb", year: 2018, gm: true, aniseed: true, note: "CNRS MTP2014 assembly — carries the ANISEED/TUNOME gene model (ANISEED: Phmamm MTP2014, 2018 release)." },
     ]},
     { sp: "Phallusia fumigata", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
@@ -45,7 +45,8 @@ window.TUNICATE_GENOMES = {
       { n: "kaAscMent1.1", acc: "GCA_947561715.1", level: "Chromosome", chrPct: 97.6, size: "197 Mb", year: 2022, ref: "Reference", gm: true, refseq: "GCF_947561715.1", note: "Sanger ToL, chromosome-level. RefSeq GCF_947561715.1. Alt haplotype GCA_947561685.1." },
     ]},
     { sp: "Ascidiella aspersa", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
-      { n: "kaAscAspe10.2", acc: "GCA_963924565.2", level: "Chromosome", chrPct: 99.7, size: "308 Mb", year: 2026, ref: "Reference", gm: true, refseq: "GCF_963924565.1", note: "Sanger ToL, chromosome-level. RefSeq GCF_963924565.1. Alt haplotype GCA_963924595.2." },
+      { n: "kaAscAspe10.2", acc: "GCA_963924565.2", level: "Chromosome", chrPct: 99.7, size: "308 Mb", year: 2026, ref: "Reference", refseq: "GCF_963924565.1", note: "Sanger ToL, chromosome-level. RefSeq GCF_963924565.1. Alt haplotype GCA_963924595.2." },
+      { n: "ASM5999542v1", acc: "GCA_059995425.1", level: "Contig", size: "305 Mb", year: 2026, gm: true, note: "Keio University, contig-level (released 2026-08-11) \u2014 this is the assembly the TUNOME gene model is built on." },
     ]},
     { sp: "Ascidiella scabra", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaAscScab1.hap1.1", acc: "GCA_966096145.1", level: "Chromosome", chrPct: 96, size: "318 Mb", year: 2025, note: "Sanger ToL. Hap2 GCA_966096775.1." },
@@ -92,7 +93,7 @@ window.TUNICATE_GENOMES = {
       { n: "kaCorPara1.hap1.1", acc: "GCA_981110275.1", level: "Chromosome", chrPct: 93.9, size: "133 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_981110325.1." },
     ]},
     { sp: "Perophora annectens", family: "Perophoridae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
-      { n: "kaPerAnne1_p1.1", acc: "GCA_048173355.1", level: "Contig", size: "478 Mb", year: 2025, gm: true, note: "Canadian genome platform, contig-level. Alt haplotype GCA_048173345.1." },
+      { n: "kaPerAnne1_p1.2", acc: "GCA_048173355.2", level: "Scaffold", size: "478 Mb", year: 2026, gm: true, note: "Canada's national genome sequencing platform. Version 2 (2026-08-11) is scaffold-level; v1 (2025) was contig-level. Carries the TUNOME gene model. Alt pseudohaplotype GCA_048173345.2 (475 Mb)." },
     ]},
     { sp: "Diazona violacea", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDiaViol1.hap1.1", acc: "GCA_980750685.1", level: "Chromosome", chrPct: 99.5, size: "153 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_980751085.1. (Diazonidae; sometimes placed in Aplousobranchia.)" },
@@ -182,6 +183,7 @@ window.TUNICATE_GENOMES = {
       { n: "356a-chromosome-assembly", acc: "GCA_000444245.1", level: "Scaffold", size: "580 Mb", year: 2013, gm: true, aniseed: true, note: "Original Stanford assembly (the classic colonial-model reference). Despite the name, NCBI classifies it as scaffold-level. Carries the ANISEED/TUNOME gene model — ANISEED serves the chromosome-scale “botznik-chr” fasta of this 2013 release." },
     ]},
     { sp: "Botrylloides diegensis", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaBotDieg1.hap1.1", acc: "GCA_986708585.1", level: "Chromosome", chrPct: 82.1, size: "206 Mb", year: 2026, note: "Sanger ToL, chromosome-level (released 2026-08-22). Haplotype 2 not released yet." },
       { n: "kaBotDieg4.1", acc: "GCA_982130965.1", level: "Chromosome", chrPct: 81, size: "203 Mb", year: 2026, note: "Genoscope, chromosome-level (chain tunicate)." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
         resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088050", label: "SRA reads" },
@@ -189,7 +191,7 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Botrylloides violaceus", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "—", acc: "GCA_981691465.1", level: "Chromosome", chrPct: 91.5, size: "129 Mb", year: 2026, ref: "Reference", note: "Univ. of Bari, chromosome-level." },
-      { n: "kaBotViol2_p1.1", acc: "GCA_047301215.1", level: "Contig", size: "246 Mb", year: 2025, note: "Canada's national genome sequencing platform (HiFi/hifiasm), contig-level. Alt pseudohaplotype GCA_047301245.1 (231 Mb)." },
+      { n: "kaBotViol2_p1.2", acc: "GCA_047301215.2", level: "Scaffold", size: "237 Mb", year: 2026, note: "Canada's national genome sequencing platform (HiFi/hifiasm). Version 2 (2026-08-11) is scaffold-level; v1 (2025) was contig-level, 246 Mb. Alt pseudohaplotype GCA_047301245.2 (249 Mb)." },
       { n: "ASM3041233v1", acc: "GCA_030412335.1", level: "Scaffold", size: "121 Mb", year: 2023, gm: true, note: "Cal Poly assembly — carries the TUNOME gene model." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
         resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088052", label: "SRA reads" },
@@ -305,6 +307,9 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Didemnum molle", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDidMoll1.1", acc: "GCA_977014785.1", level: "Contig", size: "879 Mb", year: 2025, note: "Sanger ToL, contig-level. Green urn sea squirt. Alt haplotype GCA_977014865.1." },
+    ]},
+    { sp: "Didemnum sp. BOLD:AEE0286", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaDidAEE0286_p1.1", acc: "GCA_059996005.1", level: "Scaffold", size: "421 Mb", year: 2026, note: "Canada\u2019s national genome sequencing platform \u2014 the white leather ascidian, not yet named to species (BOLD BIN AEE0286). Alt pseudohaplotype GCA_059995945.1 (701 Mb)." },
     ]},
     { sp: "Diplosoma listerianum", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDipList1.hap1.1", acc: "GCA_965643625.1", level: "Chromosome", chrPct: 98.8, size: "289 Mb", year: 2025, note: "Sanger ToL. Hap2 GCA_965643605.1." },

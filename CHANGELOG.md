@@ -33,6 +33,29 @@ same day, add bullets under that day's heading rather than a new one.
   *from the author* stay as they are.
 - `updated` → 2026-08-30; cache-buster → `?v=2026-08-30`.
 
+- **NCBI refresh (Tunicata, taxid 7712 — 127 current assemblies).** Every accession in
+  the file was re-checked against the Datasets API; the list is now in sync (no NCBI
+  assembly is unrepresented, and every `level`/`size` matches).
+  - New species: ***Didemnum* sp. BOLD:AEE0286** (white leather ascidian, not yet named
+    to species) — kaDidAEE0286_p1.1 `GCA_059996005.1`, scaffold, 421 Mb, Canada's national
+    genome sequencing platform; alt pseudohaplotype `GCA_059995945.1` (701 Mb).
+  - *Ascidiella aspersa*: **Keio** contig assembly ASM5999542v1 `GCA_059995425.1`
+    (305 Mb, 2026-08-11) added, and it — not the Sanger ToL assembly — carries the
+    **TUNOME** gene model, so the chip moved there (maintainer's correction).
+  - *Botrylloides diegensis*: Sanger ToL kaBotDieg1.hap1.1 `GCA_986708585.1`,
+    chromosome-level, 82.1 % anchored, 206 Mb (2026-08-22). Hap2 not out yet.
+  - *Perophora annectens* → `GCA_048173355.2` and *Botrylloides violaceus* kaBotViol2 →
+    `GCA_047301215.2`: both were **upgraded from contig to scaffold** in place on
+    2026-08-11, with new sizes (478 Mb / 237 Mb) and new alt-haplotype accessions.
+    A version bump like this is invisible if you only diff species names — §3's rule of
+    refreshing `level` for *every* accession is what caught them.
+  - TUNOME cross-check: the download page's `SP_LIST` now lists **38 species**, which is
+    exactly what the data renders (37 TUNOME chips + Ciona robusta's GHOST chip).
+
+### Fixed
+- *Phallusia mammillata* kaPhaMamm4.hap2.1 (`GCA_965637525.1`) had hap1's size, 240 Mb;
+  it is 251 Mb.
+
 ### Changed
 - `UPDATING.md` §5b: link the species' SRA run rather than the BioProject, with the
   eutils recipe for pulling runs + sample metadata out of a project, and a warning
