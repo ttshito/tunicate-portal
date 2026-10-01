@@ -11,6 +11,23 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-10-01
+
+### Added
+- **OikoBrowser** resource card (Genomics section) — <https://oikobrowser.com/jbrowse/public>,
+  a JBrowse 2 genome browser + BLAST server (all three assemblies BLAST-indexed) for the *Oikopleura dioica* Barcelona (Bar2_p4), Osaka
+  (O10) and Okinawa (OKI2018_I69) assemblies. Flagged *under testing*. Icon
+  `oikobrowser.png` = the OikoBrowser logo mark with the wordmark removed (square crop).
+
+### Data
+- New red row **_Oikopleura fusiformis_** (`state: "assembled"`, `share: "author"`):
+  a somatic-genome draft from J. N. Wibisana (OIST, Genomics and Regulatory Systems
+  Unit), available on request; not scaffolded because there is no Hi-C data. The
+  species of Wibisana et al. 2024, F1000Research 13:1357 (published as an
+  "unidentified *Oikopleura* species", Amami Oshima), which assembled the 13,058-bp
+  mitogenome (GenBank LC830956, BioProject PRJNA1152617).
+- `?v=` cache-busters bumped to 2026-10-01.
+
 ## 2026-08-30
 
 ### Data
