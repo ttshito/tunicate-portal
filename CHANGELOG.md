@@ -13,6 +13,12 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-10-01
 
+### Changed
+- Genome Datasets table: within each family, species are now sorted **alphabetically**
+  (`genomes.js`), so each genus stays together — e.g. the red *Botrylloides* rows used
+  to sit apart from the public ones — and red rows sit with their genus. File order
+  no longer matters (noted in UPDATING.md §2).
+
 ### Added
 - **OikoBrowser** resource card (Genomics section) — <https://oikobrowser.com/jbrowse/public>,
   a JBrowse 2 genome browser + BLAST server (all three assemblies BLAST-indexed) for the *Oikopleura dioica* Barcelona (Bar2_p4), Osaka
@@ -26,7 +32,21 @@ same day, add bullets under that day's heading rather than a new one.
   species of Wibisana et al. 2024, F1000Research 13:1357 (published as an
   "unidentified *Oikopleura* species", Amami Oshima), which assembled the 13,058-bp
   mitogenome (GenBank LC830956, BioProject PRJNA1152617).
-- `?v=` cache-busters bumped to 2026-10-01.
+- **NCBI refresh (Tunicata, taxid 7712 — 133 current assemblies)**: six assemblies
+  released since 2026-08-30; audit clean afterwards (nothing missing, no level/size
+  drift, no new RefSeq).
+  - New species: ***Perophora japonica*** kaPerJapo1.hap1.1 `GCA_988225365.1`
+    (Sanger, chromosome, 99.5 %, 562 Mb) + hap2 `GCA_988225275.1`;
+    ***Polysyncraton lacazei*** kaPolLaca1.1 `GCA_987201245.1` (Genoscope, chromosome,
+    92.9 %, 773 Mb); ***Cystodytes dellechiajei*** kaCysDell1.1 `GCA_988225535.1`
+    (Genoscope, chromosome, 99.3 %, 1.33 Gb).
+  - ***Ascidia sydneiensis samea*** left the red rows: Asyd_1.0 `GCA_061257785.1`
+    (Hiroshima Univ., scaffold, 121 Mb) is the GCA the progress note was waiting for.
+  - *Botrylloides diegensis* gains its hap2, kaBotDieg1.hap2.1 `GCA_986708515.1`.
+  - *Trididemnum nubilum* note no longer calls it "the largest tunicate assembly here"
+    (*Cystodytes* is now larger).
+  - `updated` → 2026-10-01.
+- `?v=` cache-busters bumped to 2026-10-01 (then 2026-10-01c for the NCBI refresh and the sort change).
 
 ## 2026-08-30
 

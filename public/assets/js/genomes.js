@@ -149,17 +149,17 @@
     if (!tbody) return;
 
     // sort by order, then keep families contiguous (first-appearance order),
-    // then original authoring order within a family
+    // then alphabetically by species name within a family, so each genus stays
+    // together and red (not public) rows sit with their genus
     var base = species.filter(function (s) { return s.cls === cls; });
     var orderIdx = {}, famRank = {};
     base.forEach(function (s, i) { orderIdx[base.indexOf(s)] = i; });
     var byOrder = base.slice().sort(function (a, b) { return seq(a.order) - seq(b.order); });
     byOrder.forEach(function (s, i) { if (!(s.family in famRank)) famRank[s.family] = i; });
-    var pos = new Map(); byOrder.forEach(function (s, i) { pos.set(s, i); });
     var list = byOrder.slice().sort(function (a, b) {
       return (seq(a.order) - seq(b.order))
           || (famRank[a.family] - famRank[b.family])
-          || (pos.get(a) - pos.get(b));
+          || a.sp.localeCompare(b.sp);
     });
 
     var rows = [];
