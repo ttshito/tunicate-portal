@@ -390,6 +390,18 @@ window.TUNICATE_GENOMES = {
     { sp: "Oikopleura longicauda", family: "Oikopleuridae", order: "Copelata", cls: "Appendicularia", asm: [
       { n: "ASM436789v1", acc: "GCA_004367895.1", level: "Contig", size: "309 Mb", year: 2019, gm: true, note: "Univ. of Bergen, contig-level." },
     ]},
+    { sp: "Oikopleura fusiformis", family: "Oikopleuridae", order: "Copelata", cls: "Appendicularia",
+      status: "progress", asm: [],
+      progress: { state: "assembled", share: "author", year: 2026,
+        level: "Draft assembly — not scaffolded (no Hi-C data yet)",
+        gm: "None deposited",
+        contact: "Johannes Nicolaus Wibisana", institution: "OIST (Genomics and Regulatory Systems Unit)", country: "Japan",
+        pub: [
+          { label: "Wibisana et al. 2024, F1000Research 13:1357 (mitogenome)", url: "https://doi.org/10.12688/f1000research.157311.3" },
+          { label: "GenBank LC830956", url: "https://www.ncbi.nlm.nih.gov/nuccore/LC830956" },
+          { label: "BioProject PRJNA1152617", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJNA1152617" },
+        ],
+        note: "The species of the F1000Research paper, published there as an “unidentified Oikopleura species” from Tamari harbor, Amami Oshima (Kagoshima, Japan). The paper assembled the complete 13,058-bp mitogenome from PacBio Sequel II reads (SRA SRR30429256). A somatic (nuclear) genome draft exists, but it has not been scaffolded because there is no Hi-C data for it yet." } },
     { sp: "Mesochordaeus erythrocephalus", family: "Oikopleuridae", order: "Copelata", cls: "Appendicularia", asm: [
       { n: "ASM436797v1", acc: "GCA_004367975.1", level: "Scaffold", size: "874 Mb", year: 2019, gm: true, note: "Univ. of Bergen, scaffold-level." },
     ]},
