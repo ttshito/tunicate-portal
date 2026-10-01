@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-08-30",
+  updated: "2026-10-01",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -51,20 +51,11 @@ window.TUNICATE_GENOMES = {
     { sp: "Ascidiella scabra", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaAscScab1.hap1.1", acc: "GCA_966096145.1", level: "Chromosome", chrPct: 96, size: "318 Mb", year: 2025, note: "Sanger ToL. Hap2 GCA_966096775.1." },
     ]},
+    { sp: "Ascidia sydneiensis samea", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
+      { n: "Asyd_1.0", acc: "GCA_061257785.1", level: "Scaffold", size: "121 Mb", year: 2026, note: "Hiroshima University (T. Ueki), released 2026-08-20. Illumina MiSeq draft from sperm (5,368 scaffolds, scaffold N50 391 kb), BioProject PRJDB35622. Built for the vanabin gene-evolution study of Adi et al. 2026, Zool. Sci. 43(3):227\u2013235 (doi:10.2108/zs250091). Listed here as \u201cassembled, not public\u201d until this GCA appeared." },
+    ]},
     // ----- Assembled but not public yet (status:"progress", state:"assembled").
     //       Soka University (M. Nydam) WGS panel, reported 2026. See §5b of UPDATING.md.
-    { sp: "Ascidia sydneiensis samea", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea",
-      status: "progress", asm: [],
-      progress: { state: "assembled", year: 2026,
-        level: "Draft assembly \u2014 level not reported",
-        gm: "Not deposited (the study searched its own draft genome database)",
-        contact: "Tatsuya Ueki", institution: "Hiroshima University", country: "Japan",
-        url: "https://seeds.office.hiroshima-u.ac.jp/profile/en.b550fd2969ab6aab520e17560c007669.html",
-        pub: [
-          { label: "Adi et al. 2026, Zool. Sci. 43(3):227\u2013235", url: "https://doi.org/10.2108/zs250091" },
-          { label: "BioProject PRJDB35622", url: "https://www.ncbi.nlm.nih.gov/bioproject/PRJDB35622" },
-        ],
-        note: "Draft genome of the vanadium-rich ascidian, built for the vanabin gene-evolution study (Hiroshima University with OIST). The DDBJ BioProject \u2014 whole-genome assembly of three wild-type individuals \u2014 was released on 2026-08-19; no INSDC assembly accession has appeared yet, so there is nothing to download. Recheck NCBI for a GCA." } },
     { sp: "Ascidia ceratodes", family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea",
       status: "progress", asm: [],
       progress: { state: "assembled", share: "author", year: 2026, since: 2022,
@@ -94,6 +85,10 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Perophora annectens", family: "Perophoridae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaPerAnne1_p1.2", acc: "GCA_048173355.2", level: "Scaffold", size: "478 Mb", year: 2026, gm: true, note: "Canada's national genome sequencing platform. Version 2 (2026-08-11) is scaffold-level; v1 (2025) was contig-level. Carries the TUNOME gene model. Alt pseudohaplotype GCA_048173345.2 (475 Mb)." },
+    ]},
+    { sp: "Perophora japonica", family: "Perophoridae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaPerJapo1.hap1.1", acc: "GCA_988225365.1", level: "Chromosome", chrPct: 99.5, size: "562 Mb", year: 2026, ref: "Reference", note: "Sanger ToL, chromosome-level (17 chromosomes; sampled in the UK). Hap2 GCA_988225275.1." },
+      { n: "kaPerJapo1.hap2.1", acc: "GCA_988225275.1", level: "Scaffold", size: "566 Mb", year: 2026, note: "Alternate haplotype." },
     ]},
     { sp: "Diazona violacea", family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDiaViol1.hap1.1", acc: "GCA_980750685.1", level: "Chromosome", chrPct: 99.5, size: "153 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_980751085.1. (Diazonidae; sometimes placed in Aplousobranchia.)" },
@@ -183,7 +178,8 @@ window.TUNICATE_GENOMES = {
       { n: "356a-chromosome-assembly", acc: "GCA_000444245.1", level: "Scaffold", size: "580 Mb", year: 2013, gm: true, aniseed: true, note: "Original Stanford assembly (the classic colonial-model reference). Despite the name, NCBI classifies it as scaffold-level. Carries the ANISEED/TUNOME gene model — ANISEED serves the chromosome-scale “botznik-chr” fasta of this 2013 release." },
     ]},
     { sp: "Botrylloides diegensis", family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
-      { n: "kaBotDieg1.hap1.1", acc: "GCA_986708585.1", level: "Chromosome", chrPct: 82.1, size: "206 Mb", year: 2026, note: "Sanger ToL, chromosome-level (released 2026-08-22). Haplotype 2 not released yet." },
+      { n: "kaBotDieg1.hap1.1", acc: "GCA_986708585.1", level: "Chromosome", chrPct: 82.1, size: "206 Mb", year: 2026, note: "Sanger ToL, chromosome-level (released 2026-08-22). Hap2 GCA_986708515.1." },
+      { n: "kaBotDieg1.hap2.1", acc: "GCA_986708515.1", level: "Scaffold", size: "175 Mb", year: 2026, note: "Alternate haplotype of kaBotDieg1 (Sanger ToL, released 2026-09-01)." },
       { n: "kaBotDieg4.1", acc: "GCA_982130965.1", level: "Chromosome", chrPct: 81, size: "203 Mb", year: 2026, note: "Genoscope, chromosome-level (chain tunicate)." },
       { n: "Soka WGS", unpublished: true, share: "author", year: 2021,
         resource: { url: "https://www.ncbi.nlm.nih.gov/sra/SRR40088050", label: "SRA reads" },
@@ -326,7 +322,7 @@ window.TUNICATE_GENOMES = {
       { n: "kaTriClin1.2", acc: "GCA_963675345.2", level: "Chromosome", chrPct: 99.9, size: "887 Mb", year: 2026, gm: true, note: "Sanger ToL. Alt haplotype GCA_963675475.2." },
     ]},
     { sp: "Trididemnum nubilum", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
-      { n: "kaTriNubi1.1", acc: "GCA_963965965.1", level: "Chromosome", chrPct: 95.7, size: "1.05 Gb", year: 2024, gm: true, note: "Sanger ToL — the largest tunicate assembly here. Alt haplotype GCA_963965985.1." },
+      { n: "kaTriNubi1.1", acc: "GCA_963965965.1", level: "Chromosome", chrPct: 95.7, size: "1.05 Gb", year: 2024, gm: true, note: "Sanger ToL. Alt haplotype GCA_963965985.1." },
     ]},
     { sp: "Trididemnum miniatum", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaTriMini1.1", acc: "GCA_964006365.1", level: "Chromosome", chrPct: 98.5, size: "625 Mb", year: 2024, gm: true, note: "Sanger ToL. Alt haplotype GCA_964006535.1." },
@@ -371,8 +367,14 @@ window.TUNICATE_GENOMES = {
     { sp: "Lissoclinum perforatum", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaLisPerf1.1", acc: "GCA_977071135.1", level: "Chromosome", chrPct: 99.8, size: "383 Mb", year: 2025, note: "Genoscope, chromosome-level." },
     ]},
+    { sp: "Polysyncraton lacazei", family: "Didemnidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaPolLaca1.1", acc: "GCA_987201245.1", level: "Chromosome", chrPct: 92.9, size: "773 Mb", year: 2026, note: "Genoscope, chromosome-level (23 chromosomes)." },
+    ]},
     { sp: "Distaplia bermudensis", family: "Holozoidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaDisBerm", acc: "GCA_981692175.1", level: "Chromosome", chrPct: 99.6, size: "446 Mb", year: 2026, note: "Univ. of Bari, chromosome-level." },
+    ]},
+    { sp: "Cystodytes dellechiajei", family: "Polycitoridae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaCysDell1.1", acc: "GCA_988225535.1", level: "Chromosome", chrPct: 99.3, size: "1.33 Gb", year: 2026, note: "Genoscope, chromosome-level (21 chromosomes; Mediterranean)." },
     ]},
 
     // ===================== APPENDICULARIA · COPELATA =====================

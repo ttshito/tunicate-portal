@@ -34,7 +34,9 @@ The site is 100% static (open `public/index.html`, or serve `public/`). No build
 ## 2. Data model (`genomes-data.js`)
 
 ```js
-{ sp: "Genus species",        // scientific name (italicised in the table)
+{ sp: "Genus species",        // scientific name (italicised in the table); within a
+                              // family the table sorts species alphabetically by this,
+                              // so position in the file does not matter
   family: "Familyidae",
   order: "Phlebobranchia",    // see order sequence below
   cls: "Ascidiacea",          // "Ascidiacea" | "Appendicularia" | "Thaliacea"
