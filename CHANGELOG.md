@@ -11,6 +11,12 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-10-11
+
+### Data
+- *Diazona violacea* (Diazonidae) moved from Phlebobranchia to **Aplousobranchia** (maintainer's
+  decision); UPDATING.md §8 updated. Data date and `?v=` bumped.
+
 ## 2026-10-10
 
 ### Changed
