@@ -27,9 +27,15 @@ assistant (with no memory of past sessions) — or a human — can do the update
 | `public/assets/js/genomes.js` | Renderer + interaction (grouping, expand, search, chips). Reads the data file. | Only if changing behaviour/columns. |
 | `public/genomes.html` | Page shell: hero, class-switch buttons, three empty `<tbody>`s, callout. | Rarely (e.g. new column header, callout text). |
 | `public/assets/css/style.css` | Styling (shared with the Resources page). | Rarely. |
+| `scripts/validate_data.cjs` | Checks the data file against §2 (also run by PRs and deployment, §9). | Run it after editing. |
+| `scripts/export_genomes_json.cjs` | Writes `public/data/genomes.json` at deployment (§9). | No. |
+| `scripts/ncbi_watch.py`, `scripts/ncbi_watch_notify.sh` | Weekly NCBI comparison → issue + Discord (§3b). | No. |
+| `.github/workflows/*.yml` | `pages.yml` (check + JSON + deploy), `check-data.yml` (PR checks), `ncbi-watch.yml` (weekly). | Rarely. |
+| `.github/ISSUE_TEMPLATE/*.yml` | Issue forms: add a genome / add a resource / report a mistake. | Rarely. |
 | `SupplementaryMaterial_1_260409.xlsx` | Source spreadsheet for gene-model ↔ assembly mapping (see §4). **Kept at project root, git-ignored, NOT served publicly.** | Reference only. |
 
-The site is 100% static (open `public/index.html`, or serve `public/`). No build step.
+The site is 100% static (open `public/index.html`, or serve `public/`). No build step —
+the only generated file is `data/genomes.json`, written by the deployment workflow.
 
 ---
 

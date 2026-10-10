@@ -14,6 +14,8 @@ same day, add bullets under that day's heading rather than a new one.
 ## 2026-10-10
 
 ### Changed
+- Overviews brought up to date for the automation (CLAUDE.md table of workflows, README
+  structure and *Automation / Independence* notes, UPDATING.md §1 file table).
 - UPDATING.md §4: what to do when a gene-model site (TUNOME, ANISEED, …) is unreachable, and
   that the `SP_LIST` recipe must be updated when TUNOME2 replaces the current TUNOME site.
 - CLAUDE.md: the portal must not depend on any external database.

@@ -64,12 +64,30 @@ A maintainer (or anyone, via Claude) turns them into a pull request. Questions: 
 public/
   index.html            # Resources portal
   genomes.html          # Genome datasets table
+  data/genomes.json     # (generated at deployment, not in git) the table as JSON
   assets/
     css/style.css       # Shared ocean theme (on top of Bootstrap)
-    js/genomes.js       # Live search + class filter for the table (progressive enhancement)
-    img/                # Drop photos here
+    js/genomes-data.js  # ALL genome data — the one file to edit (data model: UPDATING.md §2)
+    js/genomes.js       # Renders the table: grouping, expand, search, gene-model chips
+    img/                # Logos (icons/) and photos
+scripts/
+  validate_data.cjs     # checks genomes-data.js (run after editing; PRs and deployment run it too)
+  export_genomes_json.cjs  # writes data/genomes.json (run at deployment)
+  ncbi_watch.py         # weekly: what NCBI has that the table does not
+  ncbi_watch_notify.sh  # turns that into an issue + Discord post
+.github/
+  workflows/            # pages.yml (deploy), check-data.yml (PR checks), ncbi-watch.yml (weekly)
+  ISSUE_TEMPLATE/       # forms: add a genome / add a resource / report a mistake
 index.ts                # Optional local preview server (Bun.serve)
 ```
+
+**Automation:** merging to `main` checks the data and redeploys the site (~1 min);
+pull requests get an automatic data check; every Monday a job compares the table with
+NCBI and opens an issue (and a Discord post) when there is something new. Details:
+UPDATING.md §3b and §9.
+
+**Independence:** the portal links to other tunicate databases (TUNOME, ANISEED, …) but
+never depends on them — the site and its upkeep keep working if any of them disappears.
 
 Both pages are self-contained HTML. Bootstrap and fonts load from CDNs, so an
 internet connection is needed for styling; everything else is local.
