@@ -567,8 +567,9 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
   NCBI classifies `GCA_000444245.1` as **Scaffold** — `level: "Scaffold"` is correct, don't
   "fix" it from the assembly name. (ANISEED separately serves a chromosome-scale
   `botznik-chr` fasta derived from it.)
-- Family/order placement follows WoRMS-style classification. `Diazona violacea` is placed
-  in Phlebobranchia (Diazonidae) though some schemes put it in Aplousobranchia.
+- Family/order placement follows WoRMS-style classification. `Diazona violacea` (Diazonidae)
+  is placed in **Aplousobranchia** (maintainer's decision, 2026-10-11; until then it was in
+  Phlebobranchia, where some schemes still put it).
 - Do not publish `SupplementaryMaterial_1_260409.xlsx` (it's git-ignored and kept out of
   `public/`).
 

@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-10-01",
+  updated: "2026-10-11",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -90,8 +90,8 @@ window.TUNICATE_GENOMES = {
       { n: "kaPerJapo1.hap1.1", acc: "GCA_988225365.1", level: "Chromosome", chrPct: 99.5, size: "562 Mb", year: 2026, ref: "Reference", note: "Sanger ToL, chromosome-level (17 chromosomes; sampled in the UK). Hap2 GCA_988225275.1." },
       { n: "kaPerJapo1.hap2.1", acc: "GCA_988225275.1", level: "Scaffold", size: "566 Mb", year: 2026, note: "Alternate haplotype." },
     ]},
-    { sp: "Diazona violacea", taxid: 2930585, family: "Diazonidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
-      { n: "kaDiaViol1.hap1.1", acc: "GCA_980750685.1", level: "Chromosome", chrPct: 99.5, size: "153 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_980751085.1. (Diazonidae; sometimes placed in Aplousobranchia.)" },
+    { sp: "Diazona violacea", taxid: 2930585, family: "Diazonidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaDiaViol1.hap1.1", acc: "GCA_980750685.1", level: "Chromosome", chrPct: 99.5, size: "153 Mb", year: 2026, note: "Sanger ToL. Hap2 GCA_980751085.1. (Diazonidae, placed in Aplousobranchia; some schemes put it in Phlebobranchia.)" },
     ]},
 
     // ===================== ASCIDIACEA · STOLIDOBRANCHIA =====================
