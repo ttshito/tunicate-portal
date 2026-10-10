@@ -6,6 +6,18 @@ resources and genome datasets. Site lives in `public/` (`index.html` = resources
 `genomes.html` = genome datasets). All genome data is in one file:
 `public/assets/js/genomes-data.js`, rendered by `public/assets/js/genomes.js`.
 
+**Automation (GitHub Actions, `.github/workflows/`)** — know these before changing data or scripts:
+
+| Workflow | When | What | Script |
+|---|---|---|---|
+| `pages.yml` | push to `main` | checks the data, writes `public/data/genomes.json`, publishes `public/` | `scripts/validate_data.cjs`, `scripts/export_genomes_json.cjs` |
+| `check-data.yml` | pull requests touching data/scripts | ✓/✗ on the PR from the same data checks | `scripts/validate_data.cjs` |
+| `ncbi-watch.yml` | Mondays 00:17 UTC, or by hand | NCBI (taxon 7712) vs the data file → issue `ncbi-watch` + Discord (secret `DISCORD_WEBHOOK_URL`) | `scripts/ncbi_watch.py`, `scripts/ncbi_watch_notify.sh` |
+
+Contributions also come in through issue forms (`.github/ISSUE_TEMPLATE/`: add a genome,
+add a resource, report a mistake). `data/genomes.json` is generated — never edit or commit
+it (git-ignored); its shape is in UPDATING.md §9.
+
 **If asked to update genomes / gene models from NCBI (or refresh the datasets),
 READ [`UPDATING.md`](./UPDATING.md) first** — it is the maintenance handoff
 (data model, NCBI Datasets API, TUNOME gene-model rules, verification steps).
