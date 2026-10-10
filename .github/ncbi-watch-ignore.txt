@@ -1,0 +1,5 @@
+# Accessions that the weekly NCBI watch (.github/workflows/ncbi-watch.yml) should not report.
+# One accession per line; text after # is a comment. Use it for records that were looked at
+# and deliberately left out of genomes-data.js (say why).
+# Accessions mentioned anywhere in genomes-data.js — including in a `note` — already count
+# as known, so alternate haplotypes named in a note do not need to be listed here.

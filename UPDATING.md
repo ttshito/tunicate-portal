@@ -5,6 +5,8 @@
 > ### 「UPDATING.md に従って、NCBIから最新のホヤゲノムデータに更新して」
 > That's it — Claude reads this file and does the rest. Suggested every ~3–6 months
 > (or when you hear of new genomes / gene models). The rest of this file is the how-to.
+> **You no longer have to remember to look:** a weekly GitHub Action opens an issue
+> (label `ncbi-watch`, and a Discord post if configured) when NCBI has something new — §3b.
 
 This file is the handoff for keeping the **Genome Datasets** page current as new
 tunicate genome assemblies and gene models appear. It is written so a fresh
@@ -187,6 +189,40 @@ moves with it. On 2026-08-11 *Perophora annectens* `GCA_048173355.1` and
 *Botrylloides violaceus* `GCA_047301215.1` both became `.2` and went **contig →
 scaffold**, with new sizes and new alt-haplotype accessions. Nothing about the species
 list changed, so only the accession check finds them.
+
+---
+
+## 3b. Weekly NCBI watch (automatic)
+
+`.github/workflows/ncbi-watch.yml` runs every Monday (00:17 UTC) and on demand
+(Actions tab → *Watch NCBI for new tunicate genomes* → *Run workflow*). It runs
+`scripts/ncbi_watch.py`, which pulls the same NCBI Datasets report as §3 and compares
+it with `genomes-data.js`:
+
+| Finding | Meaning |
+| ------- | ------- |
+| New assembly | accession not mentioned anywhere in `genomes-data.js` (*new species* if the organism is not in the file either) |
+| New version | NCBI has `GCA_X.2`, the file has `GCA_X.1` |
+| New RefSeq annotation | a `GCF_` whose `GCA_` twin is listed (→ add `refseq:`) |
+| Level changed | e.g. Scaffold → Chromosome for a listed accession (→ update `level`, `chrPct`) |
+
+`scripts/ncbi_watch_notify.sh` then opens an issue labelled `ncbi-watch` with the
+table, comments on it when the findings change (never repeats the same findings),
+and closes it once the file catches up. **To act on it:** follow §3 (or ask Claude:
+*"Update the genome data from NCBI following UPDATING.md"*) and open a PR; the next
+run closes the issue.
+
+- **Discord:** add a repository secret `DISCORD_WEBHOOK_URL` (Discord channel →
+  Edit Channel → Integrations → Webhooks → Copy Webhook URL; GitHub → Settings →
+  Secrets and variables → Actions → New repository secret). Without it the job only
+  opens issues.
+- **Something that should stay out** (looked at and deliberately not listed): add
+  its accession to `.github/ncbi-watch-ignore.txt` with a comment. Accessions
+  mentioned in a `note` (e.g. alternate haplotypes) already count as known.
+- **Run it locally:** `python3 scripts/ncbi_watch.py` (standard library only).
+  `--data FILE` compares another copy of the data file (for testing).
+- If NCBI cannot be reached the job **fails** (red in the Actions tab) instead of
+  reporting "nothing new".
 
 ---
 
