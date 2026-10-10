@@ -1,0 +1,24 @@
+name: Report a mistake
+description: Something on the portal is wrong, outdated or broken (data, link, name)
+title: "Fix: "
+labels: ["correction"]
+body:
+  - type: input
+    id: where
+    attributes:
+      label: Where
+      description: Page and species / card / link
+      placeholder: "Genome Datasets › Ciona intestinalis › KH"
+    validations:
+      required: true
+  - type: textarea
+    id: wrong
+    attributes:
+      label: What is wrong, and what is right
+    validations:
+      required: true
+  - type: input
+    id: source
+    attributes:
+      label: Source
+      description: A link or reference for the correct information (NCBI, a paper, the data owner)

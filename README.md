@@ -42,6 +42,14 @@ automatically.
 > (or `gh pr merge <number> --squash`). Merging to `main` publishes it. Only grant
 > collaborator write access to a small core team, if ever — everyone else uses PRs.
 
+## 💬 Or just tell us
+
+No Claude, no fork? Open an issue — there are short forms for
+[**adding a genome**](https://github.com/ttshito/tunicate-portal/issues/new?template=add-genome.yml),
+[**adding a resource**](https://github.com/ttshito/tunicate-portal/issues/new?template=add-resource.yml) and
+[**reporting a mistake**](https://github.com/ttshito/tunicate-portal/issues/new?template=correction.yml).
+A maintainer (or anyone, via Claude) turns them into a pull request. Questions: [Discord](https://discord.gg/mgbhTgjMzk).
+
 ## Pages
 
 | File                    | What it is                                                                 |

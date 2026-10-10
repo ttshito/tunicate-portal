@@ -1,0 +1,52 @@
+name: Add or update a genome
+description: A tunicate genome assembly (or gene models) that the Genome Datasets table should list
+title: "Genome: "
+labels: ["data"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks! Fill in what you know — empty fields are fine. Public NCBI assemblies are also picked up
+        automatically every week (issues labelled `ncbi-watch`), so this form matters most for genomes that are
+        **not on NCBI**, still **being sequenced**, or have **gene models** somewhere else.
+        Prefer to make the change yourself? See the README: open Claude Code in a fork and ask it to add the genome.
+  - type: input
+    id: species
+    attributes:
+      label: Species
+      placeholder: "Genus species"
+    validations:
+      required: true
+  - type: dropdown
+    id: state
+    attributes:
+      label: State of the genome
+      options:
+        - Public (NCBI or another archive)
+        - Assembled, not released yet
+        - Being sequenced
+    validations:
+      required: true
+  - type: input
+    id: accession
+    attributes:
+      label: Accession or link
+      description: NCBI accession (GCA_…) if there is one, otherwise a link to the data or the lab page
+      placeholder: "GCA_000000000.1 or https://…"
+  - type: textarea
+    id: details
+    attributes:
+      label: Details
+      description: Assembly name, level (chromosome / scaffold / contig), size, year, gene models and where to get them, publication
+  - type: input
+    id: contact
+    attributes:
+      label: Contact (for genomes that are not public)
+      description: Who to ask, institution, country. Only what the owner agrees to show on the site.
+  - type: checkboxes
+    id: ok
+    attributes:
+      label: Permission
+      options:
+        - label: Everything above may be shown publicly on the portal
+          required: true

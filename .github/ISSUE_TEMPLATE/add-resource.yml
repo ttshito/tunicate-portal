@@ -1,0 +1,41 @@
+name: Add a resource
+description: A tunicate database, browser, atlas or community site for the Resources page
+title: "Resource: "
+labels: ["resource"]
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Name
+    validations:
+      required: true
+  - type: input
+    id: url
+    attributes:
+      label: Link
+      placeholder: "https://…"
+    validations:
+      required: true
+  - type: dropdown
+    id: section
+    attributes:
+      label: Section
+      options:
+        - Genome browsers, sequences & expression data
+        - Anatomical atlases, ontologies & imaging
+        - Community hubs & portals
+        - Not sure
+    validations:
+      required: true
+  - type: textarea
+    id: about
+    attributes:
+      label: What it offers
+      description: One or two sentences for the card (species, data types, who runs it)
+    validations:
+      required: true
+  - type: input
+    id: logo
+    attributes:
+      label: Logo (optional)
+      description: A link to a logo image we may use
