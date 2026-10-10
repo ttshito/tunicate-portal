@@ -16,11 +16,20 @@ key=$(j key)
 open=$(gh issue list --label "$LABEL" --state open --json number --jq '.[0].number // empty')
 
 discord() {   # $1 = message text
-  [ -n "${DISCORD_WEBHOOK_URL:-}" ] || { echo "no DISCORD_WEBHOOK_URL secret — skipping Discord"; return 0; }
-  python3 -c 'import json,sys; print(json.dumps({"content": sys.argv[1][:1900], "allowed_mentions": {"parse": []}}))' "$1" \
-    | curl -fsS -X POST -H 'Content-Type: application/json' --data @- "$DISCORD_WEBHOOK_URL" >/dev/null \
-    || echo "Discord post failed (the issue is still there)"
+  [ -n "${DISCORD_WEBHOOK_URL:-}" ] || { echo "no DISCORD_WEBHOOK_URL secret — skipping Discord"; return 1; }
+  if python3 -c 'import json,sys; print(json.dumps({"content": sys.argv[1][:1900], "allowed_mentions": {"parse": []}}))' "$1" \
+       | curl -fsS -X POST -H 'Content-Type: application/json' --data @- "$DISCORD_WEBHOOK_URL" >/dev/null; then
+    echo "posted to Discord"
+  else
+    echo "Discord post failed (the issue is still there)"; return 1
+  fi
 }
+
+# Manual run with "discord_test" ticked: check the webhook, and fail the job if it does not work
+if [ "${DISCORD_TEST:-false}" = "true" ]; then
+  discord "✅ Test from the Tunicate Genomics Portal: the weekly NCBI watch can post here. NCBI lists $(j ncbi) tunicate assemblies; the portal lists $(j listed)." \
+    || { echo "::error::Discord test failed — check the DISCORD_WEBHOOK_URL secret"; exit 1; }
+fi
 
 summary_line() {
   python3 - <<'PY'
@@ -50,10 +59,10 @@ if [ -n "$open" ]; then
     echo "same findings as issue #$open — nothing to do"; exit 0
   fi
   url=$(gh issue comment "$open" --body-file report.md)
-  discord "🧬 NCBI update for the Tunicate Genomics Portal: $(summary_line). $url"
+  discord "🧬 NCBI update for the Tunicate Genomics Portal: $(summary_line). $url" || true   # the issue is what matters
 else
   gh label create "$LABEL" --color 1D76DB --description "New tunicate genomes on NCBI (automatic)" 2>/dev/null || true
   url=$(gh issue create --label "$LABEL" --title "NCBI: $total tunicate genome record(s) not in the portal yet" --body-file report.md)
-  discord "🧬 NCBI has tunicate genomes that the Tunicate Genomics Portal does not list yet: $(summary_line). $url"
+  discord "🧬 NCBI has tunicate genomes that the Tunicate Genomics Portal does not list yet: $(summary_line). $url" || true
 fi
 echo "reported: $url"

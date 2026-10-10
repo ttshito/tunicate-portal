@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: "17 0 * * 1"     # Mondays 00:17 UTC (09:17 JST)
   workflow_dispatch:
+    inputs:
+      discord_test:
+        description: "Also post a test message to Discord (checks the DISCORD_WEBHOOK_URL secret)"
+        type: boolean
+        default: false
 
 permissions:
   contents: read
@@ -30,4 +35,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          DISCORD_TEST: ${{ inputs.discord_test }}
         run: bash scripts/ncbi_watch_notify.sh
