@@ -74,7 +74,12 @@ the only generated file is `data/genomes.json`, written by the deployment workfl
 - species: `sp`, `family`, `order`, `cls`, `asm`, and `taxid` — or `id` if NCBI Taxonomy has
   no entry (§2a). A species with an empty `asm` must be a red row (`status: "progress"`, §5b).
 - assembly: `n`; `acc` or `resource`; `level` (an `unpublished` assembly may lack the last two).
-- everything else is optional. `chrPct` is expected on Chromosome-level assemblies (warning if missing).
+- everything else is optional. `chrPct` is expected on Chromosome-level assemblies — if it is
+  missing the check prints a warning but still passes.
+- `family` / `order`: use the family of congeners already in the table, otherwise WoRMS
+  (https://www.marinespecies.org); §8 lists the decisions that must not be "corrected".
+- order of the `asm` array: put the primary assembly first by convention; the expansion
+  re-sorts by year anyway, so the order never changes what readers see.
 - no other field names — an unknown field fails the check (usually a typo); add new fields to
   the lists at the top of `scripts/validate_data.cjs`.
 

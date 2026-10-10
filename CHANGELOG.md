@@ -14,6 +14,8 @@ same day, add bullets under that day's heading rather than a new one.
 ## 2026-10-10
 
 ### Changed
+- README *Editing content* has the after-editing checklist; UPDATING §2 says how to pick
+  family/order, that a missing `chrPct` only warns, and how `asm` is ordered.
 - Docs gaps found by a fresh reader: required fields listed (UPDATING §2), README data
   example with `taxid`/`level`, §8/§9 order, fork PR approval and failure notices (§9), forms
   need a GitHub account (README), the Bun template note (CLAUDE.md).
