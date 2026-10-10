@@ -11,6 +11,17 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-10-10
+
+### Added
+- Weekly NCBI watch (`.github/workflows/ncbi-watch.yml`, `scripts/ncbi_watch.py`,
+  `scripts/ncbi_watch_notify.sh`): every Monday compares the NCBI Datasets report for
+  Tunicata (taxon 7712) with `genomes-data.js` and opens / updates / closes an issue
+  labelled `ncbi-watch` listing new assemblies (and new species), new versions, new
+  RefSeq annotations and assembly-level changes. Optional Discord post via the
+  `DISCORD_WEBHOOK_URL` secret; deliberate exclusions in `.github/ncbi-watch-ignore.txt`.
+  First run by hand: 133 NCBI records, all listed — nothing new. Documented in UPDATING.md §3b.
+
 ## 2026-10-01
 
 ### Changed

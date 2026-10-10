@@ -1,0 +1,33 @@
+# Every Monday, compare the NCBI tunicate assemblies (taxon 7712) with
+# public/assets/js/genomes-data.js and open / update / close an issue labelled
+# "ncbi-watch". Posts to Discord too if the repository secret DISCORD_WEBHOOK_URL is set
+# (Settings → Secrets and variables → Actions → New repository secret).
+# Run it by hand from the Actions tab ("Run workflow"). Details: UPDATING.md §3b.
+name: Watch NCBI for new tunicate genomes
+
+on:
+  schedule:
+    - cron: "17 0 * * 1"     # Mondays 00:17 UTC (09:17 JST)
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: ncbi-watch
+  cancel-in-progress: false
+
+jobs:
+  watch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - name: Compare NCBI with genomes-data.js
+        run: python3 scripts/ncbi_watch.py --out report.md --json summary.json
+      - name: Open, update or close the issue (and tell Discord)
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+        run: bash scripts/ncbi_watch_notify.sh
