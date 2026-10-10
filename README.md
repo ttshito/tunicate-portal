@@ -120,7 +120,9 @@ Any static file server works too (e.g. `python -m http.server` from `public/`).
   ```
 
   Required fields and all others: UPDATING.md §2 (`taxid` = NCBI Taxonomy ID, §2a).
-  After editing run `node scripts/validate_data.cjs` — it must say OK.
+  After editing: (1) `node scripts/validate_data.cjs` must say OK, (2) set `updated:` at the
+  top of the data file to today, (3) bump every `?v=` in `genomes.html` and `index.html`
+  (UPDATING.md §6), (4) add a CHANGELOG.md entry.
 
   Each tunicate class (`cls`) gets its own table; the buttons at the top switch
   between them (one shown at a time). Within Ascidiacea, orders render in the
