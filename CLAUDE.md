@@ -56,7 +56,8 @@ then open a PR with `gh pr create --repo ttshito/tunicate-portal --fill` (confir
 if the change is large). Only push straight to `main` when the user is the maintainer
 working in the main repo.
 
-Note: `bun` is NOT on PATH in this environment despite the guidance below — use
+Note: the Bun section below is the generic text from `bun init`; the site itself needs no Bun
+(only `index.ts`, an optional preview server, uses it). `bun` is NOT on PATH in this environment despite the guidance below — use
 `node --check` for JS syntax and `python -m http.server` (from `public/`) or
 Windows Chrome headless for previews/screenshots.
 

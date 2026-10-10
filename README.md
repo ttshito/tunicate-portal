@@ -48,7 +48,8 @@ No Claude, no fork? Open an issue — there are short forms for
 [**adding a genome**](https://github.com/ttshito/tunicate-portal/issues/new?template=add-genome.yml),
 [**adding a resource**](https://github.com/ttshito/tunicate-portal/issues/new?template=add-resource.yml) and
 [**reporting a mistake**](https://github.com/ttshito/tunicate-portal/issues/new?template=correction.yml).
-A maintainer (or anyone, via Claude) turns them into a pull request. Questions: [Discord](https://discord.gg/mgbhTgjMzk).
+A maintainer (or anyone, via Claude) turns them into a pull request. The forms need a (free)
+GitHub account; without one, just post on [Discord](https://discord.gg/mgbhTgjMzk).
 
 ## Pages
 
@@ -113,10 +114,13 @@ Any static file server works too (e.g. `python -m http.server` from `public/`).
   truth. Each species is one object with an `asm` array (primary assembly first):
 
   ```js
-  { sp: "Genus species", family: "Familyidae", order: "Order", cls: "Ascidiacea",
-    asm: [ { n: "AssemblyName", acc: "GCA_...", size: "120 Mb", year: 2025,
+  { sp: "Genus species", taxid: 1234567, family: "Familyidae", order: "Order", cls: "Ascidiacea",
+    asm: [ { n: "AssemblyName", acc: "GCA_...", level: "Scaffold", size: "120 Mb", year: 2025,
              ref: "Reference", note: "…" } ] }
   ```
+
+  Required fields and all others: UPDATING.md §2 (`taxid` = NCBI Taxonomy ID, §2a).
+  After editing run `node scripts/validate_data.cjs` — it must say OK.
 
   Each tunicate class (`cls`) gets its own table; the buttons at the top switch
   between them (one shown at a time). Within Ascidiacea, orders render in the
