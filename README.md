@@ -48,6 +48,7 @@ automatically.
 | ----------------------- | ------------------------------------------------------------------------- |
 | `public/index.html`     | Curated links to online tunicate resources (genomics, morphology, community). |
 | `public/genomes.html`   | Every publicly available tunicate genome assembly, grouped by phylogeny, each linking to NCBI. |
+| `data/genomes.json` (on the site) | The genome table as JSON, generated at each deployment — https://ttshito.github.io/tunicate-portal/data/genomes.json |
 
 ## Structure
 

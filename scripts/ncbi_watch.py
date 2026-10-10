@@ -104,6 +104,7 @@ def main():
         row = {
             "accession": acc,
             "organism": r.get("organism", {}).get("organism_name", "?"),
+            "taxid": r.get("organism", {}).get("tax_id", ""),
             "name": info.get("assembly_name", ""),
             "level": info.get("assembly_level", ""),
             "released": info.get("release_date", ""),
@@ -141,7 +142,7 @@ def main():
     md = [f"NCBI Datasets lists **{len(reports)}** tunicate assemblies (taxon 7712); "
           f"`genomes-data.js` lists **{len(known)}** accessions.\n"]
     if new:
-        md.append(f"### New assemblies ({len(new)})\n" + table(new))
+        md.append(f"### New assemblies ({len(new)})\n" + table(new, ("NCBI taxid", "taxid")))
     if bump:
         md.append(f"### New versions of listed assemblies ({len(bump)})\n" + table(bump, ("Listed", "listed")))
     if refseq:

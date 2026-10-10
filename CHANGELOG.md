@@ -14,11 +14,23 @@ same day, add bullets under that day's heading rather than a new one.
 ## 2026-10-10
 
 ### Changed
+- UPDATING.md §4: what to do when a gene-model site (TUNOME, ANISEED, …) is unreachable, and
+  that the `SP_LIST` recipe must be updated when TUNOME2 replaces the current TUNOME site.
+- CLAUDE.md: the portal must not depend on any external database.
+- Asset cache-buster bumped to `?v=2026-10-10` (genomes-data.js changed).
 - GitHub Actions moved to their Node.js 24 releases (Node.js 20 is deprecated on the runners):
   `checkout` v7, `configure-pages` v6, `upload-pages-artifact` v5, `deploy-pages` v5. No change to the
   site; `upload-pages-artifact` ≥ v4 leaves out dotfiles, and `public/` has none.
 
 ### Added
+- Stable species identifiers: every species has its NCBI Taxonomy ID (`taxid`, 86 species,
+  checked against the taxid of each NCBI assembly) or, for the three red rows NCBI Taxonomy
+  does not know, a short `id` (UPDATING.md §2a).
+- Data checks on every pull request (`.github/workflows/check-data.yml`,
+  `scripts/validate_data.cjs`); deployment runs them first, so a broken data file is never published.
+- `data/genomes.json`: the genome table as JSON, written at each deployment
+  (`scripts/export_genomes_json.cjs`) and linked under the table (UPDATING.md §9).
+- NCBI watch issues give the NCBI taxid of new assemblies.
 - Weekly NCBI watch (`.github/workflows/ncbi-watch.yml`, `scripts/ncbi_watch.py`,
   `scripts/ncbi_watch_notify.sh`): every Monday compares the NCBI Datasets report for
   Tunicata (taxon 7712) with `genomes-data.js` and opens / updates / closes an issue

@@ -1,0 +1,34 @@
+# Checks the genome data on every pull request (and push to main) that touches it:
+# genomes-data.js must load, follow the data model of UPDATING.md §2, and export to JSON.
+# The result shows on the pull request as a ✓ or ✗ with the list of problems.
+name: Check genome data
+
+on:
+  pull_request:
+    paths:
+      - "public/assets/js/genomes-data.js"
+      - "public/assets/js/genomes.js"
+      - "scripts/**"
+      - ".github/workflows/check-data.yml"
+  push:
+    branches: [main]
+    paths:
+      - "public/assets/js/genomes-data.js"
+      - "scripts/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v7
+      - name: Check genomes-data.js against the data model
+        run: node scripts/validate_data.cjs
+      - name: Export to JSON (must not fail)
+        run: node scripts/export_genomes_json.cjs /tmp/genomes.json
+      - name: Check the Python helpers compile
+        run: python3 -m py_compile scripts/ncbi_watch.py

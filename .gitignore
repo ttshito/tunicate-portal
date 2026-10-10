@@ -36,3 +36,6 @@ SupplementaryMaterial_1_260409.xlsx
 
 # Claude Code local settings
 .claude/settings.local.json
+
+# generated at deployment by scripts/export_genomes_json.cjs (pages.yml)
+public/data/genomes.json

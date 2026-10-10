@@ -39,6 +39,8 @@ The site is 100% static (open `public/index.html`, or serve `public/`). No build
 { sp: "Genus species",        // scientific name (italicised in the table); within a
                               // family the table sorts species alphabetically by this,
                               // so position in the file does not matter
+  taxid: 7719,                // NCBI Taxonomy ID — the species' stable identifier (§2a)
+  // id: "Gspecies",          // ONLY when NCBI Taxonomy has no entry for the name (§2a)
   family: "Familyidae",
   order: "Phlebobranchia",    // see order sequence below
   cls: "Ascidiacea",          // "Ascidiacea" | "Appendicularia" | "Thaliacea"
@@ -86,6 +88,23 @@ Field rules:
   All applicable chips appear together (`refseq` + `gm` + `aniseed`).
 - Counts in the hero (`82 assemblies`, `63 species`, `3 classes`) and the per-class
   counts are computed from the data — do not hard-code them.
+
+### 2a. Stable species identifier (`taxid`, or `id`)
+
+Names change (a genus is revised, a placeholder such as *Pegea* sp. RAD2-039 gets a name,
+a typo is fixed); identifiers must not. Every species carries one, so that anything
+outside the portal that refers to a species (scripts, other databases reading
+`data/genomes.json`) keeps working when the name changes.
+
+- **`taxid`** — the NCBI Taxonomy ID. Use it whenever NCBI has the name. Where to get it:
+  `organism.tax_id` in the NCBI Datasets genome report (§3), or
+  `curl -s 'https://api.ncbi.nlm.nih.gov/datasets/v2/taxonomy/taxon/Ciona%20intestinalis' | python3 -c 'import json,sys; print(json.load(sys.stdin)["taxonomy_nodes"][0]["taxonomy"]["tax_id"])'`
+- **`id`** — only for a species NCBI Taxonomy does not know (so far three red rows:
+  `Bfrankovichi`, `Mappendiculata`, `Tcfsavignii`). Genus initial + epithet, letters and
+  digits only. **Once given, keep it**: if NCBI later creates a taxid, add `taxid` but do
+  not remove `id` (the exported identifier stays `local:<id>`).
+- Never change an existing `taxid`/`id` when renaming a species — that is the point.
+- In `data/genomes.json` the identifier is `taxid:<number>` or `local:<id>` (§9).
 
 **Order sequence** within Ascidiacea is fixed in `genomes.js` (`ORDER_SEQ`):
 Phlebobranchia → Aplousobranchia → Stolidobranchia. Appendicularia = Copelata,
@@ -295,6 +314,13 @@ source. Keep the labels spelled consistently — they are what the de-duplicatio
 
 ---
 
+**If a gene-model site cannot be reached** (TUNOME, ANISEED or any other): leave the chips
+as they are — the portal does not depend on those sites, only links to them. Remove a
+site's chips only once it is gone for good, and say so in CHANGELOG.md. **When TUNOME's
+next version (TUNOME2) replaces the current site**, the `SP_LIST` recipe above stops
+working (its Downloads page becomes a redirect); update this section to read the species
+list from the new site, exactly as one would if ANISEED changed its download page.
+
 ## 4b. ANISEED gene models (`aniseed: true`)
 
 ANISEED serves its own gene models for 13 species from one page:
@@ -470,6 +496,9 @@ refresh, give it a `?v=` too.
 No bun in this environment's PATH; use these:
 
 ```bash
+# 0) The data checks (the same ones a pull request runs — must say OK)
+node scripts/validate_data.cjs
+
 # 1) JS syntax
 node --check public/assets/js/genomes-data.js
 node --check public/assets/js/genomes.js
@@ -500,6 +529,24 @@ entry to `CHANGELOG.md` (newest at top) describing what you updated (e.g. "Data:
 assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required every time.
 
 ---
+
+## 9. Automatic checks and `data/genomes.json`
+
+- **Pull requests are checked** (`.github/workflows/check-data.yml`): `scripts/validate_data.cjs`
+  loads `genomes-data.js` and checks it against §2 (required fields, `cls`/`level` values,
+  accession formats, no duplicate accession/taxid/id, no unknown field — usually a typo).
+  The result shows on the pull request as ✓ or ✗ with the list of problems. When you add
+  a new field to the data model, add it to the lists at the top of that script too.
+- **Deployment runs the same check first** (`pages.yml`): a broken data file is never
+  published; the live site keeps the previous version.
+- **`data/genomes.json`** — every deployment also writes the table as JSON
+  (`scripts/export_genomes_json.cjs`) to https://ttshito.github.io/tunicate-portal/data/genomes.json
+  (linked under the genome table). It is generated, git-ignored, never edited by hand.
+  Shape: `{schema_version, updated, counts, species: [{id, taxid, name, class, order, family,
+  status, assemblies: [{name, accession, url, source, level, chromosome_pct, size, year,
+  public, gene_models: [{label, url}], note}], progress}]}`. Other projects may read it; the
+  portal itself never depends on anything that reads it. If you rename or remove a field,
+  bump `schema_version`.
 
 ## 8. Known mapping decisions (so they aren't "corrected" by mistake)
 

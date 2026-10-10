@@ -22,6 +22,15 @@ light — the pipeline for a new logo is
 `convert SRC -fuzz 3% -trim +repage -strip -resize 104x104\> -colors 128 out.png`
 (~2–5 kB each, displayed in a 52 px badge). Cards without a logo keep an emoji badge.
 
+**After editing `genomes-data.js`, run `node scripts/validate_data.cjs`** (must say OK) —
+pull requests and deployments run the same check. Every species needs a `taxid` (NCBI
+Taxonomy ID) or, only if NCBI has none, an `id` (UPDATING.md §2a). Scripts in `scripts/`
+are `.cjs` because package.json sets `"type": "module"`.
+
+**The portal must not depend on any external database** (TUNOME, ANISEED, …): they are
+linked, never read at runtime or required for an update. Dependencies may only point the
+other way (they may read `data/genomes.json`).
+
 **Always log your work:** after adding a feature or performing an update, append
 an entry to [`CHANGELOG.md`](./CHANGELOG.md) (newest at the top, under a
 `## YYYY-MM-DD` heading — today's date is in the session context). Do this as the
