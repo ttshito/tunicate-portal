@@ -70,6 +70,14 @@ the only generated file is `data/genomes.json`, written by the deployment workfl
 }
 ```
 
+**Required** (enforced by `scripts/validate_data.cjs`, §9):
+- species: `sp`, `family`, `order`, `cls`, `asm`, and `taxid` — or `id` if NCBI Taxonomy has
+  no entry (§2a). A species with an empty `asm` must be a red row (`status: "progress"`, §5b).
+- assembly: `n`; `acc` or `resource`; `level` (an `unpublished` assembly may lack the last two).
+- everything else is optional. `chrPct` is expected on Chromosome-level assemblies (warning if missing).
+- no other field names — an unknown field fails the check (usually a typo); add new fields to
+  the lists at the top of `scripts/validate_data.cjs`.
+
 Field rules:
 - **Every assembly needs either `acc` (NCBI) or `resource` (non-NCBI).** The **Source**
   column shows the NCBI accession link, or the `resource` label/link (ANISEED, GHOST, Ryan Lab…).
@@ -108,7 +116,8 @@ outside the portal that refers to a species (scripts, other databases reading
 - **`id`** — only for a species NCBI Taxonomy does not know (so far three red rows:
   `Bfrankovichi`, `Mappendiculata`, `Tcfsavignii`). Genus initial + epithet, letters and
   digits only. **Once given, keep it**: if NCBI later creates a taxid, add `taxid` but do
-  not remove `id` (the exported identifier stays `local:<id>`).
+  not remove `id` (the exported identifier stays `local:<id>`; the JSON `taxid` field is
+  filled in, so readers can use either).
 - Never change an existing `taxid`/`id` when renaming a species — that is the point.
 - In `data/genomes.json` the identifier is `taxid:<number>` or `local:<id>` (§9).
 
@@ -536,24 +545,6 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
 
 ---
 
-## 9. Automatic checks and `data/genomes.json`
-
-- **Pull requests are checked** (`.github/workflows/check-data.yml`): `scripts/validate_data.cjs`
-  loads `genomes-data.js` and checks it against §2 (required fields, `cls`/`level` values,
-  accession formats, no duplicate accession/taxid/id, no unknown field — usually a typo).
-  The result shows on the pull request as ✓ or ✗ with the list of problems. When you add
-  a new field to the data model, add it to the lists at the top of that script too.
-- **Deployment runs the same check first** (`pages.yml`): a broken data file is never
-  published; the live site keeps the previous version.
-- **`data/genomes.json`** — every deployment also writes the table as JSON
-  (`scripts/export_genomes_json.cjs`) to https://ttshito.github.io/tunicate-portal/data/genomes.json
-  (linked under the genome table). It is generated, git-ignored, never edited by hand.
-  Shape: `{schema_version, updated, counts, species: [{id, taxid, name, class, order, family,
-  status, assemblies: [{name, accession, url, source, level, chromosome_pct, size, year,
-  public, gene_models: [{label, url}], note}], progress}]}`. Other projects may read it; the
-  portal itself never depends on anything that reads it. If you rename or remove a field,
-  bump `schema_version`.
-
 ## 8. Known mapping decisions (so they aren't "corrected" by mistake)
 
 - **Ciona robusta = Ciona intestinalis Type A.** NCBI files Type A under *C. intestinalis*
@@ -575,3 +566,30 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
   in Phlebobranchia (Diazonidae) though some schemes put it in Aplousobranchia.
 - Do not publish `SupplementaryMaterial_1_260409.xlsx` (it's git-ignored and kept out of
   `public/`).
+
+---
+
+## 9. Automatic checks and `data/genomes.json`
+
+- **Pull requests are checked** (`.github/workflows/check-data.yml`): `scripts/validate_data.cjs`
+  loads `genomes-data.js` and checks it against §2 (required fields, `cls`/`level` values,
+  accession formats, no duplicate accession/taxid/id, no unknown field — usually a typo).
+  The result shows on the pull request as ✓ or ✗ with the list of problems. When you add
+  a new field to the data model, add it to the lists at the top of that script too.
+- **Deployment runs the same check first** (`pages.yml`): a broken data file is never
+  published; the live site keeps the previous version.
+- **`data/genomes.json`** — every deployment also writes the table as JSON
+  (`scripts/export_genomes_json.cjs`) to https://ttshito.github.io/tunicate-portal/data/genomes.json
+  (linked under the genome table). It is generated, git-ignored, never edited by hand.
+  Shape: `{schema_version, updated, counts, species: [{id, taxid, name, class, order, family,
+  status, assemblies: [{name, accession, url, source, level, chromosome_pct, size, year,
+  public, gene_models: [{label, url}], note}], progress}]}`. Other projects may read it; the
+  portal itself never depends on anything that reads it. If you rename or remove a field,
+  bump `schema_version`.
+- **Pull requests from forks**: the checks run with read-only permissions. For someone's
+  first contribution GitHub may hold the run until the maintainer clicks *Approve and run*
+  on the pull request (repository Settings → Actions decides who needs approval).
+- **When a scheduled job fails** (e.g. NCBI unreachable), the run is red in the Actions tab
+  and GitHub e-mails the person who last changed that workflow (the usual GitHub
+  notification setting). The Discord webhook (`DISCORD_WEBHOOK_URL`) is a repository secret
+  managed by the repository owner (Settings → Secrets and variables → Actions).

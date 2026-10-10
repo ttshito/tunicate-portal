@@ -14,6 +14,9 @@ same day, add bullets under that day's heading rather than a new one.
 ## 2026-10-10
 
 ### Changed
+- Docs gaps found by a fresh reader: required fields listed (UPDATING §2), README data
+  example with `taxid`/`level`, §8/§9 order, fork PR approval and failure notices (§9), forms
+  need a GitHub account (README), the Bun template note (CLAUDE.md).
 - Overviews brought up to date for the automation (CLAUDE.md table of workflows, README
   structure and *Automation / Independence* notes, UPDATING.md §1 file table).
 - UPDATING.md §4: what to do when a gene-model site (TUNOME, ANISEED, …) is unreachable, and
