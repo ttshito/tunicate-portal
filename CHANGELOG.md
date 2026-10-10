@@ -13,6 +13,11 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-10-10
 
+### Changed
+- GitHub Actions moved to their Node.js 24 releases (Node.js 20 is deprecated on the runners):
+  `checkout` v7, `configure-pages` v6, `upload-pages-artifact` v5, `deploy-pages` v5. No change to the
+  site; `upload-pages-artifact` ≥ v4 leaves out dotfiles, and `public/` has none.
+
 ### Added
 - Weekly NCBI watch (`.github/workflows/ncbi-watch.yml`, `scripts/ncbi_watch.py`,
   `scripts/ncbi_watch_notify.sh`): every Monday compares the NCBI Datasets report for

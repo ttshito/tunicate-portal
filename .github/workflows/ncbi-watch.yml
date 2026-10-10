@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
       - name: Compare NCBI with genomes-data.js
         run: python3 scripts/ncbi_watch.py --out report.md --json summary.json
       - name: Open, update or close the issue (and tell Discord)
