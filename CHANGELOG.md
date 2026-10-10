@@ -26,6 +26,8 @@ same day, add bullets under that day's heading rather than a new one.
   RefSeq annotations and assembly-level changes. Optional Discord post via the
   `DISCORD_WEBHOOK_URL` secret; deliberate exclusions in `.github/ncbi-watch-ignore.txt`.
   First run by hand: 133 NCBI records, all listed — nothing new. Documented in UPDATING.md §3b.
+- NCBI watch: a manual run can post a test message to Discord (*Also post a test message
+  to Discord*), and fails if the webhook does not work.
 
 ## 2026-10-01
 

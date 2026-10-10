@@ -216,6 +216,9 @@ run closes the issue.
   Edit Channel → Integrations → Webhooks → Copy Webhook URL; GitHub → Settings →
   Secrets and variables → Actions → New repository secret). Without it the job only
   opens issues.
+  **To check it:** Actions → *Watch NCBI for new tunicate genomes* → *Run workflow*, tick
+  *Also post a test message to Discord*. A ✅ message appears in the channel; if the
+  secret is missing or wrong, the run fails with “Discord test failed”.
 - **Something that should stay out** (looked at and deliberately not listed): add
   its accession to `.github/ncbi-watch-ignore.txt` with a comment. Accessions
   mentioned in a `note` (e.g. alternate haplotypes) already count as known.
