@@ -23,6 +23,8 @@ same day, add bullets under that day's heading rather than a new one.
   site; `upload-pages-artifact` ≥ v4 leaves out dotfiles, and `public/` has none.
 
 ### Added
+- Issue forms: *Add or update a genome*, *Add a resource*, *Report a mistake* (labels `data`,
+  `resource`, `correction`), and a Discord link on the new-issue page; linked from the README.
 - Stable species identifiers: every species has its NCBI Taxonomy ID (`taxid`, 86 species,
   checked against the taxid of each NCBI assembly) or, for the three red rows NCBI Taxonomy
   does not know, a short `id` (UPDATING.md §2a).
