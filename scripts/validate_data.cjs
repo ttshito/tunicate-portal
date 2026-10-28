@@ -27,7 +27,7 @@ const CLASSES = ["Ascidiacea", "Appendicularia", "Thaliacea"];
 const LEVELS = ["Chromosome", "Scaffold", "Contig"];
 const SPECIES_KEYS = ["sp", "taxid", "id", "family", "order", "cls", "asm", "status", "progress"];
 const ASM_KEYS = ["n", "acc", "level", "chrPct", "size", "year", "ref", "refseq", "gm", "gmUrl", "gmLabel",
-                  "aniseed", "aniseedLabel", "resource", "unpublished", "share", "note"];
+                  "aniseed", "aniseedLabel", "links", "resource", "unpublished", "share", "note"];
 const PROGRESS_KEYS = ["state", "year", "since", "size", "level", "gm", "site", "contact", "institution",
                        "country", "url", "pub", "note", "share"];
 const GCA = /^GCA_\d{9}\.\d+$/, GCF = /^GCF_\d{9}\.\d+$/, URL_RE = /^https?:\/\/\S+$/;
@@ -98,6 +98,9 @@ D.species.forEach((s, i) => {
     if (a.gmUrl !== undefined && !URL_RE.test(a.gmUrl)) err(wa, "'gmUrl' is not a URL");
     if ((a.gmUrl !== undefined || a.gmLabel !== undefined) && !a.gm) err(wa, "'gmUrl'/'gmLabel' without gm: true");
     if (a.aniseedLabel !== undefined && !a.aniseed) err(wa, "'aniseedLabel' without aniseed: true");
+    if (a.links !== undefined && (!Array.isArray(a.links) ||
+        !a.links.every((l) => l && typeof l.label === "string" && l.label && URL_RE.test(l.url || ""))))
+      err(wa, "'links' must be a list of { url, label }");
   });
 });
 

@@ -11,6 +11,19 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-10-28
+
+### Added
+- Optional assembly field `links: [{ url, label }]` — extra chips in the Gene model column
+  (also in the collapsed row, search and `data/genomes.json`); checked by `validate_data.cjs`.
+- Resources → Genomics: **GigaDB — *Botryllus schlosseri* genome** card (emoji badge; GigaDB's
+  logo is not exposed as a fetchable file), placed after Octopus Database.
+
+### Data
+- *Botryllus schlosseri* Bs_hap1: **GigaDB** chip → https://gigadb.org/dataset/102718
+  (doi:10.5524/102718, De Thier et al. 2025 supporting data: hap1/hap2/collapsed assemblies,
+  GFF3, CDS/protein, BUSCO), at the request of Stefano Tiozzo. `updated` and `?v=` → 2026-10-28.
+
 ## 2026-10-11
 
 ### Data
