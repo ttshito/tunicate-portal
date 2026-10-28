@@ -29,6 +29,9 @@ window.TUNICATE_GENOMES = {
       { n: "Csav_2025", acc: "GCA_978045305.1", level: "Scaffold", size: "201 Mb", year: 2026, note: "Scaffold version." },
       { n: "ENS81", resource: { url: "https://www.aniseed.fr/", label: "ANISEED" }, level: "Scaffold", size: "177 Mb", year: null, gm: true, aniseed: true, note: "Ensembl v81 gene models (via ANISEED) — the gene-model reference. Built on the Broad CSAV2.0 assembly (haploid reference haplotype of GCA_000149265.1)." },
     ]},
+    { sp: "Ciona edwardsi", taxid: 2079803, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaCioEdwa1.1", acc: "GCA_988427205.1", level: "Chromosome", chrPct: 86.7, size: "157 Mb", year: 2026, note: "Genoscope, chromosome-level (14 chromosomes; released 2026-10-21)." },
+    ]},
     { sp: "Phallusia mammillata", taxid: 59560, family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaPhaMamm4.hap1.1", acc: "GCA_965637545.1", level: "Chromosome", chrPct: 97.3, size: "240 Mb", year: 2025, ref: "Reference", refseq: "GCF_965637545.1", note: "Sanger ToL, chromosome-level. RefSeq GCF_965637545.1." },
       { n: "kaPhaMamm4.hap2.1", acc: "GCA_965637525.1", level: "Scaffold", size: "251 Mb", year: 2025, note: "Alternate haplotype." },
@@ -444,6 +447,9 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Molgula occidentalis", taxid: 30282, family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "MolOcci2014", resource: { url: "https://www.aniseed.fr/", label: "ANISEED" }, level: "Scaffold", size: "250 Mb", year: 2014, gm: true, aniseed: true, note: "No NCBI GCA. Genome + gene models via ANISEED/TUNOME — ANISEED release “august 2015” of this assembly." },
+    ]},
+    { sp: "Molgula manhattensis", taxid: 30281, family: "Molgulidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaMolManh1.1", acc: "GCA_988426615.1", level: "Chromosome", chrPct: 88.7, size: "198 Mb", year: 2026, note: "Genoscope, chromosome-level (18 chromosomes; released 2026-10-21). Sea grape." },
     ]},
   ],
 };

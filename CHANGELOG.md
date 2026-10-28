@@ -13,6 +13,12 @@ same day, add bullets under that day's heading rather than a new one.
 
 ## 2026-10-28
 
+### Data
+- New species from NCBI (both Genoscope, chromosome-level, released 2026-10-21):
+  *Ciona edwardsi* kaCioEdwa1.1 (GCA_988427205.1, 157 Mb, 86.7 % on 14 chromosomes, Cionidae) and
+  *Molgula manhattensis* kaMolManh1.1 (GCA_988426615.1, 198 Mb, 88.7 % on 18 chromosomes,
+  Molgulidae). No RefSeq annotation yet. Cache-buster `?v=2026-10-28b` (second deploy today).
+
 ### Added
 - Optional assembly field `links: [{ url, label }]` — extra chips in the Gene model column
   (also in the collapsed row, search and `data/genomes.json`); checked by `validate_data.cjs`.
