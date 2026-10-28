@@ -40,6 +40,7 @@ const species = D.species.map((s) => ({
     if (a.refseq) gm.push({ label: "NCBI", url: NCBI_GENOME + a.refseq + "/", accession: a.refseq });
     if (a.gm) gm.push({ label: a.gmLabel || "TUNOME", url: a.gmUrl || TUNOME_PAGE });
     if (a.aniseed) gm.push({ label: a.aniseedLabel || "ANISEED", url: ANISEED_PAGE });
+    (a.links || []).forEach((l) => gm.push({ label: l.label, url: l.url }));
     return {
       name: a.n,
       accession: a.acc || null,

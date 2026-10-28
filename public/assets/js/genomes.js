@@ -43,12 +43,17 @@
     return '<a class="gm-aniseed" href="' + ANISEED_PAGE + '" target="_blank" rel="noopener">' +
       esc(label) + "</a>";
   }
-  // One assembly's gene-model chips: NCBI (RefSeq), TUNOME/GHOST, ANISEED — all that apply.
+  // Extra download link for an assembly (e.g. the paper's GigaDB dataset) — assembly.links.
+  function linkAnchor(l) {
+    return '<a href="' + esc(l.url) + '" target="_blank" rel="noopener">' + esc(l.label) + "</a>";
+  }
+  // One assembly's gene-model chips: NCBI (RefSeq), TUNOME/GHOST, ANISEED, links — all that apply.
   function gmChips(a) {
     var parts = [];
     if (a.refseq) parts.push(ncbiAnchor(a));
     if (a.gm) parts.push(gmAnchor(a));
     if (a.aniseed) parts.push(aniseedAnchor(a));
+    (a.links || []).forEach(function (l) { parts.push(linkAnchor(l)); });
     return parts.length
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
       : '<td class="gene-model gm-no">—</td>';
@@ -69,6 +74,13 @@
       parts.push(gmAnchor(a));
     });
     if (an) parts.push(aniseedAnchor(an));
+    sp.asm.forEach(function (a) {
+      (a.links || []).forEach(function (l) {
+        if (seenGm[l.label]) return;
+        seenGm[l.label] = 1;
+        parts.push(linkAnchor(l));
+      });
+    });
     return parts.length
       ? '<td class="gene-model">' + parts.join(" ") + "</td>"
       : '<td class="gene-model gm-no">—</td>';
@@ -258,6 +270,7 @@
         (firstAniseed(sp) ? "aniseed gene model " : "") +
         sp.asm.map(function (a) {
           return a.n + " " + (a.acc || "") + " " + (a.resource ? a.resource.label : "") + " " +
+            (a.links || []).map(function (l) { return l.label + " "; }).join("") +
             (a.level ? a.level + "-level " : "") + (a.note || "");
         }).join(" ")
       ).toLowerCase();

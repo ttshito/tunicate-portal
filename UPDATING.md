@@ -64,6 +64,8 @@ the only generated file is `data/genomes.json`, written by the deployment workfl
       gmLabel: "GHOST",       // OPTIONAL — override the gene-model chip label (default = "TUNOME")
       aniseed: true,          // OPTIONAL — true = an ANISEED gene model exists on THIS assembly
       aniseedLabel: "ANISEED",// OPTIONAL — override the ANISEED chip label
+      links: [{ url: "https://…", label: "GigaDB" }], // OPTIONAL — extra chips in the Gene model column
+                              // (e.g. a paper's data repository holding assembly + GFF3)
       resource: { url: "https://…", label: "ANISEED" }, // OPTIONAL — use INSTEAD of acc when there is no NCBI accession
       note: "free text …" }
   ]
