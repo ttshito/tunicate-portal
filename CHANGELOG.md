@@ -11,6 +11,13 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-11-03
+
+### Data
+- New species from NCBI (flagged by ncbi-watch, issue #24): *Phallusia nigra* kaPhaNigr1.1
+  (GCA_990050378.1, Genoscope / ATLASea, released 2026-10-26, 161 Mb, 99.1 % on 10 chromosomes,
+  Ascidiidae). No RefSeq annotation yet. Data date and `?v=` → 2026-11-03.
+
 ## 2026-10-28
 
 ### Data

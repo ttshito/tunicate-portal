@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-10-28",
+  updated: "2026-11-03",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -40,6 +40,9 @@ window.TUNICATE_GENOMES = {
     { sp: "Phallusia fumigata", taxid: 395376, family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "kaPhaFumi1.1", acc: "GCA_964656945.1", level: "Chromosome", chrPct: 99.7, size: "190 Mb", year: 2025, ref: "Reference", note: "Genoscope, chromosome-level." },
       { n: "Phfumi_MTP2014", acc: "GCA_008931825.1", level: "Scaffold", size: "232 Mb", year: 2019, gm: true, aniseed: true, note: "CNRS MTP2014 assembly — carries the ANISEED/TUNOME gene model (ANISEED: Phfumi MTP2014 transcripts, 2018 genome release)." },
+    ]},
+    { sp: "Phallusia nigra", taxid: 569429, family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaPhaNigr1.1", acc: "GCA_990050378.1", level: "Chromosome", chrPct: 99.1, size: "161 Mb", year: 2026, note: "Genoscope (ATLASea), chromosome-level (10 chromosomes; released 2026-10-26)." },
     ]},
     { sp: "Phallusia philippinensis", taxid: 1386347, family: "Ascidiidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "ASM5575519v1", acc: "GCA_055755195.1", level: "Contig", size: "150 Mb", year: 2026, note: "Keio University, contig-level." },
