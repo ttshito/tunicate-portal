@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-11-03",
+  updated: "2026-11-04",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -15,13 +15,15 @@ window.TUNICATE_GENOMES = {
   species: [
     // ===================== ASCIDIACEA · PHLEBOBRANCHIA =====================
     { sp: "Ciona intestinalis", taxid: 7719, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
-      { n: "KH", acc: "GCA_000224145.2", level: "Chromosome", chrPct: 67.9, size: "115 Mb", year: 2013, ref: "Community reference", refseq: "GCF_000224145.3", aniseed: true, note: "Classic Kyoto “KH” assembly: NCBI lists it as chromosome-level, but only 67.9% (78 Mb) sits on the 14 chromosomes — the other 37 Mb is in 1,257 unplaced scaffolds (Satou et al. 2019). Biologically Type A (= C. robusta). Basis of the KH2012 gene models (the KY21 models are on the GHOST HT assembly). RefSeq GCF_000224145.3 (Annotation Release 104, 2018) — NCBI has since retired it (“suppressed: superseded by newer assembly for species”, the species reference moved to the Type-B GCF_018327825.1); the record and its files are still served. ANISEED serves the KH2012 gene models (KH “Joined Scaffold”) under C. robusta." },
       { n: "ASM1832782v2", acc: "GCA_018327825.2", level: "Chromosome", chrPct: 95.8, size: "140 Mb", year: 2025, ref: "NCBI reference", refseq: "GCF_018327825.1", note: "Genuine Type B (Roscoff). Nanopore + Hi-C, chromosome-level. RefSeq GCF_018327825.1. Hap2 GCA_018327805.2." },
-      { n: "v1.0", acc: "GCA_000183065.1", level: "Scaffold", size: "117 Mb", year: 2002, note: "Original DOE JGI draft (Dehal et al. 2002) — the first invertebrate-chordate genome." },
-      { n: "ASM5357238v1", acc: "GCA_053572385.1", level: "Scaffold", size: "136 Mb", year: 2025, note: "Additional Kyoto scaffold assembly." },
-      { n: "kaCioInte3_p1.1", acc: "GCA_055049045.1", level: "Scaffold", size: "164 Mb", year: 2026, note: "Canadian genome platform. Alt haplotype GCA_055048995.1." },
-      { n: "HT (Ghost / KY21)", acc: "GCA_009617815.2", level: "Chromosome", chrPct: 95.6, size: "123 Mb", year: 2019, gm: true, gmUrl: "http://ghost.zool.kyoto-u.ac.jp/download_ht.html", gmLabel: "GHOST", note: "Type A = C. robusta. Ghost HT assembly (Satou et al. 2019, Kyoto, PacBio/MECAT, inbred Type-A line) + KY21 gene models — the community Type-A gene-model reference. On GenBank as ASM961781v2 GCA_009617815.2; the gene models are only at GHOST." },
-      { n: "ASM5357250v1", acc: "GCA_053572505.1", level: "Scaffold", size: "34 Mb", year: 2025, note: "Kyoto Nanopore/Illumina deposit; NCBI flags it as “genome length too small” (34 Mb vs the ~120 Mb genome) — partial, not a whole-genome reference." },
+      { n: "v1.0", acc: "GCA_000183065.1", level: "Scaffold", size: "117 Mb", year: 2002, note: "Original DOE JGI draft (Dehal et al. 2002) — the first invertebrate-chordate genome. Sequenced from California animals, i.e. biologically Type A (= C. robusta), but NCBI still files it under C. intestinalis, so it stays here." },
+      { n: "ASM5357238v1", acc: "GCA_053572385.1", level: "Scaffold", size: "136 Mb", year: 2025, note: "Additional Kyoto scaffold assembly (Roscoff, Type B; same BioSample as ASM1832782v2)." },
+      { n: "kaCioInte3_p1.1", acc: "GCA_055049045.1", level: "Scaffold", size: "164 Mb", year: 2026, note: "Canadian genome platform (Nova Scotia, Type B). Alt haplotype GCA_055048995.1." },
+      { n: "ASM5357250v1", acc: "GCA_053572505.1", level: "Scaffold", size: "34 Mb", year: 2025, note: "Kyoto Nanopore/Illumina deposit (Plymouth, Type B); NCBI flags it as “genome length too small” (34 Mb vs the ~120 Mb genome) — partial, not a whole-genome reference." },
+    ]},
+    { sp: "Ciona robusta", taxid: 1774208, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
+      { n: "KH", acc: "GCA_000224145.2", level: "Chromosome", chrPct: 67.9, size: "115 Mb", year: 2013, ref: "Community reference", refseq: "GCF_000224145.3", aniseed: true, note: "Classic Kyoto “KH” assembly: NCBI lists it as chromosome-level, but only 67.9% (78 Mb) sits on the 14 chromosomes — the other 37 Mb is in 1,257 unplaced scaffolds (Satou et al. 2019). Type A (formerly filed by NCBI as C. intestinalis; moved to C. robusta, taxid 1774208, by 2026-11). Basis of the KH2012 gene models (the KY21 models are on the GHOST HT assembly). RefSeq GCF_000224145.3 (Annotation Release 104, 2018; still filed under C. intestinalis, taxid 7719) — NCBI has since retired it (“suppressed: superseded by newer assembly for species”, the C. intestinalis reference moved to the Type-B GCF_018327825.1); the record and its files are still served. ANISEED serves the KH2012 gene models (KH “Joined Scaffold”) under C. robusta." },
+      { n: "HT (Ghost / KY21)", acc: "GCA_009617815.2", level: "Chromosome", chrPct: 95.6, size: "123 Mb", year: 2019, gm: true, gmUrl: "http://ghost.zool.kyoto-u.ac.jp/download_ht.html", gmLabel: "GHOST", note: "Ghost HT assembly (Satou et al. 2019, Kyoto, PacBio/MECAT, inbred Type-A line) + KY21 gene models — the community C. robusta gene-model reference. On GenBank as ASM961781v2 GCA_009617815.2; the gene models are only at GHOST." },
     ]},
     { sp: "Ciona savignyi", taxid: 51511, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "ASM5413134v1", acc: "GCA_054131345.1", level: "Chromosome", chrPct: 96, size: "201 Mb", year: 2025, ref: "Reference", note: "New chromosome-level assembly (Chinese Academy of Sciences)." },

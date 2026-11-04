@@ -11,6 +11,22 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-11-04
+
+### Data
+- *Ciona robusta* split out of *C. intestinalis* as its own species (taxid 1774208). NCBI
+  has moved the two Kyoto Type-A assemblies — KH `GCA_000224145.2` and HT / KY21
+  `GCA_009617815.2` — from *C. intestinalis* (7719) to *C. robusta*; both now sit under the
+  new entry with their RefSeq / ANISEED / GHOST chips unchanged. *C. intestinalis* keeps
+  the Type-B assemblies (Roscoff, Plymouth, Nova Scotia; sampling site added to the notes)
+  and JGI v1.0 `GCA_000183065.1`, which is California Type A but still filed by NCBI
+  under *C. intestinalis* (said so in its note). Gene-model count unchanged
+  (TUNOME 37 + GHOST 1). Data date and `?v=` → 2026-11-04.
+
+### Changed
+- UPDATING.md §8 (Ciona mapping rule) and §ANISEED table, the genomes.html "without an
+  NCBI assembly" note and the correction issue-form placeholder updated for the split.
+
 ## 2026-11-03
 
 ### Data
