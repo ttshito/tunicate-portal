@@ -356,7 +356,7 @@ the zip (HTTP range request + raw-deflate inflate → internal filename and scaf
 
 | Species (ANISEED) | ANISEED version | Assembly in this site's data |
 | --- | --- | --- |
-| C. robusta | KH2012 ("Joined Scaffold") | *C. intestinalis* **KH** `GCA_000224145.2` |
+| C. robusta | KH2012 ("Joined Scaffold") | *C. robusta* **KH** `GCA_000224145.2` |
 | C. savignyi | ENS81 | **ENS81** (Ensembl v81 on Broad CSAV2.0) |
 | H. roretzi | MTP2014 (2018) | **Harore_MTP2014** `GCA_013436055.1` |
 | P. mammillata | MTP2014 (2018) | **Phmamm_MTP2014** `GCA_003260075.1` |
@@ -554,11 +554,15 @@ assemblies, +M species from NCBI; refreshed RefSeq/TUNOME flags"). Required ever
 
 ## 8. Known mapping decisions (so they aren't "corrected" by mistake)
 
-- **Ciona robusta = Ciona intestinalis Type A.** NCBI files Type A under *C. intestinalis*
-  (KH `GCA_000224145.2`, and the HT assembly as `GCA_009617815.2` — same Kyoto inbred
-  Type-A line, 95.6 % anchored). The HT entry keeps `gmLabel: "GHOST"` + the GHOST URL
-  because the KY21 gene models live only at GHOST. No GCA is filed under the *name*
-  "Ciona robusta".
+- **Ciona robusta (= C. intestinalis Type A) is its own species, taxid 1774208.** Until
+  2026 NCBI filed the Kyoto Type-A assemblies under *C. intestinalis* (7719); by 2026-11 it
+  had moved KH `GCA_000224145.2` and HT `GCA_009617815.2` to *C. robusta*, so the site
+  splits them into a separate *Ciona robusta* entry (2026-11-04). Follow NCBI's taxid, not
+  biology: the JGI **v1.0** `GCA_000183065.1` is from California animals (biologically
+  Type A) but NCBI still files it under *C. intestinalis*, so it stays there with a note —
+  move it only if NCBI does. The KH RefSeq `GCF_000224145.3` is still under 7719 (it is
+  suppressed), but stays as the KH entry's RefSeq chip. The HT entry keeps
+  `gmLabel: "GHOST"` + the GHOST URL because the KY21 gene models live only at GHOST.
 - **Suppressed RefSeq records are kept on purpose.** `GCF_000224145.3` (Ciona KH,
   Annotation Release 104) and `GCF_013122585.1` (Styela clava ASM1312258v2) are
   `assembly_status: "suppressed"` — NCBI retires the old RefSeq annotation when the
