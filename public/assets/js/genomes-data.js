@@ -7,7 +7,7 @@ window.TUNICATE_GENOMES = {
   // Date this dataset was last refreshed from NCBI/TUNOME (YYYY-MM-DD).
   // Bump this whenever you update the data — it is shown on the page as a
   // staleness cue and reminder to re-run the update (see UPDATING.md).
-  updated: "2026-11-04",
+  updated: "2026-11-10",
 
   // Optional subtitle shown next to each order's group header (scientific only).
   orderSubtitles: {},
@@ -23,7 +23,7 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Ciona robusta", taxid: 1774208, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "KH", acc: "GCA_000224145.2", level: "Chromosome", chrPct: 67.9, size: "115 Mb", year: 2013, ref: "Community reference", refseq: "GCF_000224145.3", aniseed: true, note: "Classic Kyoto “KH” assembly: NCBI lists it as chromosome-level, but only 67.9% (78 Mb) sits on the 14 chromosomes — the other 37 Mb is in 1,257 unplaced scaffolds (Satou et al. 2019). Type A (formerly filed by NCBI as C. intestinalis; moved to C. robusta, taxid 1774208, by 2026-11). Basis of the KH2012 gene models (the KY21 models are on the GHOST HT assembly). RefSeq GCF_000224145.3 (Annotation Release 104, 2018; still filed under C. intestinalis, taxid 7719) — NCBI has since retired it (“suppressed: superseded by newer assembly for species”, the C. intestinalis reference moved to the Type-B GCF_018327825.1); the record and its files are still served. ANISEED serves the KH2012 gene models (KH “Joined Scaffold”) under C. robusta." },
-      { n: "HT (Ghost / KY21)", acc: "GCA_009617815.2", level: "Chromosome", chrPct: 95.6, size: "123 Mb", year: 2019, gm: true, gmUrl: "http://ghost.zool.kyoto-u.ac.jp/download_ht.html", gmLabel: "GHOST", note: "Ghost HT assembly (Satou et al. 2019, Kyoto, PacBio/MECAT, inbred Type-A line) + KY21 gene models — the community C. robusta gene-model reference. On GenBank as ASM961781v2 GCA_009617815.2; the gene models are only at GHOST." },
+      { n: "HT (Ghost / KY21)", acc: "GCA_009617815.2", level: "Chromosome", chrPct: 95.6, size: "123 Mb", year: 2019, gm: true, gmUrl: "http://ghost.zool.kyoto-u.ac.jp/download_ht.html", gmLabel: "GHOST", refseq: "GCF_009617815.1", note: "Ghost HT assembly (Satou et al. 2019, Kyoto, PacBio/MECAT, inbred Type-A line) + KY21 gene models — the community C. robusta gene-model reference. On GenBank as ASM961781v2 GCA_009617815.2; the KY21 gene models are only at GHOST. NCBI RefSeq annotation GCF_009617815.1 (GCF_009617815.1-RS_2026_10, released 2026-10-26) is a separate NCBI gene model on this assembly." },
     ]},
     { sp: "Ciona savignyi", taxid: 51511, family: "Cionidae", order: "Phlebobranchia", cls: "Ascidiacea", asm: [
       { n: "ASM5413134v1", acc: "GCA_054131345.1", level: "Chromosome", chrPct: 96, size: "201 Mb", year: 2025, ref: "Reference", note: "New chromosome-level assembly (Chinese Academy of Sciences)." },
@@ -183,6 +183,7 @@ window.TUNICATE_GENOMES = {
     { sp: "Botryllus schlosseri", taxid: 30301, family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
       { n: "Bs_hap1", acc: "GCA_051294905.1", level: "Chromosome", chrPct: 96.8, size: "496 Mb", year: 2025, ref: "Reference", gm: true, gmUrl: "https://octopus.obs-vlfr.fr/public/Botryllus_genome/index.html", gmLabel: "OCTOPUS", links: [{ url: "https://gigadb.org/dataset/102718", label: "GigaDB" }], refseq: "GCF_051294905.1", note: "CNRS/Sorbonne, chromosome-level — clade A1 (clone E*), 16 chromosomes, 22,275 protein-coding genes / 30,813 isoforms, BUSCO 91.6% (De Thier et al. 2025, GigaScience 14:giaf097). Golden star tunicate — regeneration/allorecognition model. RefSeq GCF_051294905.1. Hap2 GCA_051294915.1. Gene models come from OCTOPUS (CNRS Villefranche), which serves FASTA + GFF3 for hap1, hap2 and the primary assembly, plus the NOVOPlasty mitochondrial genome. The paper's GigaDB dataset (doi:10.5524/102718) holds the hap1, hap2 and collapsed assemblies with their GFF3 annotations, CDS/protein FASTA, repeat annotations and BUSCO results in one place." },
       { n: "kaBotSchl7_p1.1", acc: "GCA_059910395.1", level: "Contig", size: "557 Mb", year: 2026, note: "Canada's national genome sequencing platform (HiFi/hifiasm), contig-level. Alt pseudohaplotype GCA_059910365.1 (420 Mb)." },
+      { n: "SU_Bsch", acc: "GCA_062068092.1", level: "Scaffold", size: "673 Mb", year: 2026, note: "Stanford University, PacBio Sequel IIe (released 2026-10-29; BioProject PRJNA1246227). Same isolate 356a (Monterey Bay, CA) as the 2013 Stanford assembly; 2,040 scaffolds, scaffold N50 1.1 Mb. No RefSeq annotation yet." },
       { n: "356a-chromosome-assembly", acc: "GCA_000444245.1", level: "Scaffold", size: "580 Mb", year: 2013, gm: true, aniseed: true, note: "Original Stanford assembly (the classic colonial-model reference). Despite the name, NCBI classifies it as scaffold-level. Carries the ANISEED/TUNOME gene model — ANISEED serves the chromosome-scale “botznik-chr” fasta of this 2013 release." },
     ]},
     { sp: "Botrylloides diegensis", taxid: 62933, family: "Styelidae", order: "Stolidobranchia", cls: "Ascidiacea", asm: [
@@ -297,6 +298,9 @@ window.TUNICATE_GENOMES = {
     ]},
     { sp: "Polyclinum aurantium", taxid: 201966, family: "Polyclinidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaPolAura3.1", acc: "GCA_986268195.1", level: "Chromosome", chrPct: 99.2, size: "257 Mb", year: 2026, note: "Genoscope, chromosome-level." },
+    ]},
+    { sp: "Clavelina sabbadini", taxid: 2907997, family: "Clavelinidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
+      { n: "kaClaSabb1.1", acc: "GCA_990133625.1", level: "Chromosome", chrPct: 97.4, size: "158 Mb", year: 2026, note: "Genoscope / ATLASea, chromosome-level (PacBio HiFi + Arima Hi-C, released 2026-11-04), 9 chromosomes; Mediterranean Sea. No RefSeq annotation yet." },
     ]},
     { sp: "Clavelina lepadiformis", taxid: 159417, family: "Clavelinidae", order: "Aplousobranchia", cls: "Ascidiacea", asm: [
       { n: "kaClaLepa1.1", acc: "GCA_947623445.1", level: "Chromosome", chrPct: 98.6, size: "210 Mb", year: 2022, ref: "Reference", refseq: "GCF_947623445.1", note: "Sanger ToL, chromosome-level. Light-bulb sea squirt. RefSeq GCF_947623445.1. Alt haplotype GCA_947623165.1." },
