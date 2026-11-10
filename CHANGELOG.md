@@ -11,6 +11,18 @@ same day, add bullets under that day's heading rather than a new one.
 
 ---
 
+## 2026-11-10
+
+### Data
+- From NCBI (flagged by ncbi-watch, issue #27):
+  - New species *Clavelina sabbadini* kaClaSabb1.1 (GCA_990133625.1, Genoscope / ATLASea, released
+    2026-11-04, 158 Mb, 97.4 % on 9 chromosomes, Clavelinidae). No RefSeq annotation yet.
+  - *Botryllus schlosseri* SU_Bsch (GCA_062068092.1, Stanford, PacBio, released 2026-10-29,
+    scaffold-level, 673 Mb; isolate 356a, as the 2013 Stanford assembly).
+  - *Ciona robusta* HT (GCA_009617815.2): new NCBI RefSeq annotation GCF_009617815.1
+    (RS_2026_10) → `refseq` set, so the row shows an NCBI chip next to GHOST.
+  Gene-model count unchanged (TUNOME 37 + GHOST 1 + OCTOPUS 1). Data date and `?v=` → 2026-11-10.
+
 ## 2026-11-04
 
 ### Data
